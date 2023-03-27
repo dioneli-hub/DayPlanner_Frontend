@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { UsersBoardsComponent } from './users-boards/users-boards.component';
-import { HomeContentComponent } from './home-content/home-content.component';
-import { TodaysTasksComponent } from './todays-tasks/todays-tasks.component';
+import { SidebarComponent } from './HomePage/sidebar/sidebar.component';
+import { UsersBoardsComponent } from './HomePage/users-boards/users-boards.component';
+import { HomeContentComponent } from './HomePage/home-content/home-content.component';
+import { TodaysTasksComponent } from './HomePage/todays-tasks/todays-tasks.component';
+import { UsersWorkComponent } from './HomePage/users-work/users-work.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TodaysTasksComponent } from './todays-tasks/todays-tasks.component';
     SidebarComponent,
     UsersBoardsComponent,
     HomeContentComponent,
-    TodaysTasksComponent
+    TodaysTasksComponent,
+    UsersWorkComponent
   ],
   imports: [
     BrowserModule
