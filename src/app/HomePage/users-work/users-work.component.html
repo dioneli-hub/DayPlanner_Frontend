@@ -14,8 +14,7 @@
       </ul>
       <div>
         <ul>
-          <li>Make a bed</li>
-          <li>Brush teeth</li>
+          <li *ngFor="let task of tasks">{{task.context}} ({{task.dueDate}}) -- {{task.board}}</li>
         </ul>
     </div>
     

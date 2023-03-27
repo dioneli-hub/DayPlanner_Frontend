@@ -3,12 +3,8 @@
         <h5 class="card-header">My boards</h5>
         <div class="card-body">
           <ul class="list-group list-group-flush mb-2">
-            <li class="list-group-item">
-              <a href="#" class="card-link">Work</a></li>
-            <li class="list-group-item">
-              <a href="#" class="card-link">Sports</a></li>
-            <li class="list-group-item">
-              <a href="#" class="card-link">Painting</a></li>
+            <li class="list-group-item" *ngFor="let board of boards">
+              <a href="#" class="card-link">{{board.name}}</a></li>
           </ul>
           <a href="#" class="btn btn-primary">Create new board</a>
         </div>

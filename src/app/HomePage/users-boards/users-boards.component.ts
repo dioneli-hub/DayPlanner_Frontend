@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./users-boards.component.css']
 })
 export class UsersBoardsComponent {
-
+  boards=[
+    {id:1, name: "Leisure"},
+    {id:2, name: "Work"},
+    {id:3, name: "Sports"},
+  ]
 }
