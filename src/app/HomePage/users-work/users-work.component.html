@@ -1,22 +1,45 @@
 <div class="card">
-    <h5 class="card-header">My Work</h5>
-    <div class="card-body">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">To Do</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Done</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Overdue</a>
-        </li>
-      </ul>
-      <div>
-        <ul>
-          <li *ngFor="let task of tasks">{{task.context}} ({{task.dueDate}}) -- {{task.board}}</li>
-        </ul>
+  <h5 class="card-header">My Work</h5>
+  <div class="card-body">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">To Do</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Done</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Overdue</a>
+      </li>
+    </ul>
+    <div>
+
+
+      <div class="card" *ngFor="let task of tasks">
+        <div class="card-body task-card">
+
+          <div class="task-board">
+            {{task.board}}
+          </div>
+
+          <div class="task-container">
+            <div class="task-content">
+              <a href="#" class="card-link">{{task.context}}</a>
+            </div>
+            <div class="task-complete-button">
+              <button type="button" class="btn btn-success">Complete</button>
+            </div>
+          </div>
+
+          <div class="task-due">
+            Due {{task.dueDate}}
+          </div>
+
+
+        </div>
+      </div>
+
     </div>
-    
-    </div>
+
   </div>
+</div>
