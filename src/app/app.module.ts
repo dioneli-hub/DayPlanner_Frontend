@@ -7,6 +7,7 @@ import { UsersBoardsComponent } from './HomePage/users-boards/users-boards.compo
 import { HomeContentComponent } from './HomePage/home-content/home-content.component';
 import { TodaysTasksComponent } from './HomePage/todays-tasks/todays-tasks.component';
 import { UsersWorkComponent } from './HomePage/users-work/users-work.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UsersWorkComponent } from './HomePage/users-work/users-work.component';
     UsersBoardsComponent,
     HomeContentComponent,
     TodaysTasksComponent,
-    UsersWorkComponent
+    UsersWorkComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule

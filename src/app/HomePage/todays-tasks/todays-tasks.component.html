@@ -1,21 +1,18 @@
 <div class="body">
-    <div class="card">
-        <h5 class="card-header">Tasks For Today</h5>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <ul class="card-text">
-            <li>
-              Eat a donut
-            </li>
-            <li>
-              6000 steps
-            </li>
-            <li>
-              Do HW
-            </li>
-          </ul>
-          <a href="#" class="btn btn-primary">Create new task</a>
+  <div class="card">
+    <h5 class="card-header">Tasks For Today</h5>
+    <div class="card-body">
+
+      <div *ngFor="let task of tasks">
+        <div *ngIf="task.dueDate=='27.03.2023'">
+          <app-task [task]="task"></app-task>
         </div>
+        
       </div>
-    
+
+
+      <a href="#" class="btn btn-primary">Create new task</a>
+    </div>
+  </div>
+
 </div>

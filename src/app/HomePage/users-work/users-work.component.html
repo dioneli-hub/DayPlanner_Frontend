@@ -16,27 +16,7 @@
 
 
       <div class="card" *ngFor="let task of tasks">
-        <div class="card-body task-card">
-
-          <div class="task-board">
-            {{task.board}}
-          </div>
-
-          <div class="task-container">
-            <div class="task-content">
-              <a href="#" class="card-link">{{task.context}}</a>
-            </div>
-            <div class="task-complete-button">
-              <button type="button" class="btn btn-success">Complete</button>
-            </div>
-          </div>
-
-          <div class="task-due">
-            Due {{task.dueDate}}
-          </div>
-
-
-        </div>
+        <app-task [task]="task"></app-task>
       </div>
 
     </div>

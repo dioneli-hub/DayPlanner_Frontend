@@ -1,0 +1,22 @@
+.task-board {
+    color: grey;
+    font-size: smaller;
+}
+
+.task-due{
+    color: grey;
+    font-size: smaller;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.task-complete-button {
+    position: absolute;
+    right: 10px;
+    
+}
