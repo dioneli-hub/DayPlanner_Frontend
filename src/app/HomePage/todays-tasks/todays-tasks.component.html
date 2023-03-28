@@ -7,11 +7,44 @@
         <div *ngIf="task.dueDate=='27.03.2023'">
           <app-task [task]="task"></app-task>
         </div>
-        
+
       </div>
 
 
-      <a href="#" class="btn btn-primary">Create new task</a>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Create new task
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Create new task</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Task description">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose board</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Work</a></li>
+                  <li><a class="dropdown-item" href="#">Leisure</a></li>
+                  <li><a class="dropdown-item" href="#">Sports</a></li>
+           
+                </ul>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
