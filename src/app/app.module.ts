@@ -10,6 +10,8 @@ import { UsersWorkComponent } from './HomePage/users-work/users-work.component';
 import { TaskComponent } from './task/task.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BoardComponent } from './board/board.component';
+import { AddNewTaskModalComponent } from './HomePage/add-new-task-modal/add-new-task-modal.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         TodaysTasksComponent,
         UsersWorkComponent,
         TaskComponent,
+        BoardComponent,
+        AddNewTaskModalComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

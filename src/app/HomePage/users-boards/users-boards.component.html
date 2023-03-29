@@ -4,7 +4,8 @@
         <div class="card-body">
           <ul class="list-group list-group-flush mb-2">
             <li class="list-group-item" *ngFor="let board of boards">
-              <a href="#" class="card-link">{{board.name}}</a></li>
+              <app-board [board]="board"></app-board>
+            </li>
           </ul>
           <a href="#" class="btn btn-primary">Create new board</a>
         </div>
