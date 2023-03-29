@@ -10,12 +10,14 @@ export class TodaysTasksComponent {
 
 
 
-  addTask(taskContent: string){
+  addTask(taskObj: string[]){
+    let [context, board, dueDateString] = taskObj
+    console.log('dueDateString: ', dueDateString)
     this.tasks.push({
       id: this.tasks.length+1,
-      context: taskContent,
-      dueDate: "27/03/2023",
-      board: "Leisure"
+      context: context,
+      dueDate: dueDateString,
+      board: board
 
     })
   }

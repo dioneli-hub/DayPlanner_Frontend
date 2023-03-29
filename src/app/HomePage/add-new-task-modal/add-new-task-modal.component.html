@@ -15,22 +15,48 @@
           
           <div class="input-group mb-3">
             <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Task description" #taskContentInput>
+            
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose board</button>
-            <ul class="dropdown-menu dropdown-menu-end">
+            <select class="dropdown-menu dropdown-menu-end" #taskBoardInput>
                 
-              <li *ngFor="let board of boards"><a class="dropdown-item" href="#">{{board.name}}</a></li>
-              
-            </ul>
+                  <option *ngFor="let board of boards" value="{{board.name}}"><a class="dropdown-item" href="#">{{board.name}}</a></option>
+                
+            </select>
           </div>
 
           <div>
-            <app-date-picker></app-date-picker>
+            <form class="row row-cols-sm-auto">
+              <div class="col-12">
+                <div class="input-group">
+                  <input
+                    class="form-control"
+                    placeholder="yyyy-mm-dd"
+                    name="dp"
+                    [(ngModel)]="model"
+                    ngbDatepicker
+                    #d="ngbDatepicker"
+                  />
+                  
+                  <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                      </svg>
+                  </button>
+                </div>
+              </div>
+            </form>
+            
+            <!-- Show date obj details:
+            <app-date-picker (outEnterTaskDueDate)="setTaskDueDate($event)"></app-date-picker>
+           -->
+              <pre>Model: {{ model | json }}</pre>
+            
           </div>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="enterTaskContent(taskContentInput)">Create</button>
+          <button type="button" class="btn btn-primary" (click)="enterTaskContent(taskContentInput, taskBoardInput, model)">Create</button>
         </div>
       </div>
     </div>
