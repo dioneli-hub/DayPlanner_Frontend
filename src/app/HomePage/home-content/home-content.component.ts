@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { BoardModel } from 'src/app/api-models/board.model';
 import { TaskModel } from 'src/app/api-models/task.model';
 import { environment } from 'src/app/environments/environment';
 import { Board, Task } from 'src/app/models';
@@ -13,6 +14,7 @@ import { Board, Task } from 'src/app/models';
 export class HomeContentComponent {
 
   tasks: TaskModel[] = []
+  boards: BoardModel[] = []
 
   constructor(private http: HttpClient){
 
@@ -20,6 +22,7 @@ export class HomeContentComponent {
 
   ngOnInit(){
     this.fetchTasks();
+    this.fetchBoards();
   }
 
 
@@ -37,7 +40,7 @@ export class HomeContentComponent {
   // }
 
   private fetchTasks(){
-    this.http.get<{[key: number]: Task}>(`${environment.apiUrl}TaskItem`)
+    this.http.get<{[key: number]: TaskModel}>(`${environment.apiUrl}TaskItem`)
     .pipe(map((response)=>{
       const tasks = [];
       for(const key in response){
@@ -58,6 +61,29 @@ export class HomeContentComponent {
   onTasksFetch(){
     this.fetchTasks();
   }
+
+  private fetchBoards(){
+    this.http.get<{[key: number]: BoardModel}>(`${environment.apiUrl}Board`)
+    .pipe(map((response)=>{
+      const boards = [];
+      for(const key in response){
+        if(response.hasOwnProperty(key)){
+          boards.push({...response[key]}) //, id: key
+        }
+          
+      }
+      return boards;
+    }))
+    .subscribe((boards)=>{
+    console.log(boards);
+    this.boards = boards;
+  });
+    
+  }
+
+  onBoardsFetch(){
+    this.fetchBoards();
+  }
   
   // tasks: Task[]=[
   //   {id: 1, context: "Eat a donut", dueDate:"27/03/2023", board: "Leisure"},
@@ -66,19 +92,19 @@ export class HomeContentComponent {
   //   {id: 4, context: "Go to a cafe", dueDate:"30/03/2023", board: "Leisure"},
   // ];
 
-  boards: Board[] = [
-    {id:1, name: "Leisure", tasks: [
-      {id: 1, context: "Eat a donut", dueDate:"27/03/2023", board: "Leisure"},
-      {id: 4, context: "Go to a cafe", dueDate:"30/03/2023", board: "Leisure"},
-    ]},
+  // boards: Board[] = [
+  //   {id:1, name: "Leisure", tasks: [
+  //     {id: 1, context: "Eat a donut", dueDate:"27/03/2023", board: "Leisure"},
+  //     {id: 4, context: "Go to a cafe", dueDate:"30/03/2023", board: "Leisure"},
+  //   ]},
 
-    {id:2, name: "Work", tasks: [
-      {id: 3, context: "Do HW", dueDate:"29/03/2023", board: "Work"},
-    ]},
+  //   {id:2, name: "Work", tasks: [
+  //     {id: 3, context: "Do HW", dueDate:"29/03/2023", board: "Work"},
+  //   ]},
 
-    {id:3, name: "Sports", tasks: [
-      {id: 2, context: "6000 steps", dueDate:"27/03/2023", board: "Sports"}
-    ],},
-  ]
+  //   {id:3, name: "Sports", tasks: [
+  //     {id: 2, context: "6000 steps", dueDate:"27/03/2023", board: "Sports"}
+  //   ],},
+  // ]
 
 }

@@ -11,9 +11,9 @@
                 <!-- <app-board ></app-board>  -->
 
                 <a href="#" class="card-link">{{board.name}}</a>
-                <p *ngFor="let task of board.tasks">
-                  {{task.context}}
-                </p>
+                <!-- <p *ngFor="let task of board.tasks">
+                  {{task.text}}
+                </p> -->
 
                 <!-- <app-board ></app-board>  -->
               </li>
@@ -27,54 +27,54 @@
 
     </div>
     <div class="col-sm-6">
-        <!--Today's tasks-->
-        <div class="body">
-          <div class="card">
-            <h5 class="card-header">Tasks For Today</h5>
-            <div class="card-body">
+      <!--Today's tasks-->
+      <div class="body">
+        <div class="card">
+          <h5 class="card-header">Tasks For Today</h5>
+          <div class="card-body">
 
-              <div *ngFor="let task of tasks">
-                <div> <!--*ngIf="task.dueDate=='27/03/2023'"-->
+            <div *ngFor="let task of tasks">
+              <div> <!--*ngIf="task.dueDate=='27/03/2023'"-->
 
-                  <!-- <app-task [task]="task"></app-task> -->
-                  <div class="card" >
-                    <div class="card-body task-card">
-                
-                      <div class="task-board">
-                        {{task.boardId}}
-                      </div>
-                
-                      <div class="task-container">
-                        <div class="task-content">
-                          <a href="#" class="card-link">{{task.text}}</a>
-                        </div>
-                        <div class="task-complete-button">
-                          <button type="button" class="btn btn-success">Complete</button>
-                        </div>
-                      </div>
-                
-                      <div class="task-due">
-                        Due {{task.dueDate}}
-                      </div>
-                
+                <!-- <app-task [task]="task"></app-task> -->
+                <div class="card">
+                  <div class="card-body task-card">
+
+                    <div class="task-board">
+                      {{task.boardId}}
                     </div>
+
+                    <div class="task-container">
+                      <div class="task-content">
+                        <a href="#" class="card-link">{{task.text}}</a>
+                      </div>
+                      <div class="task-complete-button">
+                        <button type="button" class="btn btn-success">Complete</button>
+                      </div>
+                    </div>
+
+                    <div class="task-due">
+                      Due {{task.dueDate}}
+                    </div>
+
                   </div>
-                  <!-- <app-task [task]="task"></app-task> -->
-                  
-
-
                 </div>
+                <!-- <app-task [task]="task"></app-task> -->
+
+
 
               </div>
 
-              <!-- <app-add-new-task-modal [boards]="boards"
+            </div>
+
+            <!-- <app-add-new-task-modal [boards]="boards"
                 (outEnterTaskContent)="addTask($event)"></app-add-new-task-modal> -->
 
-            </div>
           </div>
-
         </div>
-        <!--Today's tasks finished-->
+
+      </div>
+      <!--Today's tasks finished-->
 
     </div>
   </div>
