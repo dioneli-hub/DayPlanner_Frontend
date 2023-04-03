@@ -41,12 +41,12 @@
                     <div class="card-body task-card">
                 
                       <div class="task-board">
-                        {{task.board}}
+                        {{task.boardId}}
                       </div>
                 
                       <div class="task-container">
                         <div class="task-content">
-                          <a href="#" class="card-link">{{task.context}}</a>
+                          <a href="#" class="card-link">{{task.text}}</a>
                         </div>
                         <div class="task-complete-button">
                           <button type="button" class="btn btn-success">Complete</button>
@@ -67,8 +67,8 @@
 
               </div>
 
-              <app-add-new-task-modal [boards]="boards"
-                (outEnterTaskContent)="addTask($event)"></app-add-new-task-modal>
+              <!-- <app-add-new-task-modal [boards]="boards"
+                (outEnterTaskContent)="addTask($event)"></app-add-new-task-modal> -->
 
             </div>
           </div>
