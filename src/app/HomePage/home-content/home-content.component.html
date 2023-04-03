@@ -1,20 +1,111 @@
 <div class="body">
   <div class="row">
     <div class="col-sm-6 mb-3 mb-sm-0">
-        <app-users-boards></app-users-boards>
+      <!--User's boards-->
+      <div class="body">
+        <div class="card">
+          <h5 class="card-header">My boards</h5>
+          <div class="card-body">
+            <ul class="list-group list-group-flush mb-2">
+              <li class="list-group-item" *ngFor="let board of boards">
+                <!-- <app-board ></app-board>  -->
+
+                <a href="#" class="card-link">{{board.name}}</a>
+                <p *ngFor="let task of board.tasks">
+                  {{task.context}}
+                </p>
+
+                <!-- <app-board ></app-board>  -->
+              </li>
+            </ul>
+            <a href="#" class="btn btn-primary">Create new board</a>
+          </div>
+        </div>
+
+      </div>
+      <!--User's boards finished-->
+
     </div>
     <div class="col-sm-6">
-      <div class="card">
-        <app-todays-tasks></app-todays-tasks>
-      </div>
+        <!--Today's tasks-->
+        <div class="body">
+          <div class="card">
+            <h5 class="card-header">Tasks For Today</h5>
+            <div class="card-body">
+
+              <div *ngFor="let task of tasks">
+                <div> <!--*ngIf="task.dueDate=='27/03/2023'"-->
+
+                  <!-- <app-task [task]="task"></app-task> -->
+                  <div class="card" >
+                    <div class="card-body task-card">
+                
+                      <div class="task-board">
+                        {{task.board}}
+                      </div>
+                
+                      <div class="task-container">
+                        <div class="task-content">
+                          <a href="#" class="card-link">{{task.context}}</a>
+                        </div>
+                        <div class="task-complete-button">
+                          <button type="button" class="btn btn-success">Complete</button>
+                        </div>
+                      </div>
+                
+                      <div class="task-due">
+                        Due {{task.dueDate}}
+                      </div>
+                
+                    </div>
+                  </div>
+                  <!-- <app-task [task]="task"></app-task> -->
+                  
+
+
+                </div>
+
+              </div>
+
+              <app-add-new-task-modal [boards]="boards"
+                (outEnterTaskContent)="addTask($event)"></app-add-new-task-modal>
+
+            </div>
+          </div>
+
+        </div>
+        <!--Today's tasks finished-->
+
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12 mt-3">
-      <app-users-work></app-users-work>
-      
+      <!--All tasks-->
+
+      <div class="card">
+        <h5 class="card-header">My Work</h5>
+        <div class="card-body">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">To Do</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Done</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Overdue</a>
+            </li>
+          </ul>
+          <div>
+            <div class="card" *ngFor="let task of tasks">
+              <app-task [task]="task"></app-task>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--All tasks finished-->
     </div>
-    
+
   </div>
 </div>
-    

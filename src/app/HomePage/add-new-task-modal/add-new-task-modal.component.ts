@@ -18,17 +18,6 @@ export class AddNewTaskModalComponent {
 
   @Output() outEnterTaskContent = new EventEmitter<string[]>()
   
-
-  /*@Output() outEnterTaskDueDate = new EventEmitter<string>()
-
-  enterTaskDueDate(taskDueDateInput: HTMLInputElement){
-    console.log('taskDueDateInput.value: ', taskDueDateInput.value)
-      let [year, month, day] = taskDueDateInput.value
-      let dateString = '' + day + '/' + month + '/' + year
-      this.outEnterTaskDueDate.emit(dateString)
-
-      console.log('dateString: ', dateString)
-  } */
   enterTaskContent(taskContentInput: HTMLInputElement, taskBoardInput: HTMLSelectElement, taskDueDate: NgbDateStruct){
     console.log('taskContentInput.value: ', taskContentInput.value)
     console.log('taskBoardInput.value: ', taskBoardInput.value)

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Board } from '../models';
+import { Board } from '../../models';
 
 @Component({
   selector: 'app-board',
