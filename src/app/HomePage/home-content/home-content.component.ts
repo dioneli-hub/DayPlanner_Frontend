@@ -14,6 +14,7 @@ import { Board, Task } from 'src/app/models';
 export class HomeContentComponent {
 
   tasks: TaskModel[] = []
+  todaysTasks: TaskModel[] = []
   boards: BoardModel[] = []
 
   constructor(private http: HttpClient){
@@ -23,6 +24,7 @@ export class HomeContentComponent {
   ngOnInit(){
     this.fetchTasks();
     this.fetchBoards();
+    this.fetchTodaysTasks();
   }
 
 
@@ -77,6 +79,29 @@ export class HomeContentComponent {
     .subscribe((boards)=>{
     console.log(boards);
     this.boards = boards;
+  });
+    
+  }
+
+  onTodaysTasksFetch(){
+    this.fetchTodaysTasks();
+  }
+
+  private fetchTodaysTasks(){
+    this.http.get<{[key: number]: TaskModel}>(`${environment.apiUrl}TaskItem/todaystasks`)
+    .pipe(map((response)=>{
+      const todaysTasks = [];
+      for(const key in response){
+        if(response.hasOwnProperty(key)){
+          todaysTasks.push({...response[key]}) //, id: key
+        }
+          
+      }
+      return todaysTasks;
+    }))
+    .subscribe((todaysTasks)=>{
+    console.log(todaysTasks);
+    this.todaysTasks = todaysTasks;
   });
     
   }
