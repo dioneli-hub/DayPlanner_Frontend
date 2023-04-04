@@ -17,6 +17,7 @@ export class HomeContentComponent {
   todaysTasks: TaskModel[] = []
   boards: BoardModel[] = []
 
+
   constructor(private http: HttpClient){
 
   }

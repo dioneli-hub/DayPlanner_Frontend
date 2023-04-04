@@ -9,6 +9,7 @@ import { TaskComponent } from './HomePage/task/task.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoardComponent } from './HomePage/board/board.component';
 import { AddNewTaskModalComponent } from './HomePage/add-new-task-modal/add-new-task-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { AddNewTaskModalComponent } from './HomePage/add-new-task-modal/add-new-
     imports: [
         BrowserModule,
         NgbModule,
+        FormsModule,
         AddNewTaskModalComponent,
         CommonModule,
         HttpClientModule
