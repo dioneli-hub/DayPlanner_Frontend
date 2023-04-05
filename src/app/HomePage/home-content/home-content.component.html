@@ -8,18 +8,11 @@
           <div class="card-body">
             <ul class="list-group list-group-flush mb-2">
               <li class="list-group-item" *ngFor="let board of boards">
-                
                 <app-board [board]="board"></app-board> 
-
-                <!-- <a href="#" class="card-link">{{board.name}}</a> -->
-                <!-- <p *ngFor="let task of board.tasks">
-                  {{task.text}}
-                </p> -->
-
-                <!-- <app-board ></app-board>  -->
               </li>
             </ul>
-            <a href="#" class="btn btn-primary">Create new board</a>
+            <app-add-new-board-modal></app-add-new-board-modal>
+            <!-- <a href="#" class="btn btn-primary">Create new board</a> -->
           </div>
         </div>
 

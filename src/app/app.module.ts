@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoardComponent } from './HomePage/board/board.component';
 import { AddNewTaskModalComponent } from './HomePage/add-new-task-modal/add-new-task-modal.component';
 import { FormsModule } from '@angular/forms';
+import { AddNewBoardModalComponent } from './HomePage/add-new-board-modal/add-new-board-modal.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
         //UsersWorkComponent,
         TaskComponent,
         BoardComponent,
+        AddNewBoardModalComponent,
         
     ],
     providers: [],
