@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { Board } from '../../models';
+import { BoardModel } from 'src/app/api-models/board.model';
+import { environment } from 'src/app/environments/environment';
 
 @Component({
   selector: 'app-board',
@@ -7,5 +9,14 @@ import { Board } from '../../models';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  @Input() board: Board;
+  @Input() board: BoardModel;
+
+  constructor(private http: HttpClient){
+
+  }
+  
+  onDeleteBoard(boardId: number){
+    this.http.delete(`${environment.apiUrl}Board/${boardId}`)
+    .subscribe();
+  }
 }
