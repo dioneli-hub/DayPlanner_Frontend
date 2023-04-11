@@ -27,15 +27,9 @@
           <h5 class="card-header">Tasks For Today</h5>
           <div class="card-body">
 
-            <div *ngFor="let task of todaysTasks">
-              <div> <!--*ngIf="task.dueDate=='27/03/2023'"-->
-
+            <div class="card" *ngFor="let task of todaysTasks">
                 <app-task [task]="task"></app-task>
-
-              </div>
-
             </div>
-
             <app-add-new-task-modal [boards]="boards"></app-add-new-task-modal>
                 <!-- (outEnterTaskContent)="addTask($event)"> --> 
 

@@ -7,5 +7,13 @@ import { BoardModel } from "./board.model";
      createdAt: Date,
      boardId: number,
      board: BoardModel;
+     creatorId: number,
     }
+
+    export interface AddTaskToBoardModel {
+        text: string;
+        dueDate: Date,
+    }
+
+
   
