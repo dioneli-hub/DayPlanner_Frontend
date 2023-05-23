@@ -1,0 +1,74 @@
+<div class="body">
+  <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <!--User's boards-->
+      <div class="body">
+        <div class="card">
+          <h5 class="card-header">My boards</h5>
+          <div class="card-body">
+            <ul class="list-group list-group-flush mb-2">
+              <li class="list-group-item" *ngFor="let board of boards">
+                <app-board [board]="board"></app-board> 
+              </li>
+            </ul>
+            <app-add-new-board-modal></app-add-new-board-modal>
+            <!-- <a href="#" class="btn btn-primary">Create new board</a> -->
+          </div>
+        </div>
+
+      </div>
+      <!--User's boards finished-->
+
+    </div>
+    <div class="col-sm-6">
+      <!--Today's tasks-->
+      <div class="body">
+        <div class="card">
+          <h5 class="card-header">Tasks For Today</h5>
+          <div class="card-body">
+
+            <div class="card" *ngFor="let task of todaysTasks">
+                <app-task [task]="task"></app-task>
+            </div>
+            <app-add-new-task-modal [boards]="boards"></app-add-new-task-modal>
+                <!-- (outEnterTaskContent)="addTask($event)"> --> 
+
+          </div>
+        </div>
+
+      </div>
+      <!--Today's tasks finished-->
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 mt-3">
+      <!--All tasks-->
+
+      <div class="card">
+        <h5 class="card-header">My Work</h5>
+        <div class="card-body">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">To Do</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Done</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Overdue</a>
+            </li>
+          </ul>
+          <div>
+            <div class="card" *ngFor="let task of tasks">
+              <app-task [task]="task"></app-task>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--All tasks finished-->
+    </div>
+
+  </div>
+</div>
