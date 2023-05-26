@@ -11,9 +11,13 @@ import { environment } from "../environments/environment";
     constructor(private httpClient: HttpClient) {
     }
 
-    createBoard(boardName: string) {
+    createBoard(boardName: string): Observable<BoardModel> {
       return this.httpClient.post<BoardModel>(`${environment.apiUrl}Board/`, {
         name: boardName,
       });
     }
+
+    deleteBoard (boardId: number): Observable<void>{
+      return this.httpClient.delete<void>(`${environment.apiUrl}Board/${boardId}`)}
+
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BoardModel } from 'src/api-models/board.model';
 import { environment } from 'src/environments/environment';
+import { BoardsService } from 'src/services/boards.service';
 
 @Component({
   selector: 'app-board',
@@ -11,12 +12,16 @@ import { environment } from 'src/environments/environment';
 export class BoardComponent {
   @Input() board: BoardModel;
 
-  constructor(private http: HttpClient){
+  
+  @Output()
+  deleteBoard = new EventEmitter<BoardModel>();
+
+  constructor(private boardsService: BoardsService){
 
   }
-  
-  onDeleteBoard(boardId: number){
-    this.http.delete(`${environment.apiUrl}Board/${boardId}`)
-    .subscribe();
+  delete(board: BoardModel) {
+    this.deleteBoard.emit(board);
   }
+  
+
 }

@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserModel } from 'src/api-models/user.model';
 import { TasksService } from 'src/services/tasks.service';
+import { BoardsService } from 'src/services/boards.service';
 
 @Component({
   selector: 'app-home-content',
@@ -30,6 +31,7 @@ export class HomeContentComponent implements OnInit{
 
   constructor(private usersService: UsersService,
               private tasksService: TasksService,
+              private boardsService: BoardsService,
               private authService: AuthenticationService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -86,6 +88,13 @@ export class HomeContentComponent implements OnInit{
         }
       })})}
 
+        onDeleteBoard(board: BoardModel){
+        this.boardsService.deleteBoard(board.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+        this.boards = this.boards.filter(x => x.id !== board.id);
+      });
+  }
      
       ngOnDestroy() {
         this.destroy$.next();

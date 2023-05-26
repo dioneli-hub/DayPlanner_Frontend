@@ -9,8 +9,11 @@
           <h5 class="card-header">{{userId}}My boards</h5>
           <div class="card-body">
             <ul class="list-group list-group-flush mb-2">
-              <li class="list-group-item" *ngFor="let board of boards">
-                <app-board [board]="board"></app-board> 
+              <li class="list-group-item" >
+                <app-board
+                  *ngFor="let board of boards"
+                  [board]="board"
+                  (deleteBoard)="onDeleteBoard($event)"></app-board> 
               </li>
             </ul>
             <app-add-new-board-modal></app-add-new-board-modal>
