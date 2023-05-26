@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {TokenModel} from "../api-models/token.model";
 import {Observable, of} from "rxjs";
 import {switchMap, tap} from "rxjs/operators";
-import {UserProvider} from "../providers/user.provider";
+import {UsersProvider} from "../providers/users.provider";
 import {environment} from "../environments/environment";
 
 @Injectable({
@@ -12,7 +12,7 @@ import {environment} from "../environments/environment";
 export class AuthenticationService {
 
   constructor(private httpClient: HttpClient,
-              private userProvider: UserProvider) {  }
+              private usersProvider: UsersProvider) {  }
 
   private static setToken(tokenPair: TokenModel | null): void {
     if (tokenPair) {
@@ -39,7 +39,7 @@ export class AuthenticationService {
 
   logout(): void {
     AuthenticationService.setToken(null);
-    this.userProvider.currentUser = null;
+    this.usersProvider.currentUser = null;
   }
 
   isAuthenticated(): boolean {

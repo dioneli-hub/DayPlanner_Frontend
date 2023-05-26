@@ -1,21 +1,37 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
-import { TaskModel } from 'src/app/api-models/task.model';
-import { environment } from 'src/app/environments/environment';
+import { Component, Input, OnInit } from '@angular/core';
+import { TaskModel } from 'src/api-models/task.model';
+import { environment } from 'src/environments/environment';
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit{
+
+  taskDate: Date;
+
   @Input() task: TaskModel;
   constructor(private http: HttpClient){
 
   }
+  ngOnInit(): void {
+    this.dateFormat(this.task.dueDate)
+  }
+ 
   
   onDeleteTask(taskId: number){
     this.http.delete(`${environment.apiUrl}TaskItem/${taskId}`)
     .subscribe();
   }
-}
+
+
+  dateFormat (date) {
+    this.taskDate = date.replace('T', ' ').substring(0, 19)
+    };
+  }
+
+
+

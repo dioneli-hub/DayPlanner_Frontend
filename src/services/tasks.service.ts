@@ -14,4 +14,13 @@ import { environment } from "../environments/environment";
     getTasks(): Observable<Array<TaskModel>> {
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}taskItem`);
     }
+
+    getUsersTasks(userId: number): Observable<Array<TaskModel>> {
+      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-tasks`);
+    }
+
+    getTodaysUsersTasks(userId: number): Observable<Array<TaskModel>> {
+      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-todays-tasks`);
+    }
+
 }
