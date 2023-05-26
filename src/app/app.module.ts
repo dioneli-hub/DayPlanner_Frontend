@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
+import {Routes, RouterModule} from '@angular/router';
 import { SidebarComponent } from './HomePage/sidebar/sidebar.component';
 import { HomeContentComponent } from './HomePage/home-content/home-content.component';
 import { TaskComponent } from './HomePage/task/task.component';
@@ -11,7 +12,20 @@ import { BoardComponent } from './HomePage/board/board.component';
 import { AddNewTaskModalComponent } from './HomePage/add-new-task-modal/add-new-task-modal.component';
 import { FormsModule } from '@angular/forms';
 import { AddNewBoardModalComponent } from './HomePage/add-new-board-modal/add-new-board-modal.component';
+import { AuthenticationInterceptor } from 'src/interceptors/authentication.interceptor';
+import { LoginComponent } from './login/login.component';
 
+const AUTHENTICATION_INTERCEPTOR = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthenticationInterceptor,
+    multi: true
+  };
+
+  // определение маршрутов
+const appRoutes: Routes =[
+    { path: '', component: HomeContentComponent},
+    { path: 'login', component: LoginComponent},
+];
 @NgModule({
     declarations: [
         AppComponent,
@@ -23,12 +37,16 @@ import { AddNewBoardModalComponent } from './HomePage/add-new-board-modal/add-ne
         TaskComponent,
         BoardComponent,
         AddNewBoardModalComponent,
+        LoginComponent,
         
     ],
-    providers: [],
+    providers: [
+        AUTHENTICATION_INTERCEPTOR,
+    ],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
+        RouterModule.forRoot(appRoutes),
         NgbModule,
         FormsModule,
         AddNewTaskModalComponent,

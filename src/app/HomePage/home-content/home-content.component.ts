@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { BoardModel } from 'src/app/api-models/board.model';
-import { TaskModel } from 'src/app/api-models/task.model';
-import { environment } from 'src/app/environments/environment';
+import { BoardModel } from 'src/api-models/board.model';
+import { TaskModel } from 'src/api-models/task.model';
+import { environment } from 'src/environments/environment';
 import { Board, Task } from 'src/app/models';
 
 @Component({

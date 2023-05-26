@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { BoardModel } from 'src/app/api-models/board.model';
-import { environment } from 'src/app/environments/environment';
+import { BoardModel } from 'src/api-models/board.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-board',

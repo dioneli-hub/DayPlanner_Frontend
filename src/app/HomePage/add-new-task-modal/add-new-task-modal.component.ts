@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { BoardModel } from 'src/app/api-models/board.model';
+import { BoardModel } from 'src/api-models/board.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-new-task-modal',
