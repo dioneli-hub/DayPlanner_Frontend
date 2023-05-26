@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { UsersService } from 'src/services/users.service';
-=======
-import { UserService } from 'src/services/user.service';
->>>>>>> 14ec9b046dacde5ee5ca638354e11b43d3236b5b
 import { AuthenticationService } from 'src/services/authentication.service';
 import { Router } from '@angular/router';
 
@@ -26,11 +22,7 @@ export class LoginComponent implements OnInit {
   error = '';
 
   constructor(private authService: AuthenticationService,
-<<<<<<< HEAD
               private usersService: UsersService,
-=======
-              private userService: UserService,
->>>>>>> 14ec9b046dacde5ee5ca638354e11b43d3236b5b
               private router: Router) { }
 
               ngOnInit(): void {
@@ -56,11 +48,7 @@ export class LoginComponent implements OnInit {
             
               createAccount() {
                 this.error = '';
-<<<<<<< HEAD
                 this.usersService
-=======
-                this.userService
->>>>>>> 14ec9b046dacde5ee5ca638354e11b43d3236b5b
                   .create(this.first_name, this.last_name, this.new_email, this.new_password)
                   .subscribe((user) => {
                     if (user) {

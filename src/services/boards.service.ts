@@ -11,14 +11,9 @@ import { environment } from "../environments/environment";
     constructor(private httpClient: HttpClient) {
     }
 
-    
-  
-    // create(firstName: string, lastName: string, email: string, password: string) {
-    //   return this.httpClient.post<SimpleUserModel>(`${environment.apiUrl}users/`, {
-    //     firstName,
-    //     lastName,
-    //     email,
-    //     password
-    //   });
-    // }
+    createBoard(boardName: string) {
+      return this.httpClient.post<BoardModel>(`${environment.apiUrl}Board/`, {
+        name: boardName,
+      });
+    }
 }

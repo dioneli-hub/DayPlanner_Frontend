@@ -14,14 +14,16 @@
             <div class="modal-body">
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Board name" #boardName name="boardName">
+                    <input type="text" class="form-control" placeholder="Board name" id="board_name" [(ngModel)]="board_name" required="">
                 </div>
 
 
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" (click)="onBoardCreate(boardName.value)">Create</button>
+                    <button type="submit" class="btn btn-primary" (click)="createBoard()"
+                    [disabled]="!board_name"
+                   >Create</button>
                 </div>
             </div>
         </div>
