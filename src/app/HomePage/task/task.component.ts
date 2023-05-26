@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { TaskModel } from 'src/api-models/task.model';
 import { environment } from 'src/environments/environment';
-import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-task',
@@ -17,6 +16,7 @@ export class TaskComponent implements OnInit{
   constructor(private http: HttpClient){
 
   }
+
   ngOnInit(): void {
     this.dateFormat(this.task.dueDate)
   }
@@ -32,6 +32,3 @@ export class TaskComponent implements OnInit{
     this.taskDate = date.replace('T', ' ').substring(0, 19)
     };
   }
-
-
-
