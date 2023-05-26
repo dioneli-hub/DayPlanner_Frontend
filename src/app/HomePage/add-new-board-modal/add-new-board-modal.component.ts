@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { BoardModel } from 'src/api-models/board.model';
 import { environment } from 'src/environments/environment';
+import { UserProvider } from 'src/providers/user.provider';
 import { BoardsService } from 'src/services/boards.service';
 
 @Component({
@@ -13,18 +16,27 @@ export class AddNewBoardModalComponent{
 
   private destroy$ = new Subject<void>();
 
-  board_name: string = null;
-  constructor(private boardsService: BoardsService){
+
+  board_name: string = '';
+
+  @Output()
+  boardCreate = new EventEmitter<BoardModel>();
+  
+  constructor(private boardsService: BoardsService,
+    private router: Router,
+   ){
   
   }
-  
+ 
   createBoard() {
     this.boardsService
       .createBoard(this.board_name)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
+      .subscribe((board) => {
         this.board_name = '';
+        this.boardCreate.emit(board);
       });
+      
   }
 
   ngOnDestroy() {

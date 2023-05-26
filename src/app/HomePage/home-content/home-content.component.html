@@ -16,7 +16,9 @@
                   (deleteBoard)="onDeleteBoard($event)"></app-board> 
               </li>
             </ul>
-            <app-add-new-board-modal></app-add-new-board-modal>
+            <app-add-new-board-modal
+                (boardCreate)="onCreateBoard($event)">
+                </app-add-new-board-modal>
             <!-- <a href="#" class="btn btn-primary">Create new board</a> -->
           </div>
         </div>

@@ -95,6 +95,10 @@ export class HomeContentComponent implements OnInit{
         this.boards = this.boards.filter(x => x.id !== board.id);
       });
   }
+  
+  onCreateBoard(board: BoardModel){
+    this.boards.unshift(board);
+  }
      
       ngOnDestroy() {
         this.destroy$.next();

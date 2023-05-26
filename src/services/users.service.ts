@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {UserModel} from "../api-models/user.model";
 import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
-import {UsersProvider} from "../providers/users.provider";
+import {UserProvider} from "../providers/user.provider";
 import {environment} from "../environments/environment";
 import { TokenModel } from "src/api-models/token.model";
 import { BoardModel } from "src/api-models/board.model";
@@ -13,7 +13,7 @@ import { BoardModel } from "src/api-models/board.model";
 })
 export class UsersService {
   constructor(private httpClient: HttpClient,
-              private usersProvider: UsersProvider) {
+              private userProvider: UserProvider) {
   }
 
   create(firstName: string, lastName: string, email: string, password: string) {
@@ -30,14 +30,14 @@ export class UsersService {
   }
 
   current(): Observable<UserModel> {
-    if (this.usersProvider.currentUser !== null) {
-      return of(this.usersProvider.currentUser)
+    if (this.userProvider.currentUser !== null) {
+      return of(this.userProvider.currentUser)
     }
 
     return this.httpClient
       .get<UserModel>(`${environment.apiUrl}Auth`)
       .pipe(
-        tap(user => this.usersProvider.currentUser = user)
+        tap(user => this.userProvider.currentUser = user)
       )
   }
 
