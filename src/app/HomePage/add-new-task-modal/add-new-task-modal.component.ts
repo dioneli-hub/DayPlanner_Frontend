@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BoardsService } from 'src/services/boards.service';
 import { UsersService } from 'src/services/users.service';
 import { UserProvider } from 'src/providers/user.provider';
+import { TaskModel } from 'src/api-models/task.model';
 
 @Component({
   selector: 'app-add-new-task-modal',
@@ -20,6 +21,10 @@ import { UserProvider } from 'src/providers/user.provider';
 })
 
 export class AddNewTaskModalComponent implements OnInit {
+
+  @Output()
+  taskCreate = new EventEmitter<TaskModel>();
+
   @Input() boards: BoardModel[];
   //boards: Array<BoardModel>;
 
@@ -32,7 +37,8 @@ export class AddNewTaskModalComponent implements OnInit {
     private usersService: UsersService,
     private userProvider: UserProvider) { }
   submit(value) {
-  this.boardsService.addTaskToBoard(value).subscribe(x=>{
+  this.boardsService.addTaskToBoard(value).subscribe(task=>{
+    this.taskCreate.emit(task);
   //this.router.navigate(['/']);
   });
   }

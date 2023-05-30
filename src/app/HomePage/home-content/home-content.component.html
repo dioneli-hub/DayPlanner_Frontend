@@ -37,7 +37,10 @@
             <div class="card" *ngFor="let task of todaysTasks">
                 <app-task [task]="task"></app-task>
             </div>
-            <app-add-new-task-modal [boards]="boards"></app-add-new-task-modal>
+            <app-add-new-task-modal 
+                (taskCreate)="onCreateTask($event)"
+                [boards]="boards">
+              </app-add-new-task-modal>
                 <!-- (outEnterTaskContent)="addTask($event)"> --> 
 
           </div>

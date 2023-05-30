@@ -99,11 +99,27 @@ export class HomeContentComponent implements OnInit{
   onCreateBoard(board: BoardModel){
     this.boards.unshift(board);
   }
-     
+
+  onCreateTask(task: TaskModel){
+    this.tasks.push(task);
+    if(this.isToday(task.dueDate)){
+      this.todaysTasks.push(task);
+    }
+  }
+  isToday (date: Date) {  
+    const now = new Date()
+    const d = new Date(date) 
+      return d.getUTCDate() === now.getUTCDate() &&
+           d.getUTCMonth() === now.getUTCMonth() &&
+           d.getUTCFullYear() === now.getUTCFullYear()
+  }
+  
       ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
       }
+
+      
     }
       
   // ngOnInit(){
