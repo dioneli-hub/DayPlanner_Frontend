@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { AddNewBoardModalComponent } from './HomePage/add-new-board-modal/add-new-board-modal.component';
 import { AuthenticationInterceptor } from 'src/interceptors/authentication.interceptor';
 import { LoginComponent } from './login/login.component';
+import { BoardDetailsComponent } from './board-details/board-details.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -25,7 +26,9 @@ const AUTHENTICATION_INTERCEPTOR = {
 const appRoutes: Routes =[
     { path: '', component: HomeContentComponent},
     { path: 'login', component: LoginComponent},
-    { path: 'home/:id', component: HomeContentComponent, }
+    { path: 'home/:id', component: HomeContentComponent},
+    { path: 'board-details/:id', component: HomeContentComponent, }
+
 ];
 @NgModule({
     declarations: [
@@ -39,6 +42,7 @@ const appRoutes: Routes =[
         BoardComponent,
         AddNewBoardModalComponent,
         LoginComponent,
+        BoardDetailsComponent,
         
     ],
     providers: [
