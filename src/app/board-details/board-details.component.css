@@ -1,0 +1,102 @@
+
+.board-details-container{
+    width: 100%;
+   
+}
+
+.board-details-heading{
+    border-top: 5px solid black;
+    background-color: #cec7c7;
+    padding-top: 2px;
+    padding-bottom: 0.5px;
+}
+
+.board-details-heading > *{
+    margin-left: 10vw;
+    color: white;
+}
+
+
+.board-members-heading{
+    padding-bottom: 0.5px;
+    margin-left: 2vw;
+}
+
+
+
+.board-members{
+    background-color: #f2f0f0;
+    height: 70vh;
+    box-shadow: 0vh 1vh 1vh 0vh #bdbdbd;
+    position: relative;
+}
+
+.add-new-member-btn{
+    position: absolute;
+    right: 2vw;
+    bottom: 2vw;
+}
+
+.tasks{
+    display: grid;
+    grid-template-columns: [first] 3fr [divide] 1fr [end];
+    grid-template-rows: [row-start ]1fr [row-middle] 8fr [row-end];
+    justify-items: stretch;
+    align-items: start;
+}
+
+.add-new-task-btn-container{
+    grid-column-start: divide;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-middle;
+    justify-self: end;
+}
+
+.tasks-container{
+    grid-column-start: first;
+    grid-column-end: end;
+    grid-row-start: row-middle;
+    grid-row-end: row-end;
+
+}
+
+.add-new-btn{
+    background-color: #7b7777;
+    /* border-color: #676363; */
+    border: none;
+    border-radius: 20px;
+    color: #f2f0f0;
+}
+
+
+
+/* for each member*/
+.task-board {
+    color: grey;
+    font-size: smaller;
+}
+
+.task-due{
+    color: grey;
+    font-size: smaller;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+/* .task-complete-button {
+    position: absolute;
+    right: 10px;
+    
+} */
+
+.task-delete-button {
+    position: absolute;
+    right: 10px;
+        
+}

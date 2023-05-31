@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { BoardModel } from 'src/api-models/board.model';
 import { TaskModel } from 'src/api-models/task.model';
-import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import { UsersService } from 'src/services/users.service';
 import { AuthenticationService } from 'src/services/authentication.service';
@@ -30,6 +29,7 @@ export class HomeContentComponent implements OnInit{
 
 
   constructor(private usersService: UsersService,
+              // private userProvider: UserProvider,
               private tasksService: TasksService,
               private boardsService: BoardsService,
               private authService: AuthenticationService,
@@ -42,10 +42,14 @@ export class HomeContentComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
+    // this.currentUser = this.userProvider.currentUser; 
+
     this.usersService
     .current()
     .subscribe(currentUser => {
       this.currentUser = currentUser;
+      // this.user = currentUser;
+      // this.userId = currentUser.id;
       this.route
         .params
         .pipe(takeUntil(this.destroy$))
@@ -83,7 +87,7 @@ export class HomeContentComponent implements OnInit{
           this.usersService.current()
             .subscribe(user => {
               this.user = user;
-              // this.userId = currentUser.id;
+              // this.userId = user.id;
             });
         }
       })})}

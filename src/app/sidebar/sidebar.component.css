@@ -1,0 +1,11 @@
+.content-container {
+    position:relative;
+    height: 100%;
+    overflow: hidden; 
+}
+
+.logout-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
