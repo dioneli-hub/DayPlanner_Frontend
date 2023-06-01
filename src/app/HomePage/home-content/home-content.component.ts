@@ -20,7 +20,7 @@ export class HomeContentComponent implements OnInit{
   private destroy$ = new Subject<void>();
 
   currentUser: UserModel | null = null;
-  user: UserModel | null = null;
+  // user: UserModel | null = null;
   userId: number | null = null;
   tasks: Array<TaskModel> = [];
   todaysTasks: Array<TaskModel> = [];
@@ -48,11 +48,37 @@ export class HomeContentComponent implements OnInit{
     .current()
     .subscribe(currentUser => {
       this.currentUser = currentUser;
-      // this.user = currentUser;
-      // this.userId = currentUser.id;
-      this.route
+      this.userId = currentUser.id;
+      this.route //
         .params
         .pipe(takeUntil(this.destroy$))
+        .subscribe(params => {
+          params['id'] = this.userId;
+          
+              this.usersService
+                .getBoards(this.userId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(boards => {
+                  this.boards = boards;
+                }); 
+
+                this.tasksService
+                .getUsersTasks(this.userId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(tasks => {
+                  this.tasks = tasks;
+                });
+
+                this.tasksService
+                .getTodaysUsersTasks(this.userId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(tasks => {
+                  this.todaysTasks = tasks;
+                });
+
+
+          // from first params
+       /* .pipe(takeUntil(this.destroy$))
         .subscribe(params => {
           this.userId = params['id'];
           if (this.userId) {
@@ -81,16 +107,9 @@ export class HomeContentComponent implements OnInit{
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(tasks => {
                   this.todaysTasks = tasks;
-                });
+                }); */
         }
-        else {
-          this.usersService.current()
-            .subscribe(user => {
-              this.user = user;
-              // this.userId = user.id;
-            });
-        }
-      })})}
+       )})}
 
         onDeleteBoard(board: BoardModel){
         this.boardsService.deleteBoard(board.id)
