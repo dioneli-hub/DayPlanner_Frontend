@@ -1,35 +1,37 @@
 <div class="board-details-container">
     <div class="board-details-heading">
-        <h4>Sports</h4>
+        <h4>{{currentBoard.name}}</h4>
     </div>
     <div class="row mt-3 ps-3">
         <div class="board-members col-4 ms-3">
             <div class="board-members-heading">
                 <h5 class="pt-2 pb-1">Board Members</h5>
             </div>
+
+
         
 
-              <div class="card mb-2" >
+              <div class="card mb-2" *ngFor="let member of boardMembers">
                 <div class="card-body task-card">
                   <div class="task-board">
-                    Creator
+                    Member
                   </div>
                   <div class="task-container">
                     <div class="task-content">
-                      <a href="#" class="card-link">Diana Levchenko</a>
+                      <a href="#" class="card-link"> {{member.firstName}} {{member.lastName}}</a>
                     </div>
                       <div class="task-delete-button">
                         <button type="button" class="btn btn-danger">Delete</button>
                       </div>
                   </div>
                   <div class="task-due">
-                    dianyaA@mail.ru
+                    {{member.email}}
                   </div>
                 </div>
               </div>
 
               
-              <div class="card mb-2" >
+              <!-- <div class="card mb-2" >
                 <div class="card-body task-card">
                   <div class="task-board">
                     Member
@@ -66,7 +68,7 @@
                     Dianya_BIS'KA@mail.ru
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <button type="button" class="add-new-btn add-new-member-btn btn btn-secondary">Add new+</button>
 
@@ -81,7 +83,27 @@
             <div class="tasks-container ps-3">
 
 
-                <div class="card mb-2" >
+                <div class="card mb-2" *ngFor="let task of tasks">
+                    <div class="card-body task-card">
+                      <div class="task-board">
+                        {{task.board.name}}
+                      </div>
+                      <div class="task-container">
+                        <div class="task-content">
+                          <a href="#" class="card-link">{{task.text}}</a>
+                        </div>
+                          <div class="task-delete-button">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                          </div>
+                      </div>
+                      <div class="task-due">
+                        {{task.dueDate}}
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="card mb-2" >
                     <div class="card-body task-card">
                       <div class="task-board">
                         Sports
@@ -98,27 +120,7 @@
                         Due 05.05.2023
                       </div>
                     </div>
-                  </div>
-
-
-                  <div class="card mb-2" >
-                    <div class="card-body task-card">
-                      <div class="task-board">
-                        Sports
-                      </div>
-                      <div class="task-container">
-                        <div class="task-content">
-                          <a href="#" class="card-link">Jog</a>
-                        </div>
-                          <div class="task-delete-button">
-                            <button type="button" class="btn btn-danger">Delete</button>
-                          </div>
-                      </div>
-                      <div class="task-due">
-                        Due 05.05.2023
-                      </div>
-                    </div>
-                  </div>
+                  </div> -->
     
             </div>
 

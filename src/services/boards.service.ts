@@ -30,4 +30,8 @@ import { TaskModel } from "src/api-models/task.model";
       })
     }
 
-}
+    getBoardById(boardId: number): Observable<BoardModel>{
+      return this.httpClient.get<BoardModel>(`${environment.apiUrl}Board/${boardId}`)
+    }
+  }
+

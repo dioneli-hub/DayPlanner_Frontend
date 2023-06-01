@@ -23,4 +23,7 @@ import { environment } from "../environments/environment";
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-todays-tasks`);
     }
 
+    getBoardTasks(boardId: number): Observable<Array<TaskModel>> {
+      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks`);
+    }
 }

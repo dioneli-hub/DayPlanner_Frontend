@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
+import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { BoardsService } from 'src/services/boards.service';
@@ -17,12 +18,9 @@ export class BoardDetailsComponent implements OnInit{
   private destroy$ = new Subject<void>();
 
   currentBoard: BoardModel | null = null;
-  // user: UserModel | null = null;
   boardMembers: Array<UserModel> = [];
-  // postText = '';
-  // userId: number | null = null;
-  // hasCurrentFollow = false;
-  // users: Array<UserModel> = [];
+  tasks: Array<TaskModel> = [];
+  boardId: number | null = null;
 
   constructor(private usersService: UsersService,
               private tasksService: TasksService,
@@ -37,11 +35,27 @@ export class BoardDetailsComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
-    // this.usersService
-    //   .getBoardMembers()
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(this.boardMembers => this.boardMembers = this.boardMembers);
 
-  
-  }
-}
+    this.route 
+        .params
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(params => {
+          this.boardId = params['id'];
+          this.boardsService.getBoardById(this.boardId)
+            .subscribe(currentBoard => this.currentBoard =currentBoard);
+          if (this.boardId) {
+            this.usersService
+              .getBoardMembers(this.boardId)
+              .pipe(takeUntil(this.destroy$))
+              .subscribe(boardMembers => {
+                this.boardMembers = boardMembers;
+              });
+              this.tasksService
+                .getBoardTasks(this.boardId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(tasks => {
+                  this.tasks = tasks;
+                });
+              }
+            });
+          }}
