@@ -4,6 +4,7 @@ import { Observable } from "rxjs/internal/Observable";
 import { BoardModel } from "../api-models/board.model";
 import { environment } from "../environments/environment";
 import { TaskModel } from "src/api-models/task.model";
+import { Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,6 @@ import { TaskModel } from "src/api-models/task.model";
   export class BoardsService {
     constructor(private httpClient: HttpClient) {
     }
-
     
     createBoard(boardName: string): Observable<BoardModel> {
       return this.httpClient.post<BoardModel>(`${environment.apiUrl}Board/`, {

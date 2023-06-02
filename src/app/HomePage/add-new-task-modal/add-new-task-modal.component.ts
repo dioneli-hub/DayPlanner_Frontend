@@ -26,7 +26,6 @@ export class AddNewTaskModalComponent implements OnInit {
   taskCreate = new EventEmitter<TaskModel>();
 
   @Input() boards: BoardModel[];
-  //boards: Array<BoardModel>;
 
   taskText = null;
   taskDueDate = null;
@@ -39,11 +38,9 @@ export class AddNewTaskModalComponent implements OnInit {
   submit(value) {
   this.boardsService.addTaskToBoard(value).subscribe(task=>{
     this.taskCreate.emit(task);
-  //this.router.navigate(['/']);
   });
   }
   ngOnInit(): void {
-  //this.usersService.getBoards(this.userProvider.currentUser.id).subscribe(x=>this.boards = x);
   }
  }
 

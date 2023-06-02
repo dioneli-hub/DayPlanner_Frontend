@@ -1,4 +1,4 @@
-.task-board {
+/*.task-board {
     color: grey;
     font-size: smaller;
 }
@@ -15,11 +15,55 @@
     position: relative;
 }
 
-/* .task-complete-button {
+// next two were commented out
+ .task-complete-button {
     position: absolute;
     right: 10px;
     
+} 
+
+.task-delete-button {
+    position: absolute;
+    right: 10px;
+        
 } */
+
+
+
+
+.card{
+    border: none;
+    border-radius: 12px;
+    box-shadow: -2px 0 1px 0 #a49f9f; /* shadow to the left */
+}
+
+.card-link {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    /* font-size: smaller; */
+    /* font-family: Verdana,  sans-serif; */
+    margin-left: 20px;
+}
+
+
+/* for each member*/
+.task-board {
+    color: grey;
+    font-size: smaller;
+}
+
+.task-due{
+    color: grey;
+    font-size: smaller;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+}
 
 .task-delete-button {
     position: absolute;

@@ -1,4 +1,4 @@
-<div class="card" >
+<!-- <div class="card" >
     <div class="card-body task-card">
 
       <div class="task-board">
@@ -10,14 +10,14 @@
         <div class="task-content">
           <a href="#" class="card-link">{{task.text}}</a>
         </div>
-        <!-- <div class="task-btns-group"> -->
-          <!-- <div class="task-complete-button">
+        <div class="task-btns-group"> 
+           <div class="task-complete-button">
             <button type="button" class="btn btn-success">Complete</button>
-          </div> -->
+          </div>
           <div class="task-delete-button">
             <button type="button" class="btn btn-danger" (click)="onDeleteTask(task.id)">Delete</button>
           </div>
-        <!-- </div> -->
+         </div>
         
       </div>
 
@@ -25,5 +25,30 @@
         Due {{taskDate}}
       </div>
 
+    </div>
+  </div> -->
+
+
+
+
+
+
+
+  <div class="card mb-2">
+    <div class="card-body task-card">
+      <div class="task-board">
+         {{task.board.name}}
+      </div>
+      <div class="task-container">
+        <div class="task-content">
+          <a href="#" class="card-link">{{task.text}}</a>
+        </div>
+          <div class="task-delete-button">
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+      </div>
+      <div class="task-due">
+        Due {{task.dueDate}}
+      </div>
     </div>
   </div>

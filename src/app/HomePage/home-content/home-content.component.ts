@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { BoardModel } from 'src/api-models/board.model';
 import { TaskModel } from 'src/api-models/task.model';
@@ -20,21 +19,17 @@ export class HomeContentComponent implements OnInit{
   private destroy$ = new Subject<void>();
 
   currentUser: UserModel | null = null;
-  // user: UserModel | null = null;
   userId: number | null = null;
   tasks: Array<TaskModel> = [];
   todaysTasks: Array<TaskModel> = [];
   boards: Array<BoardModel> = [];
-  // taskText = '';
 
 
   constructor(private usersService: UsersService,
-              // private userProvider: UserProvider,
               private tasksService: TasksService,
               private boardsService: BoardsService,
               private authService: AuthenticationService,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -42,74 +37,31 @@ export class HomeContentComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
-    // this.currentUser = this.userProvider.currentUser; 
-
     this.usersService
     .current()
     .subscribe(currentUser => {
       this.currentUser = currentUser;
       this.userId = currentUser.id;
-      this.route //
-        .params
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(params => {
-          params['id'] = this.userId;
-          
-              this.usersService
-                .getBoards(this.userId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(boards => {
-                  this.boards = boards;
-                }); 
-
-                this.tasksService
-                .getUsersTasks(this.userId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(tasks => {
-                  this.tasks = tasks;
-                });
-
-                this.tasksService
-                .getTodaysUsersTasks(this.userId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(tasks => {
-                  this.todaysTasks = tasks;
-                });
-
-
-          // from first params
-       /* .pipe(takeUntil(this.destroy$))
-        .subscribe(params => {
-          this.userId = params['id'];
-          if (this.userId) {
-            this.usersService
-              .getUser(this.userId)
-              .pipe(takeUntil(this.destroy$))
-              .subscribe(user => {
-                this.user = user;
-              });
-              this.usersService
-                .getBoards(this.userId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(boards => {
-                  this.boards = boards;
-                }); 
-
-                this.tasksService
-                .getUsersTasks(this.userId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(tasks => {
-                  this.tasks = tasks;
-                });
-
-                this.tasksService
-                .getTodaysUsersTasks(this.userId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(tasks => {
-                  this.todaysTasks = tasks;
-                }); */
+      this.usersService
+          .getBoards(this.userId)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(boards => {
+                    this.boards = boards;
+                    }); 
+                    this.tasksService
+                    .getUsersTasks(this.userId)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(tasks => {
+                      this.tasks = tasks;
+                    });
+                    this.tasksService
+                    .getTodaysUsersTasks(this.userId)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(tasks => {
+                      this.todaysTasks = tasks;
+                    });
         }
-       )})}
+       )}
 
         onDeleteBoard(board: BoardModel){
         this.boardsService.deleteBoard(board.id)

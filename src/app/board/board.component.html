@@ -4,7 +4,7 @@
 
 <div class="board-container">
     <div class="board-content">
-        <a href="#" class="card-link">{{board.name}}</a>
+        <a [routerLink]="['board-details', board.id]" class="card-link">{{board.name}}</a>
     </div>
     <div class="board-delete-button">
         <button type="button" class="btn btn-danger" (click)="delete(board)">Delete</button>

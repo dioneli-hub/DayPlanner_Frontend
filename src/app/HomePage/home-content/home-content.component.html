@@ -10,10 +10,12 @@
           <div class="card-body">
             <ul class="list-group list-group-flush mb-2">
               <li class="list-group-item" >
-                <app-board
+                
+                  <app-board
                   *ngFor="let board of boards"
                   [board]="board"
                   (deleteBoard)="onDeleteBoard($event)"></app-board> 
+              
               </li>
             </ul>
             <app-add-new-board-modal

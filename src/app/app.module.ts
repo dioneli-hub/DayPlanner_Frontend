@@ -26,11 +26,7 @@ const AUTHENTICATION_INTERCEPTOR = {
 const appRoutes: Routes =[
     { path: '', component: HomeContentComponent},
     { path: 'login', component: LoginComponent},
-    // { path: 'home/:id', component: HomeContentComponent},
     { path: 'board-details/:id', component: BoardDetailsComponent, }
-    // { path: 'board-details', component: BoardDetailsComponent, }
-
-
 ];
 @NgModule({
     declarations: [

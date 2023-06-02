@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
@@ -15,9 +15,11 @@ import { UsersService } from 'src/services/users.service';
   styleUrls: ['./board-details.component.css']
 })
 export class BoardDetailsComponent implements OnInit{
+  
   private destroy$ = new Subject<void>();
 
   currentBoard: BoardModel | null = null;
+  currentBoardName: string = '';
   boardMembers: Array<UserModel> = [];
   tasks: Array<TaskModel> = [];
   boardId: number | null = null;
@@ -42,7 +44,10 @@ export class BoardDetailsComponent implements OnInit{
         .subscribe(params => {
           this.boardId = params['id'];
           this.boardsService.getBoardById(this.boardId)
-            .subscribe(currentBoard => this.currentBoard =currentBoard);
+            .subscribe(currentBoard => {
+              this.currentBoard = currentBoard;
+              this.currentBoardName = currentBoard.name;
+            });
           if (this.boardId) {
             this.usersService
               .getBoardMembers(this.boardId)
@@ -58,4 +63,12 @@ export class BoardDetailsComponent implements OnInit{
                 });
               }
             });
-          }}
+
+            
+          }
+
+ngOnDestroy() {
+  this.destroy$.next();
+  this.destroy$.complete();
+  }}          
+        
