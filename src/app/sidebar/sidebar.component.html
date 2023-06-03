@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">DayPlanner</a>
+      <a class="navbar-brand" routerLink="/">DayPlanner</a>
 
       <button class="navbar-toggler" *ngIf="isAuthenticated" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
           <div class="content-container">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Notifications</a>
@@ -42,8 +42,9 @@
               <button class="btn-logout d-flex" 
                 type="button" class="logout-btn btn btn-outline-danger"
                 (click)="logout()">
-            <i class="bi bi-power"></i>
-          Log Out
+                <i class="fa fa-power-off" aria-hidden="true"></i>
+          Log Out 
+          
           </button>
 
         </div>

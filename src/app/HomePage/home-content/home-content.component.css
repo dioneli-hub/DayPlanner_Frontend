@@ -1,3 +1,33 @@
 .body {
     width: 100%;
 }
+
+.card {
+    border: none;
+}
+
+.nav-item > * {
+    border: none;
+}
+
+
+/*styled heading*/
+.st-heading{
+    border-top: 5px solid black;
+    background-color: #cec7c7;
+    padding-top: 2px;
+    padding-bottom: 0.5px;
+}
+
+.st-heading > *{
+    margin-left: 10vw;
+    color: white;
+}
+
+/*Add new styled button*/
+.add-new-btn{
+    background-color: #7b7777;
+    border: none;
+    border-radius: 20px;
+    color: #f2f0f0;
+}

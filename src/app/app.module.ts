@@ -15,6 +15,7 @@ import { AddNewBoardModalComponent } from './HomePage/add-new-board-modal/add-ne
 import { AuthenticationInterceptor } from 'src/interceptors/authentication.interceptor';
 import { LoginComponent } from './login/login.component';
 import { BoardDetailsComponent } from './board-details/board-details.component';
+import { MemberComponent } from './member/member.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -32,15 +33,13 @@ const appRoutes: Routes =[
     declarations: [
         AppComponent,
         SidebarComponent,
-        //UsersBoardsComponent,
         HomeContentComponent,
-        //TodaysTasksComponent,
-        //UsersWorkComponent,
         TaskComponent,
         BoardComponent,
         AddNewBoardModalComponent,
         LoginComponent,
         BoardDetailsComponent,
+        MemberComponent,
         
     ],
     providers: [

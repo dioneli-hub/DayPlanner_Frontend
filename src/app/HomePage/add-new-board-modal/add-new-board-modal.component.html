@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Create new board
+<button type="button" class="btn btn-secondary add-new-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add new board+
 </button>
 
 <!-- Modal -->
@@ -20,8 +20,8 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" (click)="createBoard()"
+                    <button type="button" class="modal-btn cancel-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="modal-btn confirm-btn btn btn-secondary" (click)="createBoard()"
                     [disabled]="!board_name"
                    >Create</button>
                 </div>

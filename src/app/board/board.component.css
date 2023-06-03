@@ -11,3 +11,10 @@
     position: absolute;
     right: 10px;
 }
+
+.card-link {
+    color: black;
+    text-decoration: underline;
+    font-weight: 450;
+    margin-left: 20px;
+}
