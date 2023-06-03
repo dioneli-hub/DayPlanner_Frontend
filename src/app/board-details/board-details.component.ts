@@ -23,6 +23,7 @@ export class BoardDetailsComponent implements OnInit{
   boardMembers: Array<UserModel> = [];
   tasks: Array<TaskModel> = [];
   boardId: number | null = null;
+  email: string = ''
 
   constructor(private usersService: UsersService,
               private tasksService: TasksService,
@@ -63,9 +64,18 @@ export class BoardDetailsComponent implements OnInit{
                 });
               }
             });
-
-            
           }
+
+
+          addBoardMember(value) {
+            console.log(value)
+            this.usersService
+           .addBoardMember(this.boardId, value.email)
+           .pipe(takeUntil(this.destroy$))
+           .subscribe(m => {
+            this.boardMembers.push(m);
+           });
+       }
 
 ngOnDestroy() {
   this.destroy$.next();
