@@ -68,7 +68,6 @@ export class BoardDetailsComponent implements OnInit{
 
 
           addBoardMember(value) {
-            console.log(value)
             this.usersService
            .addBoardMember(this.boardId, value.email)
            .pipe(takeUntil(this.destroy$))
@@ -76,6 +75,16 @@ export class BoardDetailsComponent implements OnInit{
             this.boardMembers.push(m);
            });
        }
+
+       onDeleteMember(member: UserModel){
+        this.usersService.deleteBoardMember(this.currentBoard.id, member.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+        this.boardMembers = this.boardMembers.filter(x => x.id !== member.id);
+       })
+      }
+
+     
 
 ngOnDestroy() {
   this.destroy$.next();

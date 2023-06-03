@@ -51,7 +51,12 @@ export class UsersService {
   }
 
   addBoardMember(boardId: number, email: string): Observable<UserModel>  {
-    console.log (boardId + ' ' +email)
     return this.httpClient.post<UserModel>(`${environment.apiUrl}BoardMember/boards/${boardId}/add-board-member-by-email/${email}`, {});
   }
+
+  deleteBoardMember(boardId:number, memberId: number) : Observable<void>{
+    return this.httpClient.delete<void>(`${environment.apiUrl}BoardMember/boards/${boardId}/delete-member/${memberId}`)
+  }
+  
 }
+

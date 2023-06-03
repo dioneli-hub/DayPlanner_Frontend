@@ -8,7 +8,10 @@
             <div class="board-members-heading">
                 <h5 class="pt-2 pb-1">Board Members</h5>
             </div>
-            <app-member *ngFor="let member of boardMembers" [member]="member"></app-member>
+            <app-member 
+                *ngFor="let member of boardMembers" 
+                [member]="member"
+                (deleteMember)="onDeleteMember($event)" ></app-member>
             <button type="button" 
                     class="add-new-btn add-new-member-btn btn btn-secondary"
                     data-bs-toggle="modal" 

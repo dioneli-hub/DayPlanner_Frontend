@@ -8,7 +8,9 @@
           <a href="#" class="card-link"> {{member.firstName}} {{member.lastName}}</a>
         </div>
           <div class="member-delete-button">
-            <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" 
+            class="btn btn-danger"
+            (click)="delete(member)"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
       </div>
       <div class="member-email">
