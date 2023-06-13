@@ -1,12 +1,12 @@
 <div class="board-details-container">
     <div class="board-details-heading">
-        <h4>{{currentBoardName}}</h4>
+        <h5>{{currentBoardName}}</h5>
     </div>
     <div class="row mt-sm-3 ps-sm-3">
         <div class="board-members col-sm-4 ms-sm-3">
           
             <div class="board-members-heading">
-                <h5 class="pt-2 pb-1">Board Members</h5>
+                <h6 class="pt-2 pb-1">Board Members</h6>
             </div>
             <app-member 
                 *ngFor="let member of boardMembers" 
@@ -49,9 +49,6 @@
                         </div>
                     </div>
                 </div>
-
-            
-
         </div>
 
         <div class="tasks col-sm-7">
