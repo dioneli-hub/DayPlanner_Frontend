@@ -27,4 +27,8 @@ import { Subject } from "rxjs";
     getBoardTasks(boardId: number): Observable<Array<TaskModel>> {
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks`);
     }
+
+    deleteTask(taskId: number): Observable<void>{
+      return this.httpClient.delete<void>(`${environment.apiUrl}TaskItem/${taskId}`);
+    }
 }

@@ -7,7 +7,7 @@
       <div class="body">
         <div class="card">
           <div class="st-heading">
-            <h5>{{userId}}My boards</h5>
+            <h5>{{currentUser.firstName}}'s boards</h5>
           </div>
           
           <div class="card-body">
@@ -42,7 +42,9 @@
           <div class="card-body">
 
             <div class="card" *ngFor="let task of todaysTasks">
-                <app-task [task]="task"></app-task>
+                <app-task 
+                  (deleteTask)="onDeleteTask($event)" 
+                  [task]="task"></app-task>
             </div>
             <app-add-new-task-modal 
                 (taskCreate)="onCreateTask($event)"
@@ -81,7 +83,9 @@
           </ul>
           <div>
             <div class="card" *ngFor="let task of tasks">
-              <app-task [task]="task"></app-task>
+              <app-task 
+                [task]="task"
+                (deleteTask)="onDeleteTask($event)"></app-task>
             </div>
           </div>
         </div>

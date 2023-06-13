@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
@@ -83,6 +83,16 @@ export class BoardDetailsComponent implements OnInit{
         this.boardMembers = this.boardMembers.filter(x => x.id !== member.id);
        })
       }
+
+      onDeleteTask(task: TaskModel){
+        this.tasksService
+          .deleteTask(task.id)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(()=>{
+            this.tasks = this.tasks.filter(x => x.id !== task.id);
+           
+          })  
+       }
 
      
 

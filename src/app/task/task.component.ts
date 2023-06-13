@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
-import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-task',
@@ -9,26 +10,39 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit{
-
+  //private destroy$ = new Subject<void>();
   taskDate: Date;
 
-  @Input() task: TaskModel;
-  constructor(private http: HttpClient){
+  @Input() 
+  task: TaskModel | null = null;
 
-  }
+  @Output()
+  deleteTask = new EventEmitter<TaskModel>();
+  // deleteTaskBoardDetails = new EventEmitter<TaskModel>();
+
 
   ngOnInit(): void {
     this.dateFormat(this.task.dueDate)
   }
- 
   
-  onDeleteTask(taskId: number){
-    this.http.delete(`${environment.apiUrl}TaskItem/${taskId}`)
-    .subscribe();
-  }
-
-
   dateFormat (date) {
-    this.taskDate = date.replace('T', ' ').substring(0, 19)
+    this.taskDate = date.replace('T', ' ').substring(0, 10)
     };
+
+
+  delete(taskToDelete: TaskModel) {
+    // this.tasksService.deleteTask(taskToDelete.id)
+    // .pipe(takeUntil(this.destroy$))
+    // .subscribe()
+    console.log('emmiter in task component')
+    this.deleteTask.emit(taskToDelete);
+    // this.deleteTaskBoardDetails.emit(taskToDelete);
   }
+
+
+
+  // ngOnDestroy() {
+  //   this.destroy$.next();
+  //   this.destroy$.complete();
+  // }
+}

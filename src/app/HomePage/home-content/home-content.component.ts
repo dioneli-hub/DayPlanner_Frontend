@@ -63,13 +63,26 @@ export class HomeContentComponent implements OnInit{
         }
        )}
 
-        onDeleteBoard(board: BoardModel){
+       onDeleteBoard(board: BoardModel){
         this.boardsService.deleteBoard(board.id)
         .pipe(takeUntil(this.destroy$))
         .subscribe(() => {
         this.boards = this.boards.filter(x => x.id !== board.id);
+        this.tasks = this.tasks.filter(x => x.boardId !== board.id);
+        this.todaysTasks = this.todaysTasks.filter(x => x.boardId !== board.id);
       });
-  }
+      }
+
+       
+ onDeleteTask(task: TaskModel){
+  this.tasksService
+    .deleteTask(task.id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(()=>{
+      this.tasks = this.tasks.filter(x => x.id !== task.id);
+      this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
+    })  
+ }
   
   onCreateBoard(board: BoardModel){
     this.boards.unshift(board);

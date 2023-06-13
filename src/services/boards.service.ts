@@ -23,7 +23,6 @@ import { Subject } from "rxjs";
       return this.httpClient.delete<void>(`${environment.apiUrl}Board/${boardId}`)}
 
     addTaskToBoard(value: any) : Observable<TaskModel>{
-      console.log(value)
       return this.httpClient.post<TaskModel>(`${environment.apiUrl}Board/${value.board.id}/tasks`,{
         text: value.taskText,
         dueDate: new Date(Date.UTC(value.taskDueDate.year, value.taskDueDate.month-1, value.taskDueDate.day))

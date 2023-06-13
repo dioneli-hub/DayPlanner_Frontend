@@ -60,7 +60,11 @@
                 <button type="button" class="mt-1 mb-1 add-new-task-btn add-new-btn btn btn-secondary">Add new+</button>
             </div>
             <div class="tasks-container ps-3">
-                <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+                <app-task 
+                *ngFor="let task of tasks" 
+                [task]="task"
+                (deleteTask)="onDeleteTask($event)"
+                ></app-task>
             </div>
 
         </div>
