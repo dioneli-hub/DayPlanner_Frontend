@@ -33,7 +33,18 @@ import { Subject } from "rxjs";
     }
 
     completeTask(taskId: number){
-      console.log("completeTask service log")
-      return this.httpClient.post<void>(`${environment.apiUrl}TaskItem/${taskId}/complete-task`, {});
+      return this.httpClient.post(`${environment.apiUrl}TaskItem/${taskId}/complete-task`, 
+      {},
+      {responseType: 'text'}
+      );
+    }
+    
+
+    markAsToDo(taskId: number)  {
+      return this.httpClient.post(
+        `${environment.apiUrl}TaskItem/${taskId}/mark-task-as-todo`, 
+        {},
+        {responseType: 'text'}
+        );
     }
 }

@@ -42,22 +42,25 @@ export class TaskComponent implements OnInit, OnDestroy{
 
 
   delete(taskToDelete: TaskModel) {
-    console.log('emmiter in task component')
     this.deleteTask.emit(taskToDelete);
-    // this.deleteTaskBoardDetails.emit(taskToDelete);
   }
 
   complete(taskToComplete: TaskModel){
-    console.log('complete emmiter in task component')
-    console.log(taskToComplete)
-    //this.completeTask.emit(taskToComplete);
     this.tasksService
         .completeTask(taskToComplete.id)
         .pipe(takeUntil(this.destroy$))
         .subscribe(()=>{
-          //console.log("on complete task in task")
           this.task.isCompleted = true;
-          
+        })  
+  }
+
+  markAsToDo(taskToMark: TaskModel){
+    this.tasksService
+        .markAsToDo(taskToMark.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((res)=>{
+          console.log(res)
+          this.task.isCompleted = false;
         })  
   }
 
