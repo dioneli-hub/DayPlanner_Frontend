@@ -98,6 +98,10 @@ export class BoardDetailsComponent implements OnInit{
         this.tasks.push(task);
       }
 
+      // onCompleteTask(task: TaskModel){
+      //   this.tasks.push(task);
+      // }
+
      
 
 ngOnDestroy() {

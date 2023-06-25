@@ -43,7 +43,8 @@
 
             <div class="card" *ngFor="let task of todaysTasks">
                 <app-task 
-                  (deleteTask)="onDeleteTask($event)" 
+                  (deleteTask)="onDeleteTask($event)"
+                  
                   [task]="task"></app-task>
             </div>
             <app-add-new-task-modal 

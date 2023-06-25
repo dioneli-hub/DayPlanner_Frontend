@@ -83,6 +83,18 @@ export class HomeContentComponent implements OnInit{
       this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
     })  
  }
+
+//  onCompleteTask(task: TaskModel){
+//   console.log("on complete task in home")
+//   this.tasksService
+//     .completeTask(task.id)
+//     .pipe(takeUntil(this.destroy$))
+//     .subscribe(()=>{
+//       console.log("on complete task in home")
+//       //this.tasks = this.tasks.filter(x => x.id !== task.id);
+//       //this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
+//     })  
+//  }
   
   onCreateBoard(board: BoardModel){
     this.boards.unshift(board);

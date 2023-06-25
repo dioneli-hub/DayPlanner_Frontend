@@ -31,4 +31,9 @@ import { Subject } from "rxjs";
     deleteTask(taskId: number): Observable<void>{
       return this.httpClient.delete<void>(`${environment.apiUrl}TaskItem/${taskId}`);
     }
+
+    completeTask(taskId: number){
+      console.log("completeTask service log")
+      return this.httpClient.post<void>(`${environment.apiUrl}TaskItem/${taskId}/complete-task`, {});
+    }
 }
