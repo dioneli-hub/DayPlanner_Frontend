@@ -6,3 +6,13 @@
     color: #f2f0f0;
     margin-bottom: 15px;
 }
+
+/*restyling modal*/
+.modal-btn {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-content {
+    border-radius: 0;
+}

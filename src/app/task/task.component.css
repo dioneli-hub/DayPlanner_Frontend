@@ -43,7 +43,27 @@
     font-weight: 500;
     /* font-size: smaller; */
     /* font-family: Verdana,  sans-serif; */
-    margin-left: 20px;
+    /* margin-left: 20px; */
+}
+
+.btn-completion-status {
+    padding-bottom: 13px;
+}
+
+.btn-completion-status:focus {
+    border:none;
+}
+.btn-completion-status :hover {
+    color: green;
+}
+
+
+.btn-delete:focus{
+    border:none;
+}
+
+.btn-delete:hover {
+    color: red;
 }
 
 
@@ -68,5 +88,9 @@
 .task-delete-button {
     position: absolute;
     right: 10px;
-        
+}
+.task-delete-button > .btn {
+    position: relative;
+    top: 35px;
+    left: 10px;
 }

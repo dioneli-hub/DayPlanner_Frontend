@@ -5,3 +5,13 @@
     border-radius: 20px;
     color: #f2f0f0;
 }
+
+/*restyling modal*/
+.modal-btn {
+    border: none;
+    border-radius: 0;
+}
+
+.modal-content {
+    border-radius: 0;
+}

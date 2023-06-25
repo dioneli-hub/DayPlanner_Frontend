@@ -22,6 +22,4 @@ export class BoardComponent {
   delete(board: BoardModel) {
     this.deleteBoard.emit(board);
   }
-  
-
 }

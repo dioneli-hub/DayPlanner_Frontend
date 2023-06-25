@@ -35,21 +35,43 @@
 
 
   <div class="card mb-2"
-        [ngStyle]="{'background-color': task.isCompleted? '#ecffd4' : '#fffd99'}">
+        [ngStyle]="{'background-color': task.isCompleted? '#ecffd4' : '#fbfcb8'}">
     <div class="card-body task-card">
       <div class="task-board">
          {{task.board.name}}
       </div>
       <div class="task-container">
         <div class="task-content">
+
+          <button *ngIf="task.isCompleted == false" 
+                    type="button" 
+                    class="btn btn-completion-status btn-complete me-2 mt-2" 
+                    (click)="complete(task)"
+                    data-bs-toggle="tooltip" title="Complete task">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+
+            <button *ngIf="task.isCompleted == true" 
+                    type="button" 
+                    class="btn btn-completion-status btn-mark-todo me-2 mt-2" 
+                    (click)="markAsToDo(task)"
+                    data-bs-toggle="tooltip" title="Mark task as ToDo">
+             <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </button>
+
           <a href="#" class="card-link">{{task.text}}</a>
         </div>
+
           <div class="task-delete-button">
 
-            <button *ngIf="task.isCompleted == false" type="button" class="btn btn-success me-2 mt-2" (click)="complete(task)">To Do <i class="fa fa-check" aria-hidden="true"></i></button>
-            <button *ngIf="task.isCompleted == true" type="button" class="btn btn-success me-2 mt-2" (click)="markAsToDo(task)">Done <i class="fa fa-times" aria-hidden="true"></i></button>
-            
-            <button type="button" class="btn btn-danger" (click)="delete(task)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" 
+                    class="btn btn-delete" 
+                    (click)="delete(task)"
+                    data-bs-toggle="tooltip" title="Delete task">
+
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+
           </div>
       </div>
       <div class="task-due">
