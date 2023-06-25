@@ -69,27 +69,40 @@
         <div class="st-heading">
           <h6>My Work</h6>
         </div>
-        
-        <div class="card-body">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">To Do</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Done</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Overdue</a>
-            </li>
-          </ul>
-          <div>
+
+
+
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-link active" id="nav-todo-tab" data-bs-toggle="tab" href="#nav-todo" role="tab" aria-controls="nav-todo" aria-selected="true">To Do</a>
+            <a class="nav-link" id="nav-done-tab" data-bs-toggle="tab" href="#nav-done" role="tab" aria-controls="nav-done" aria-selected="false">Done</a>
+            <a class="nav-link" id="nav-overdue-tab" data-bs-toggle="tab" href="#nav-overdue" role="tab" aria-controls="nav-overdue" aria-selected="false">Overdue</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-todo" role="tabpanel" aria-labelledby="nav-todo-tab">
             <div class="card" *ngFor="let task of tasks">
               <app-task 
+                *ngIf="task.isCompleted == false"
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
             </div>
           </div>
+          <div class="tab-pane fade" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
+            <div class="card" *ngFor="let task of tasks">
+              <app-task 
+                *ngIf="task.isCompleted == true"
+                [task]="task"
+                (deleteTask)="onDeleteTask($event)"></app-task>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-overdue" role="tabpanel" aria-labelledby="nav-overdue-tab">
+            <p>Overdue tasks...</p>
+          </div>
         </div>
+
+
       </div>
 
       <!--All tasks finished-->

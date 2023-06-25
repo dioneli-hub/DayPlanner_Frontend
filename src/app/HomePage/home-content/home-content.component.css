@@ -10,6 +10,16 @@
     border: none;
 }
 
+.nav-link  {
+    border: none;
+    color: #ada7a6;
+}
+
+.nav-link.active  {
+    font-weight: bolder;
+    color: #ada7a6;
+}
+
 
 /*styled heading*/
 .st-heading{
