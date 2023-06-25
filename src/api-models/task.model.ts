@@ -8,6 +8,7 @@ import { BoardModel } from "./board.model";
      boardId: number,
      board: BoardModel,
      creatorId: number,
+     performerId: number,
      isCompleted: boolean,
     }
 

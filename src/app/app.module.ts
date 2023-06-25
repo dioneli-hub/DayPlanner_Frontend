@@ -16,10 +16,18 @@ import { AuthenticationInterceptor } from 'src/interceptors/authentication.inter
 import { LoginComponent } from './login/login.component';
 import { BoardDetailsComponent } from './board-details/board-details.component';
 import { MemberComponent } from './member/member.component';
+import { HttpErrorInterceptor } from 'src/interceptors/error.interceptor';
+import { AddNewTaskFromBoardModalComponent } from './add-new-task-from-board-modal/add-new-task-from-board-modal.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,
+    multi: true
+  };
+
+const ERROR_INTERCEPTOR = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
     multi: true
   };
 
@@ -40,10 +48,12 @@ const appRoutes: Routes =[
         LoginComponent,
         BoardDetailsComponent,
         MemberComponent,
+        // AddNewTaskFromBoardModalComponent
         
     ],
     providers: [
         AUTHENTICATION_INTERCEPTOR,
+        ERROR_INTERCEPTOR
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -52,6 +62,7 @@ const appRoutes: Routes =[
         NgbModule,
         FormsModule,
         AddNewTaskModalComponent,
+        AddNewTaskFromBoardModalComponent,
         CommonModule,
         HttpClientModule
     ]

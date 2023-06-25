@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   last_name = '';
 
   error = '';
+  //errorMessage: string = '';
 
   constructor(private authService: AuthenticationService,
               private usersService: UsersService,
@@ -47,13 +48,18 @@ export class LoginComponent implements OnInit {
               }
             
               createAccount() {
+                //this.errorMessage = '';
                 this.error = '';
                 this.usersService
                   .create(this.first_name, this.last_name, this.new_email, this.new_password)
-                  .subscribe((user) => {
+                  .subscribe({
+                    next: (user) => {
+
                     if (user) {
                       this.authenticate(this.new_email, this.new_password);
                     }
-                  }, err => this.error = err.error.error)
+                  }, error: (err) => {
+                    this.error = err.error.error;
+                  }})
               }
             }

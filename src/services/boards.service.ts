@@ -29,6 +29,13 @@ import { Subject } from "rxjs";
       })
     }
 
+    addTaskFromBoard(boardId: number, value: any) : Observable<TaskModel>{
+      return this.httpClient.post<TaskModel>(`${environment.apiUrl}Board/${boardId}/tasks`,{
+        text: value.taskText,
+        dueDate: new Date(Date.UTC(value.taskDueDate.year, value.taskDueDate.month-1, value.taskDueDate.day))
+      })
+    }
+
     getBoardById(boardId: number): Observable<BoardModel>{
       return this.httpClient.get<BoardModel>(`${environment.apiUrl}Board/${boardId}`)
     }

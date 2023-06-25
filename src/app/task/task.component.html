@@ -34,7 +34,8 @@
 
 
 
-  <div class="card mb-2">
+  <div class="card mb-2"
+        [ngStyle]="{'background-color': task.isCompleted? '#ecffd4' : '#fffd99'}">
     <div class="card-body task-card">
       <div class="task-board">
          {{task.board.name}}
