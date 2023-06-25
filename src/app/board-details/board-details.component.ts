@@ -94,6 +94,10 @@ export class BoardDetailsComponent implements OnInit{
           })  
        }
 
+       onCreateTask(task: TaskModel){
+        this.tasks.push(task);
+      }
+
      
 
 ngOnDestroy() {
