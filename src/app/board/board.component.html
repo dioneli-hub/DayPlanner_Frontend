@@ -1,13 +1,7 @@
-<!-- <p *ngFor="let task of board.tasks">
-    {{task.text}}
-</p> -->
-
 <div class="board-container">
     <div class="board-content">
         <a [routerLink]="['board-details', board.id]" class="card-link">{{board.name}}</a>
     </div>
-
-
 
 
 
@@ -16,15 +10,16 @@
         
         <button type="button" 
                 class="btn first btn-danger" 
-                
-                data-bs-toggle="modal" data-bs-target="#deleteBoardConfirmationModal"
+                (click)="log(board)"
+                data-bs-toggle="modal" attr.data-bs-target="#deleteBoardConfirmationModal{{board.id}}"
                 >
         <i class="fa fa-trash" aria-hidden="true"></i></button>
     </div>
 
   
   <!-- Modal -->
-  <div class="modal fade" id="deleteBoardConfirmationModal" tabindex="-1" aria-labelledby="deleteBoardConfirmationModalLabel" aria-hidden="true">
+  
+  <div class="modal fade" id="deleteBoardConfirmationModal{{board.id}}" tabindex="-1" aria-labelledby="deleteBoardConfirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -44,6 +39,17 @@
       </div>
     </div>
   </div>
+
+  <!-- <script type="text/javascript">
+    $("#submit").click(function () {
+        var name = $("#name").val();
+        var marks = $("#marks").val();
+        var str = "You Have Entered " 
+            + "Name: " + name 
+            + " and Marks: " + marks;
+        $("#modal_body").html(str);
+    });
+</script> -->
 
 
 

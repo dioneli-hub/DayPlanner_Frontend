@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BoardModel } from 'src/api-models/board.model';
 import { environment } from 'src/environments/environment';
 import { BoardsService } from 'src/services/boards.service';
@@ -9,17 +9,16 @@ import { BoardsService } from 'src/services/boards.service';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent {
+export class BoardComponent  {
+ 
   @Input() board: BoardModel;
-
+  @Output() deleteBoard = new EventEmitter<BoardModel>();
   
-  @Output()
-  deleteBoard = new EventEmitter<BoardModel>();
 
-  constructor(private boardsService: BoardsService){
-
-  }
   delete(board: BoardModel) {
     this.deleteBoard.emit(board);
+  }
+
+  log(board: BoardModel) {
   }
 }

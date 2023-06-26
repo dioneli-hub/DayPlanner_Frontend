@@ -38,7 +38,7 @@
         [ngStyle]="{'background-color': task.isCompleted? '#ecffd4' : '#fbfcb8'}">
     <div class="card-body task-card">
       <div class="task-board">
-         {{task.board.name}}
+         {{task.board.name}} {{task.isCompleted? '(Done)' : '(ToDo)'}}
       </div>
       <div class="task-container">
         <div class="task-content">
