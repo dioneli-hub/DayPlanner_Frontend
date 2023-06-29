@@ -1,0 +1,79 @@
+<div class="board-details-container">
+    <div class="board-details-heading">
+        <h5>{{currentBoardName}}</h5>
+    </div>
+    <div class="row mt-sm-3 ps-sm-3">
+        <div class="board-members col-sm-4 ms-sm-3">
+          
+            <div class="board-members-heading">
+                <h6 class="pt-2 pb-1">Board Members</h6>
+            </div>
+            <app-member 
+                *ngFor="let member of boardMembers" 
+                [member]="member"
+                (deleteMember)="onDeleteMember($event)" ></app-member>
+            <button type="button" 
+                    class="add-new-btn add-new-member-btn btn btn-secondary"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#addNewMemberModal">
+                    Add new+
+                </button>
+
+                <div class="modal fade" id="addNewMemberModal" tabindex="-1" aria-labelledby="addNewMemberModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="addNewMemberModal">Add new member</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form #addBoardMemberForm="ngForm" (ngSubmit)="addBoardMember(addBoardMemberForm.value); addBoardMemberForm.resetForm(); ">
+
+                                <div class="form-group">
+                
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Please, enter the user's email" name="email" [(ngModel)]="email" required>
+                                </div>
+                                </div>
+                
+                
+                
+                                <div class="modal-footer">
+                                    <button type="button" class="modal-btn cancel-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="modal-btn confirm-btn btn btn-secondary" 
+                                    [disabled]="addBoardMemberForm.invalid"
+                                   >Create</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="tasks col-sm-7">
+
+           
+            <div class="add-new-task-btn-container pe-3">
+                <app-add-new-task-from-board-modal 
+                    [boardId]="boardId"
+                    (taskFromBoardCreate)="onCreateTask($event)"
+                >
+                </app-add-new-task-from-board-modal>
+                <!-- <button type="button" class="mt-1 mb-1 add-new-task-btn add-new-btn btn btn-secondary">Add new+</button> -->
+            </div>
+
+            
+
+
+            <div class="tasks-container ps-3">
+                <app-task 
+                *ngFor="let task of tasks" 
+                [task]="task"
+                (deleteTask)="onDeleteTask($event)"
+                ></app-task>
+            </div>
+
+        </div>
+    </div>
+</div>

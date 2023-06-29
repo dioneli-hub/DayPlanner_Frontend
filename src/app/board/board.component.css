@@ -1,0 +1,31 @@
+.board-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+
+.board-delete-button {
+    position: absolute;
+    right: 10px;
+}
+
+.card-link {
+    color: black;
+    text-decoration: underline;
+    font-weight: 450;
+    margin-left: 20px;
+}
+
+/*restyling modal*/
+.modal-btn {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-content {
+    border-radius: 0;
+}
+

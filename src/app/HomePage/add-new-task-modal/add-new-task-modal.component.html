@@ -1,11 +1,12 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addNewTaskModal">
-  Create new task
+<button type="button" class="btn btn-secondary add-new-btn mt-3" data-bs-toggle="modal" data-bs-target="#addNewTaskModal">
+  Add new task+
 </button>
 
 <!-- Modal -->
 <div class="modal fade" id="addNewTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
+
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Create new task</h1>
@@ -13,26 +14,57 @@
       </div>
       <div class="modal-body">
 
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" aria-label="Text input with dropdown button"
-            placeholder="Task description" #taskTextInput name="taskText">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Choose board</button>
-          <select class="dropdown-menu dropdown-menu-end" name="taskBoard" #taskBoardInput>
-            <option *ngFor="let board of boards" value="{{board.id}}"><a class="dropdown-item"
-                href="#">{{board.name}}</a></option>
+        <form #taskCreateForm="ngForm" (ngSubmit)="submit(taskCreateForm.value); taskCreateForm.resetForm(); ">
 
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                placeholder="Task description" id="taskText" name="taskText" [(ngModel)]="taskText" required/>
+
+          <!-- <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Choose board</button> -->
+          <!-- <select class="dropdown-menu dropdown-menu-end" name="taskBoard" #taskBoardInput>
+            <option *ngFor="let board of boards" value="{{board.id}}">
+              <a class="dropdown-item"
+                href="#">{{board.name}}</a>
+              </option>
+
+          </select> -->
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <!-- <button class="btn btn-outline-secondary " type="button" data-bs-toggle="dropdown"
+            aria-expanded="false" >Choose board</button> -->
+          <select  class="form-control text-muted" id="board" name="board" [(ngModel)]="board" required>
+            <option [ngValue]="null" hidden selected>Select a board</option>
+            <option *ngFor="let board of boards" [ngValue]="board">{{board.name}}</option>
           </select>
-        </div>
+          </div>
 
-        <div>
-          <form class="row row-cols-sm-auto">
+
+          <!--
+
+            <div class="form-group">
+ <label for="to">Date to</label>
+ <div class="input-group">
+ <input class="form-control" placeholder="Date to (yyyy-mm-dd)" name="to" [(ngModel)]="to" ngbDatepicker
+ #dateto="ngbDatepicker">
+                <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dateto.toggle()" type="button"></button>
+ </div>
+ </div>
+ </div>
+          -->
+
+          <div class="form-group row row-cols-sm-auto mb-3">
             <div class="col-12">
               <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd" name="taskDueDate" [(ngModel)]="model"
-                  ngbDatepicker #d="ngbDatepicker" />
+                <input class="form-control" placeholder="Due date (yyyy-mm-dd)" name="taskDueDate" [(ngModel)]="taskDueDate"
+                  ngbDatepicker #dueDate="ngbDatepicker" />
 
-                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button">
+                  <div class="input-group-append">
+                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dueDate.toggle()" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-calendar" viewBox="0 0 16 16">
                     <path
@@ -41,20 +73,25 @@
                 </button>
               </div>
             </div>
-          </form>
+            </div>
+            <!-- <pre>Model: {{ model | json }}</pre> -->
+          </div>
 
           <!-- Show date obj details:
             <app-date-picker (outEnterTaskDueDate)="setTaskDueDate($event)"></app-date-picker>
            -->
-          <pre>Model: {{ model | json }}</pre>
-        </div>
+          
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary"
-            (click)="onTaskCreate(taskTextInput.value, taskBoardInput.value, model)">Create</button>
+          <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn modal-btn btn-primary"
+          [disabled]="taskCreateForm.invalid" 
+          data-bs-dismiss="modal">Create</button>
           <!-- (click)="enterTaskContent(taskContentInput, taskBoardInput, model) -->
         </div>
+
+      </form>
+
       </div>
     </div>
   </div>

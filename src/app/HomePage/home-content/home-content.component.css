@@ -1,5 +1,43 @@
 .body {
-    padding-top: 50px; 
-    margin-left: 20px;
-    margin-right: 20px;
+    width: 100%;
+}
+
+.card {
+    border: none;
+}
+
+.nav-item > * {
+    border: none;
+}
+
+.nav-link  {
+    border: none;
+    color: #ada7a6;
+}
+
+.nav-link.active  {
+    font-weight: bolder;
+    color: #ada7a6;
+}
+
+
+/*styled heading*/
+.st-heading{
+    border-top: 5px solid black;
+    background-color: #cec7c7;
+    padding-top: 2px;
+    padding-bottom: 0.5px;
+}
+
+.st-heading > *{
+    margin-left: 10vw;
+    color: white;
+}
+
+/*Add new styled button*/
+.add-new-btn{
+    background-color: #7b7777;
+    border: none;
+    border-radius: 20px;
+    color: #f2f0f0;
 }

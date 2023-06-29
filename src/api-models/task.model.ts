@@ -6,8 +6,10 @@ import { BoardModel } from "./board.model";
      dueDate: Date,
      createdAt: Date,
      boardId: number,
-     board: BoardModel;
+     board: BoardModel,
      creatorId: number,
+     performerId: number,
+     isCompleted: boolean,
     }
 
     export interface AddTaskToBoardModel {

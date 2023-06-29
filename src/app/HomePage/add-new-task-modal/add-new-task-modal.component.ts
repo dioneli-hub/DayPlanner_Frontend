@@ -1,11 +1,16 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { BoardModel } from 'src/app/api-models/board.model';
+import { BoardModel } from 'src/api-models/board.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { BoardsService } from 'src/services/boards.service';
+import { UsersService } from 'src/services/users.service';
+import { UserProvider } from 'src/providers/user.provider';
+import { TaskModel } from 'src/api-models/task.model';
 
 @Component({
   selector: 'app-add-new-task-modal',
@@ -14,32 +19,57 @@ import { environment } from 'src/app/environments/environment';
   imports: [NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe, CommonModule],
   styleUrls: ['./add-new-task-modal.component.css']
 })
-export class AddNewTaskModalComponent {
+
+export class AddNewTaskModalComponent implements OnInit {
+
+  @Output()
+  taskCreate = new EventEmitter<TaskModel>();
+
   @Input() boards: BoardModel[];
 
-  @Input() model: NgbDateStruct;
+  taskText = null;
+  taskDueDate = null;
+  board = null;
+
+  constructor(private router: Router, 
+    private boardsService: BoardsService,
+    private usersService: UsersService,
+    private userProvider: UserProvider) { }
+  submit(value) {
+  this.boardsService.addTaskToBoard(value).subscribe(task=>{
+    this.taskCreate.emit(task);
+  });
+  }
+  ngOnInit(): void {
+  }
+ }
+
+// export class AddNewTaskModalComponent {
+//   @Input() 
+
+//   @Input() model: NgbDateStruct;
   
 
-  constructor(private http: HttpClient){
+//   constructor(private http: HttpClient){
 
-  }
+//   }
 
-  // @Output() outEnterTaskContent = new EventEmitter<string[]>()
+//   // @Output() outEnterTaskContent = new EventEmitter<string[]>()
 
-  onTaskCreate(taskText: string, taskBoardId, model: NgbDateStruct){
-    console.log(taskText)
-    console.log(taskBoardId)
-    console.log(model)
+//   onTaskCreate(taskText: string, taskBoardId, model: NgbDateStruct){
+//     console.log(taskText)
+//     console.log(taskBoardId)
+//     console.log(model)
 
-    const jsDate = new Date(model.year, model.month - 1, model.day + 1);
+//     const jsDate = new Date(model.year, model.month - 1, model.day + 1);
 
-    this.http.post(`${environment.apiUrl}Board/${taskBoardId}/tasks`, {
-        text: taskText,
-        dueDate: jsDate
-    }).subscribe((response)=>{
-      console.log(response)
-    })
-  }
+//     this.http.post(`${environment.apiUrl}Board/${taskBoardId}/tasks`, {
+//         text: taskText,
+//         dueDate: jsDate
+//     }).subscribe((response)=>{
+//       console.log(response)
+//     })
+//   }
   
   // enterTaskContent(taskContentInput: HTMLInputElement, taskBoardInput: HTMLSelectElement, taskDueDate: NgbDateStruct){
   //   console.log('taskContentInput.value: ', taskContentInput.value)
@@ -59,5 +89,4 @@ export class AddNewTaskModalComponent {
   // taskDueDate: string = ''
   // setTaskDueDate(taskDueDate: string){
   //   taskDueDate = taskDueDate
-  // }
-}
+  // }}
