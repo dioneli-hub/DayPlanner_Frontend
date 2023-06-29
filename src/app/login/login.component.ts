@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   last_name = '';
 
   error = '';
-  //errorMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private authService: AuthenticationService,
               private usersService: UsersService,
@@ -37,29 +37,67 @@ export class LoginComponent implements OnInit {
               }
             
               authenticate(email: string, password: string) {
-                this.error = '';
-                this.authService
-                  .auth(email, password)
-                  .subscribe((res) => {
-                    if (res) {
-                      this.router.navigate(['/']).then();
-                    }
-                  }, err => this.error = err.error.error)
-              }
+                // this.error = '';
+                // this.authService
+                //   .auth(email, password)
+                //   .subscribe((res) => {
+                //     if (res) {
+                //       this.router.navigate(['/']).then();
+                //     }
+                //   }, err => this.error = err.error.error)
+                  this.error = '';
+                  this.errorMessage = '';
+
+                  this.authService
+                    .auth(email, password)
+                    .subscribe
+                      ({
+                          next:(res: any) => {
+                            if(res.isSuccess == true){
+                              this.router.navigate(['/']).then();
+                            } else {
+                              this.errorMessage = res.message
+                            }
+                        },
+                          error: error => console.log(error)
+                      });
+                }
+              
             
-              createAccount() {
-                //this.errorMessage = '';
+              createAccount() 
+              {
+                this.errorMessage = '';
                 this.error = '';
+                
                 this.usersService
                   .create(this.first_name, this.last_name, this.new_email, this.new_password)
-                  .subscribe({
-                    next: (user) => {
-
-                    if (user) {
-                      this.authenticate(this.new_email, this.new_password);
-                    }
-                  }, error: (err) => {
-                    this.error = err.error.error;
-                  }})
+                    .subscribe
+                    ({
+                        next:(res: any) => {
+                          console.log(res)
+                          if(res.isSuccess == true){
+                            this.authenticate(this.new_email, this.new_password);
+                          } else {
+                            this.errorMessage = res.message
+                          }
+                      },
+                        error: error => console.log(error)
+                    });
+                      
               }
-            }
+              // {
+              //   this.errorMessage = '';
+              //   this.error = '';
+              //   this.usersService
+              //     .create(this.first_name, this.last_name, this.new_email, this.new_password)
+              //     .subscribe({
+              //       next: (user) => {
+
+              //       if (user) {
+              //         this.authenticate(this.new_email, this.new_password);
+              //       }
+              //     }, error: (err) => {
+              //       this.error = err.error.error;
+              //     }})
+              // }
+}

@@ -28,14 +28,24 @@ export class AuthenticationService {
     localStorage.removeItem('token-exp');
   }
 
-  auth(email: string, password: string): Observable<boolean> {
+  auth(email: string, password: string)
+  {
     return this.httpClient
-      .post<TokenModel>(`${environment.apiUrl}auth/`, { email, password })
+      .post(`${environment.apiUrl}auth/`, { email, password })
       .pipe(
-        tap(token => AuthenticationService.setToken(token)),
-        switchMap(token => of(this.isAuthenticated())),
+        tap((tokenResponse: any) => {
+          AuthenticationService.setToken(tokenResponse.data)}),
       );
   }
+  
+  // {
+  //   return this.httpClient
+  //     .post<TokenModel>(`${environment.apiUrl}auth/`, { email, password })
+  //     .pipe(
+  //       tap(token => AuthenticationService.setToken(token)),
+  //       switchMap(token => of(this.isAuthenticated())),
+  //     );
+  // }
 
   logout(): void {
     AuthenticationService.setToken(null);

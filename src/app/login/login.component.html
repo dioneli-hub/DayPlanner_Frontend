@@ -1,7 +1,8 @@
 <div class="row">
-    <div class="col-12" *ngIf="error">
-      <div class="alert alert-danger" role="alert">{{error}}</div>
-    </div>
+  <div class="col-12" *ngIf="errorMessage">
+      <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+  </div>
+  
     <div class="offset-1 col-4">
       <h3>Log In to account</h3>
       <div class="mb-3">

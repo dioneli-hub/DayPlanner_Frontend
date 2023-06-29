@@ -18,6 +18,7 @@ export class UsersService {
   }
 
   create(firstName: string, lastName: string, email: string, password: string) {
+
     return this.httpClient.post<UserModel>(`${environment.apiUrl}User/`, {
       firstName,
       lastName,
