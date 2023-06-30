@@ -43,8 +43,8 @@ export class UsersService {
       )
   }
 
-  getBoards(userId: number): Observable<Array<BoardModel>> {
-    return this.httpClient.get<Array<BoardModel>>(`${environment.apiUrl}User/${userId}/user-boards`);
+  getBoards(userId: number): Observable<Array<BoardModel>> { //User in URL
+    return this.httpClient.get<Array<BoardModel>>(`${environment.apiUrl}BoardMember/${userId}/user-boards`);
   }
 
   getBoardMembers(boardId: number): Observable<Array<UserModel>> {

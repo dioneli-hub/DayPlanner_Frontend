@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
 import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
+import { UserProvider } from 'src/providers/user.provider';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { BoardsService } from 'src/services/boards.service';
 import { TasksService } from 'src/services/tasks.service';
@@ -18,12 +19,14 @@ export class BoardDetailsComponent implements OnInit{
   
   private destroy$ = new Subject<void>();
 
+  currentUser: UserModel | null = null;
   currentBoard: BoardModel | null = null;
   currentBoardName: string = '';
   boardMembers: Array<UserModel> = [];
   tasks: Array<TaskModel> = [];
   boardId: number | null = null;
   email: string = ''
+  isCreator: boolean = null;
 
   constructor(private usersService: UsersService,
               private tasksService: TasksService,
@@ -38,6 +41,8 @@ export class BoardDetailsComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
+    
+
 
     this.route 
         .params
@@ -48,6 +53,12 @@ export class BoardDetailsComponent implements OnInit{
             .subscribe(currentBoard => {
               this.currentBoard = currentBoard;
               this.currentBoardName = currentBoard.name;
+
+              this.usersService
+                .current()
+                .subscribe(user => {
+                  this.currentBoard.creatorId == user.id ? this.isCreator = true : this.isCreator = false;
+                });
             });
           if (this.boardId) {
             this.usersService
@@ -64,6 +75,8 @@ export class BoardDetailsComponent implements OnInit{
                 });
               }
             });
+
+            
           }
 
 

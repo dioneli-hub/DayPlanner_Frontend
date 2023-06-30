@@ -11,6 +11,8 @@
             <app-member 
                 *ngFor="let member of boardMembers" 
                 [member]="member"
+                [board]="currentBoard"
+                [isCreator]="isCreator"
                 (deleteMember)="onDeleteMember($event)" ></app-member>
             <button type="button" 
                     class="add-new-btn add-new-member-btn btn btn-secondary"
