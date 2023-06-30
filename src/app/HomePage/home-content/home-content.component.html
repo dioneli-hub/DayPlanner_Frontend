@@ -10,7 +10,7 @@
             <h6>{{currentUser.firstName}}'s boards</h6>
           </div>
           
-          <div class="card-body">
+          <div class="card-body scrollbar-area-card">
             <ul class="list-group list-group-flush mb-2">
               <li class="list-group-item" >
                 
@@ -21,25 +21,25 @@
               
               </li>
             </ul>
-            <app-add-new-board-modal
+          </div>
+          <app-add-new-board-modal
                 (boardCreate)="onCreateBoard($event)">
                 </app-add-new-board-modal>
-          </div>
         </div>
 
       </div>
       <!--User's boards finished-->
 
     </div>
-    <div class="col-sm-6 mb-sm-0">
+    <div class="col-sm-6 mb-3 mb-sm-0">
       <!--Today's tasks-->
       <div class="body">
-        <div class="card">
+        <div class="card ">
           <div class="st-heading">
             <h6>Tasks For Today</h6>
           </div>
           
-          <div class="card-body">
+          <div class="card-body scrollbar-area-card">
 
             <div class="card" *ngFor="let task of todaysTasks">
                 <app-task 
@@ -47,13 +47,14 @@
                   
                   [task]="task"></app-task>
             </div>
-            <app-add-new-task-modal 
-                (taskCreate)="onCreateTask($event)"
-                [boards]="boards">
-              </app-add-new-task-modal>
                 <!-- (outEnterTaskContent)="addTask($event)"> --> 
 
           </div>
+
+          <app-add-new-task-modal 
+                (taskCreate)="onCreateTask($event)"
+                [boards]="boards">
+              </app-add-new-task-modal>
         </div>
 
       </div>
@@ -65,7 +66,7 @@
     <div class="col-sm-12 mt-3">
       <!--All tasks-->
 
-      <div class="card">
+      <div class="card my-work-container">
         <div class="st-heading">
           <h6>My Work</h6>
         </div>
