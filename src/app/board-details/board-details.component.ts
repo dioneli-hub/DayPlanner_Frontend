@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
@@ -18,6 +18,7 @@ import { UsersService } from 'src/services/users.service';
 export class BoardDetailsComponent implements OnInit{
   
   private destroy$ = new Subject<void>();
+  // @Output() deleteBoardo = new EventEmitter<BoardModel>();
 
   currentUser: UserModel | null = null;
   currentBoard: BoardModel | null = null;
@@ -27,6 +28,18 @@ export class BoardDetailsComponent implements OnInit{
   boardId: number | null = null;
   email: string = ''
   isCreator: boolean = null;
+
+
+  delete(board: BoardModel) {
+    // this.deleteBoardo.emit(board);
+    this.boardsService.deleteBoard(board.id).subscribe(()=>{
+      this.router.navigate(['/']).then();
+    })
+  }
+
+  log(board: BoardModel) {
+    console.log(board.id)
+  }
 
   constructor(private usersService: UsersService,
               private tasksService: TasksService,

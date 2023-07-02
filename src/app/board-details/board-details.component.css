@@ -110,3 +110,23 @@
     right: 10px;
         
 }
+
+
+/**/
+
+.board-details-heading {
+    position: relative;
+}
+.board-delete-button {
+    position: absolute;
+    right: 10px;
+    top: -2px;
+}
+
+.board-delete-button:focus{
+    border:none;
+}
+
+.board-delete-button:hover {
+    color: red;
+}

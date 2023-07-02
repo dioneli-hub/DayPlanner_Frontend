@@ -1,6 +1,20 @@
 <div class="board-details-container">
     <div class="board-details-heading">
         <h5>{{currentBoardName}}</h5>
+
+        <!-- Button trigger modal -->
+    <div class="board-delete-button" *ngIf="isCreator == true">
+        
+        <button type="button" 
+                class="btn first" 
+                (click)="log(currentBoard)"
+                data-bs-toggle="modal" attr.data-bs-target="#deleteBoardConfirmationModal{{boardId}}"
+                >
+        <i class="fa fa-trash" aria-hidden="true"></i></button>
+    </div>
+
+  
+
     </div>
     <div class="row mt-sm-3 ps-sm-3">
         <div class="board-members col-sm-4 ms-sm-3">
@@ -79,3 +93,29 @@
         </div>
     </div>
 </div>
+
+
+
+
+  <!-- Modal -->
+  
+  <div class="modal fade" id="deleteBoardConfirmationModal{{boardId}}" tabindex="-1" aria-labelledby="deleteBoardConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="deleteBoardConfirmationModalLabel">
+            Are you sure you want to delete board "{{currentBoardName}}"?
+        </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <b class="text-danger">This action is irreversible. </b>
+          All board's tasks will be deleted as well.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn modal-btn btn-danger" (click)="delete(currentBoard)" data-bs-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
