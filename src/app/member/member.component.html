@@ -1,13 +1,13 @@
 <div class="card mb-2">
     <div class="card-body member-card">
       <div class="member-status">
-        {{currentBoardCreatorId == currentMember.id? 'Owner':'Member'}}
+        {{currentBoardCreatorId == currentMemberId? 'Owner':'Member'}}
       </div>
       <div class="member-container">
         <div class="member-info">
           <a href="#" class="card-link"> {{member.firstName}} {{member.lastName}}</a>
         </div>
-          <div *ngIf="isUserCreator && currentBoardCreatorId != currentMember.id" class="member-delete-button">
+          <div *ngIf="isUserCreator && currentBoardCreatorId != currentMemberId" class="member-delete-button">
             <button type="button" 
             class="btn btn-danger"
             (click)="delete(member)"><i class="fa fa-trash" aria-hidden="true"></i></button>
