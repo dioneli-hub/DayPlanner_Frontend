@@ -3,26 +3,30 @@
         <a [routerLink]="['board-details', board.id]" class="card-link">{{board.name}}</a>
     </div>
 
-
-    <div *ngIf="!isCreator" class="member-delete-button">
-      <button type="button" 
-      class="btn leave-button"
-      (click)="leave(currentUserId, boardId)"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
-
-
-   <!-- Button trigger modal -->
-    <div class="board-delete-button" *ngIf="isCreator == true">
-        
+    <ng-template [ngIf]="!isCreator" [ngIfElse]="boardDeleteSection">
+      <div class="leave-board-button" >
         <button type="button" 
-                class="btn first btn-danger" 
-                (click)="log(board)"
-                data-bs-toggle="modal" attr.data-bs-target="#deleteBoardConfirmationModal{{board.id}}"
-                >
-        <i class="fa fa-trash" aria-hidden="true"></i></button>
-    </div>
+        class="btn leave-button"
+        data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}"
+        ><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+      </div>
+    </ng-template>
+    
 
+      <ng-template #boardDeleteSection>
+         <!-- Button trigger board delete modal -->
+        <div class="board-delete-button"  >
+            <button type="button" 
+                    class="btn delete-button" 
+                    data-bs-toggle="modal" attr.data-bs-target="#deleteBoardConfirmationModal{{board.id}}"
+                    >
+            <i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>
+      </ng-template>
+    
   
-  <!-- Modal -->
+  
+  <!-- (board delete) Modal -->
   
   <div class="modal fade" id="deleteBoardConfirmationModal{{board.id}}" tabindex="-1" aria-labelledby="deleteBoardConfirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -35,7 +39,7 @@
         </div>
         <div class="modal-body">
           <b class="text-danger">This action is irreversible. </b>
-          All board's tasks will be deleted as well.
+          <p>All board's tasks will be deleted as well.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -45,26 +49,30 @@
     </div>
   </div>
 
-  <!-- <script type="text/javascript">
-    $("#submit").click(function () {
-        var name = $("#name").val();
-        var marks = $("#marks").val();
-        var str = "You Have Entered " 
-            + "Name: " + name 
-            + " and Marks: " + marks;
-        $("#modal_body").html(str);
-    });
-</script> -->
 
-
-
-
-
-
-
-
-
-
-    
+  <!-- (leave board) Modal -->
+  
+  <div class="modal fade" id="leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}" tabindex="-1" aria-labelledby="leaveBoardConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="leaveBoardConfirmationModalLabel">
+            Are you sure you want to leave board "{{board.name}}"?
+        </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <b class="text-danger">You will not be able to join it unless you are invited again. </b>
+          <p>
+            All board's tasks will not be visible for you as well.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn modal-btn btn-danger" (click)="leave(currentUserId, boardId)" data-bs-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

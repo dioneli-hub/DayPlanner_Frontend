@@ -13,10 +13,15 @@
             (click)="delete(member)"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
 
+          <!--LEAVE BOARD TRIGGER MODAL BUTTON-->
           <div *ngIf="currentMemberId == currentUserId && currentBoardCreatorId != currentMemberId" class="member-delete-button">
             <button type="button" 
             class="btn leave-button"
-            (click)="leave(member)"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+            data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}"
+            
+            >
+            
+            <i class="fa fa-sign-out" aria-hidden="true"></i></button>
           </div>
       </div>
       <div class="member-email">
@@ -24,3 +29,34 @@
       </div>
     </div>
   </div>
+
+
+
+  
+
+
+<!-- (leave board) Modal -->
+
+<div class="modal fade" id="leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}" tabindex="-1" aria-labelledby="leaveBoardConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="leaveBoardConfirmationModalLabel">
+          Are you sure you want to leave board "{{board.name}}"?
+      </h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <b class="text-danger">You will not be able to join it unless you are invited again. </b>
+        <p>
+          All board's tasks will not be visible for you as well.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn modal-btn btn-danger" (click)="leave(member)" data-bs-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+

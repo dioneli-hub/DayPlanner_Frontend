@@ -128,11 +128,11 @@
 }
 
 
-.board-delete-button:focus{
+.delete-button:focus{
     border:none;
 }
 
 
-.board-delete-button:hover {
+.delete-button:hover {
     color: red;
 }

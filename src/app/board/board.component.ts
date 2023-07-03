@@ -13,7 +13,7 @@ import { UsersService } from 'src/services/users.service';
 })
 export class BoardComponent implements OnInit {
 
-  isCreator: boolean = null;
+  isCreator: boolean //= null;
   currentUser:UserModel = null;
   currentUserId:number = null;
   boardId: number = null;
@@ -40,10 +40,7 @@ export class BoardComponent implements OnInit {
     this.leaveBoard.emit({
       "userId" : userId, 
       "boardId" : boardId});
-  }
- 
-
-  
+  } 
 
   delete(board: BoardModel) {
     this.deleteBoard.emit(board);
