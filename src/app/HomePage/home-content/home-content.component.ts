@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { BoardModel } from 'src/api-models/board.model';
 import { TaskModel } from 'src/api-models/task.model';
@@ -49,13 +49,13 @@ export class HomeContentComponent implements OnInit{
                     this.boards = boards;
                     }); 
                     this.tasksService
-                    .getUsersTasks(this.userId)
+                    .getUserBoardsTasks(this.userId)
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(tasks => {
                       this.tasks = tasks;
                     });
                     this.tasksService
-                    .getTodaysUsersTasks(this.userId)
+                    .getTodaysUserBoardsTasks(this.userId)
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(tasks => {
                       this.todaysTasks = tasks;
@@ -81,6 +81,30 @@ export class HomeContentComponent implements OnInit{
     .subscribe(()=>{
       this.tasks = this.tasks.filter(x => x.id !== task.id);
       this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
+    })  
+ }
+
+ onLeaveBoard(value: any){ //userId: number, boardId: number
+  console.log("home component emitter, value:")
+  console.log(value)
+  var userId = value.userId;
+  var boardId = value.boardId;
+  this.usersService.leaveBoard(userId, boardId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(()=>{
+      this.boards = this.boards.filter(x => x.id !== boardId);
+      this.tasksService
+                    .getUserBoardsTasks(this.userId)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(tasks => {
+                      this.tasks = tasks;
+                    });
+                    this.tasksService
+                    .getTodaysUserBoardsTasks(this.userId)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(tasks => {
+                      this.todaysTasks = tasks;
+                    });
     })  
  }
 

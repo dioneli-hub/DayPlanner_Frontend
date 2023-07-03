@@ -123,9 +123,15 @@
     top: -2px;
 }
 
+.btn-delete{
+    border:none;
+}
+
+
 .board-delete-button:focus{
     border:none;
 }
+
 
 .board-delete-button:hover {
     color: red;

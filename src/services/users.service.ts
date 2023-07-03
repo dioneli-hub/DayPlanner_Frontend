@@ -59,5 +59,11 @@ export class UsersService {
   deleteBoardMember(boardId:number, memberId: number) {
     return this.httpClient.delete(`${environment.apiUrl}BoardMember/boards/${boardId}/delete-member/${memberId}`,
     {responseType: 'text'});
-  }}
+  }
   
+  
+  leaveBoard(userId: number, boardId:number) {
+    return this.httpClient.delete(`${environment.apiUrl}BoardMember/boards/${userId}/leave-board/${boardId}`,
+    {responseType: 'text'});
+  }
+}

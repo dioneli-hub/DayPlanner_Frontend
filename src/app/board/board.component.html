@@ -4,6 +4,11 @@
     </div>
 
 
+    <div *ngIf="!isCreator" class="member-delete-button">
+      <button type="button" 
+      class="btn leave-button"
+      (click)="leave(currentUserId, boardId)"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+
 
    <!-- Button trigger modal -->
     <div class="board-delete-button" *ngIf="isCreator == true">

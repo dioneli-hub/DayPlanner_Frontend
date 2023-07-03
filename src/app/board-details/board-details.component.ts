@@ -18,7 +18,7 @@ import { UsersService } from 'src/services/users.service';
 export class BoardDetailsComponent implements OnInit{
   
   private destroy$ = new Subject<void>();
-  // @Output() deleteBoardo = new EventEmitter<BoardModel>();
+  @Output() leaveBoard = new EventEmitter<BoardModel>();
 
   currentUser: UserModel | null = null;
   currentBoard: BoardModel | null = null;
@@ -107,6 +107,15 @@ export class BoardDetailsComponent implements OnInit{
         .pipe(takeUntil(this.destroy$))
         .subscribe(() => {
         this.boardMembers = this.boardMembers.filter(x => x.id !== member.id);
+       })
+      }
+
+      onLeaveBoard(user: UserModel){
+        this.usersService
+        .leaveBoard(user.id, this.currentBoard.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+        this.router.navigate(['/']).then();
        })
       }
 

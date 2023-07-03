@@ -6,7 +6,7 @@
     <div class="board-delete-button" *ngIf="isCreator == true">
         
         <button type="button" 
-                class="btn first" 
+                class="btn btn-delete first" 
                 (click)="log(currentBoard)"
                 data-bs-toggle="modal" attr.data-bs-target="#deleteBoardConfirmationModal{{boardId}}"
                 >
@@ -27,7 +27,8 @@
                 [member]="member"
                 [board]="currentBoard"
                 [isCreator]="isCreator"
-                (deleteMember)="onDeleteMember($event)" ></app-member>
+                (deleteMember)="onDeleteMember($event)"
+                (leaveBoard)="onLeaveBoard($event)" ></app-member>
             <button type="button" 
                     class="add-new-btn add-new-member-btn btn btn-secondary"
                     data-bs-toggle="modal" 

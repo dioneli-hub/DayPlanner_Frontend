@@ -12,6 +12,12 @@
             class="btn btn-danger"
             (click)="delete(member)"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
+
+          <div *ngIf="currentMemberId == currentUserId && currentBoardCreatorId != currentMemberId" class="member-delete-button">
+            <button type="button" 
+            class="btn leave-button"
+            (click)="leave(member)"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+          </div>
       </div>
       <div class="member-email">
         {{member.email}}

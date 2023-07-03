@@ -28,6 +28,14 @@ import { Subject } from "rxjs";
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks`);
     }
 
+    getTodaysUserBoardsTasks(userId: number): Observable<Array<TaskModel>> {
+      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/user-boards-todays-tasks`);
+    }
+
+    getUserBoardsTasks(boardId: number): Observable<Array<TaskModel>> {
+      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/user-boards-tasks`);
+    }
+
     deleteTask(taskId: number): Observable<void>{
       return this.httpClient.delete<void>(`${environment.apiUrl}TaskItem/${taskId}`);
     }

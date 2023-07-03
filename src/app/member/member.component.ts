@@ -14,17 +14,22 @@ export class MemberComponent implements OnInit, OnChanges {
   @Input() board: BoardModel;
   @Input() isCreator: boolean;
   
+  currentUserId;
   currentMemberId;
   currentBoardCreatorId;
   isUserCreator;
 
-  @Output()
-  deleteMember = new EventEmitter<UserModel>();
+  @Output()  deleteMember = new EventEmitter<UserModel>();
+  @Output()  leaveBoard = new EventEmitter<UserModel>();
 
-  constructor(){
+  constructor(private usersService: UsersService){}
 
-  }
   ngOnInit(): void {
+    this.usersService
+      .current()
+      .subscribe((user)=>{
+        this.currentUserId = user.id;
+      })
     
   }
 
@@ -37,25 +42,13 @@ export class MemberComponent implements OnInit, OnChanges {
     if(isCreator) this.currentBoardCreatorId = board.creatorId;
     if(board) this.isUserCreator = isCreator;
 
-    // if (user) {
-    //   this.userService
-    //     .getFollowers(user.id, this.usersLimit)
-    //     .pipe(takeUntil(this.destroy$))
-    //     .subscribe(followers => {
-    //       this.followers = followers;
-    //       this.totalFollowers = this.followers.length
-    //     });
-    //   this.userService
-    //     .getFollowsTo(user.id, this.usersLimit)
-    //     .pipe(takeUntil(this.destroy$))
-    //     .subscribe(followTo => {
-    //       this.followsTo = followTo;
-    //       this.totalFollows = this.followsTo.length;
-    //     });
-    // }
   }
   
   delete(user: UserModel) {
     this.deleteMember.emit(user);
+  }
+
+  leave(user: UserModel) {
+    this.leaveBoard.emit(user);
   }
 }
