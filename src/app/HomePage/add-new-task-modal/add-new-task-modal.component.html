@@ -60,8 +60,13 @@
           <div class="form-group row row-cols-sm-auto mb-3">
             <div class="col-12">
               <div class="input-group">
-                <input class="form-control" placeholder="Due date (yyyy-mm-dd)" name="taskDueDate" [(ngModel)]="taskDueDate"
-                  ngbDatepicker #dueDate="ngbDatepicker" />
+                <input class="form-control" 
+                        placeholder="Due date (yyyy-mm-dd)" 
+                        name="taskDueDate" 
+                        [minDate]="minDate"
+                        [(ngModel)]="taskDueDate"
+                        ngbDatepicker 
+                        #dueDate="ngbDatepicker" />
 
                   <div class="input-group-append">
                 <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dueDate.toggle()" type="button">
