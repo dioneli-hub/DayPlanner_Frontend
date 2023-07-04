@@ -20,28 +20,15 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control" aria-label="Text input with dropdown button"
                 placeholder="Task description" id="taskText" name="taskText" [(ngModel)]="taskText" required/>
-
-          <!-- <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Choose board</button> -->
-          <!-- <select class="dropdown-menu dropdown-menu-end" name="taskBoard" #taskBoardInput>
-            <option *ngFor="let board of boards" value="{{board.id}}">
-              <a class="dropdown-item"
-                href="#">{{board.name}}</a>
-              </option>
-
-          </select> -->
             </div>
           </div>
 
           <div class="form-group mb-3">
-            <!-- <button class="btn btn-outline-secondary " type="button" data-bs-toggle="dropdown"
-            aria-expanded="false" >Choose board</button> -->
           <select  class="form-control text-muted" id="board" name="board" [(ngModel)]="board" required>
             <option [ngValue]="null" hidden selected>Select a board</option>
             <option *ngFor="let board of boards" [ngValue]="board">{{board.name}}</option>
           </select>
           </div>
-
 
           <!--
 
