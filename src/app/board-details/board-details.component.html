@@ -38,6 +38,7 @@
            
             <button type="button" 
                     class="add-new-btn add-new-member-btn btn btn-secondary"
+                    *ngIf="isCreator"
                     data-bs-toggle="modal" 
                     data-bs-target="#addNewMemberModal">
                     Add new+

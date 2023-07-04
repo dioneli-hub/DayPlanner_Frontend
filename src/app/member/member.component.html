@@ -7,25 +7,28 @@
         <div class="member-info">
           <a href="#" class="card-link"> {{member.firstName}} {{member.lastName}}</a>
         </div>
-          <div *ngIf="isUserCreator && currentBoardCreatorId != currentMemberId" class="member-delete-button">
+          <div *ngIf="isUserCreator && currentBoardCreatorId != currentMemberId" 
+                >
             <button type="button" 
-            class="btn btn-danger"
+            class="btn member-action-button delete-button"
             (click)="delete(member)"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
-
+          
           <!--LEAVE BOARD TRIGGER MODAL BUTTON-->
-          <div *ngIf="currentMemberId == currentUserId && currentBoardCreatorId != currentMemberId" class="member-delete-button">
-            <button type="button" 
-            class="btn leave-button"
-            data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}"
-            
-            >
-            
-            <i class="fa fa-sign-out" aria-hidden="true"></i></button>
-          </div>
+        <div *ngIf="currentMemberId == currentUserId && currentBoardCreatorId != currentMemberId" 
+              >
+          <button type="button" 
+          class="btn member-action-button leave-button"
+          data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}"
+          
+          >
+          <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        </div>
       </div>
       <div class="member-email">
         {{member.email}}
+
+        
       </div>
     </div>
   </div>

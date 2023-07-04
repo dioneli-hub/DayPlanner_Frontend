@@ -35,6 +35,7 @@
     border: none;
     border-radius: 12px;
     box-shadow: -2px 0 1px 0 #a49f9f; /* shadow to the left */
+    /* margin-right: 5px; */
 }
 
 .card-link {
