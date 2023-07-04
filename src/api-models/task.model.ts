@@ -1,4 +1,5 @@
 import { BoardModel } from "./board.model";
+import { UserModel } from "./user.model";
 
  export interface TaskModel {
      id: number;
@@ -9,6 +10,7 @@ import { BoardModel } from "./board.model";
      board: BoardModel,
      creatorId: number,
      performerId: number,
+     performer: UserModel,
      isCompleted: boolean,
     }
 

@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
+import { UserModel } from 'src/api-models/user.model';
 import { TasksService } from 'src/services/tasks.service';
+import { UsersService } from 'src/services/users.service';
 
 
 @Component({
@@ -13,6 +15,10 @@ import { TasksService } from 'src/services/tasks.service';
 export class TaskComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
   taskDate: Date;
+  boardMembers: Array<UserModel> = undefined;
+  newPerformerId: number;
+  
+  boardId:number;
 
   @Input() 
   task: TaskModel | null = null;
@@ -25,15 +31,40 @@ export class TaskComponent implements OnInit, OnDestroy{
 
   constructor(
     private tasksService: TasksService,
+    private usersService: UsersService
     ) {}
    
-  // deleteTaskBoardDetails = new EventEmitter<TaskModel>();
 
 
   ngOnInit(): void {
     this.dateFormat(this.task.dueDate)
-  }
 
+    this.boardId = this.task.boardId;
+    console.log('boardId: ' + this.boardId)
+    if (this.boardId) {
+      this.usersService
+        .getBoardMembers(this.boardId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(boardMembers => {
+          this.boardMembers = boardMembers;
+          console.log("boardMembers: ")
+          console.log(boardMembers)
+        });
+  }}
+
+  updatePerformer(){
+    console.log('value!: ')
+    console.log(this.newPerformerId)
+    // console.log(value)
+    // var newPerformerId = value.performer
+    // var newPerformerId = newPerformer.id
+    
+    this.tasksService
+      .UpdateTaskPerformer(this.task.id, this.newPerformerId)
+      .subscribe((res)=>{
+        console.log(res)
+    })
+   }
  
   
   dateFormat (date) {
@@ -63,7 +94,6 @@ export class TaskComponent implements OnInit, OnDestroy{
           this.task.isCompleted = false;
         })  
   }
-
 
 
   ngOnDestroy() {

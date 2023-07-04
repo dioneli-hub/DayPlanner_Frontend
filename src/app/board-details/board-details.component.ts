@@ -4,7 +4,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
 import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
-import { UserProvider } from 'src/providers/user.provider';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { BoardsService } from 'src/services/boards.service';
 import { TasksService } from 'src/services/tasks.service';
@@ -54,6 +53,7 @@ export class BoardDetailsComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
+    
     
 
 

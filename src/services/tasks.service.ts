@@ -46,13 +46,21 @@ import { Subject } from "rxjs";
       {responseType: 'text'}
       );
     }
-    
+        
 
     markAsToDo(taskId: number)  {
       return this.httpClient.post(
         `${environment.apiUrl}TaskItem/${taskId}/mark-task-as-todo`, 
         {},
         {responseType: 'text'}
+        );
+    }
+
+    UpdateTaskPerformer(taskId: number, newPerformerId:number)  {
+      return this.httpClient.patch(
+        `${environment.apiUrl}TaskItem/${taskId}/update-performer/${newPerformerId}`, 
+        {},
+        // {responseType: 'text'}
         );
     }
 }
