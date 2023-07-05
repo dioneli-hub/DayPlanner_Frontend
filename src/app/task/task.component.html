@@ -7,9 +7,13 @@
       <div class="task-container">
         <div class="task-content">
 
-          <button *ngIf="task.isCompleted == false" 
+          <ng-template [ngIf]="currentUserId == taskCreatorId 
+                              || currentUserId == performerId"
+                       [ngIfElse]="notAllowedToPerform">
+
+            <button *ngIf="task.isCompleted == false" 
                     type="button" 
-                    class="btn btn-completion-status btn-complete me-2 mt-2" 
+                    class="btn btn-completion-status btn-complete me-2" 
                     (click)="complete(task)"
                     data-bs-toggle="tooltip" title="Complete task">
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -17,30 +21,39 @@
 
             <button *ngIf="task.isCompleted == true" 
                     type="button" 
-                    class="btn btn-completion-status btn-mark-todo me-2 mt-2" 
+                    class="btn btn-completion-status btn-mark-todo me-2" 
                     (click)="markAsToDo(task)"
                     data-bs-toggle="tooltip" title="Mark task as ToDo">
              <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </button>
-
+          </ng-template>
+          <ng-template #notAllowedToPerform>
+            <button type="button" class="btn disabled me-2">
+              <i class="fa fa-lock " aria-hidden="true"></i>
+            </button>
+            
+          </ng-template>
           <a href="#" class="card-link">{{task.text}}</a>
         </div>
 
 
+        <ng-template  [ngIf]="taskCreatorId == currentUserId" [ngIfElse]="userNotTaskCreator">
         <form #updatePerformerForm="ngForm"  >
           <select aria-placeholder="task.performer" 
                   (change)="updatePerformer();" 
-                  class="form-control text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" 
+                  class="performer-box form-control text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" 
                   [(ngModel)]="performerId" required>
             <option  [ngValue]="null" selected hidden>Select performer</option>
             <option  *ngFor="let performer of boardMembers" [ngValue]="performer.id">{{performer.firstName}} {{performer.lastName}}</option>
           </select>
           </form>
-
-          <!-- <select  class="form-control text-muted" id="board" name="board" [(ngModel)]="board" required>
-            <option [ngValue]="null" hidden selected>Select a board</option>
-            <option *ngFor="let board of boards" [ngValue]="board">{{board.name}}</option>
-          </select> -->
+        </ng-template>
+        <ng-template #userNotTaskCreator>
+          <div class="performer-box form-control">
+            {{taskPerformerInfo}}
+          </div>
+          
+        </ng-template>
 
           <div class="task-delete-button">
 

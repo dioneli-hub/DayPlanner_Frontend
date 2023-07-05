@@ -1,35 +1,3 @@
-/*.task-board {
-    color: grey;
-    font-size: smaller;
-}
-
-.task-due{
-    color: grey;
-    font-size: smaller;
-}
-
-.task-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    position: relative;
-}
-
-// next two were commented out
- .task-complete-button {
-    position: absolute;
-    right: 10px;
-    
-} 
-
-.task-delete-button {
-    position: absolute;
-    right: 10px;
-        
-} */
-
-
-
 
 .card{
     border: none;
@@ -47,8 +15,12 @@
     /* margin-left: 20px; */
 }
 
+.btn.disabled{
+    border: none;
+}
+
 .btn-completion-status {
-    padding-bottom: 13px;
+    /* padding-bottom: 13px; */
 }
 
 .btn-completion-status:focus {
@@ -92,6 +64,12 @@
 }
 .task-delete-button > .btn {
     position: relative;
-    top: 35px;
-    left: 10px;
+    top: 27px;
+    left: 15px;
+}
+
+.performer-box.form-control{
+    width: 170px;
+    font-size: smaller;
+    border-radius:0;
 }

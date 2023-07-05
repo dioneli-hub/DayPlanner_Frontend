@@ -17,8 +17,9 @@ export class TaskComponent implements OnInit, OnDestroy{
   taskDate: Date;
   boardMembers: Array<UserModel> = undefined;
   performerId: number = null;
-  
   boardId:number;
+  currentUserId: number = null
+  taskCreatorId: number = null;
 
   @Input() 
   task: TaskModel | null = null;
@@ -52,15 +53,28 @@ export class TaskComponent implements OnInit, OnDestroy{
   if(this.task.performerId != null && this.task.performer != null){
     this.performerId = this.task.performerId;
   }
+
+  this.taskCreatorId = this.task.creatorId;
+  this.usersService
+    .current()
+    .subscribe((currentUser)=>{
+      this.currentUserId = currentUser.id;
+    })
      
+}
+
+get taskPerformerInfo(){
+  return this.performerId == null? 
+        'No performer' 
+        : `${this.task.performer.firstName} ${this.task.performer.lastName}`;
 }
 
   updatePerformer(){
         this.tasksService
       .UpdateTaskPerformer(this.task.id, this.performerId)
-      .subscribe((res)=>{
-        // console.log(res)
-    })
+      .subscribe((task: TaskModel)=>{
+
+      })
    }
  
   
