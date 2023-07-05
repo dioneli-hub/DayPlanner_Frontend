@@ -28,10 +28,19 @@
 
 
         <form #updatePerformerForm="ngForm"  >
-          <select aria-placeholder="task.performer" (change)="updatePerformer();" class="form-control text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" [(ngModel)]="performerId" required>
+          <select aria-placeholder="task.performer" 
+                  (change)="updatePerformer();" 
+                  class="form-control text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" 
+                  [(ngModel)]="performerId" required>
+            <option  [ngValue]="null" selected hidden>Select performer</option>
             <option  *ngFor="let performer of boardMembers" [ngValue]="performer.id">{{performer.firstName}} {{performer.lastName}}</option>
           </select>
           </form>
+
+          <!-- <select  class="form-control text-muted" id="board" name="board" [(ngModel)]="board" required>
+            <option [ngValue]="null" hidden selected>Select a board</option>
+            <option *ngFor="let board of boards" [ngValue]="board">{{board.name}}</option>
+          </select> -->
 
           <div class="task-delete-button">
 

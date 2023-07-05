@@ -16,7 +16,7 @@ export class TaskComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
   taskDate: Date;
   boardMembers: Array<UserModel> = undefined;
-  performerId: number = undefined;
+  performerId: number = null;
   
   boardId:number;
 
@@ -40,31 +40,26 @@ export class TaskComponent implements OnInit, OnDestroy{
     this.dateFormat(this.task.dueDate)
 
     this.boardId = this.task.boardId;
-    console.log('boardId: ' + this.boardId)
     if (this.boardId) {
       this.usersService
         .getBoardMembers(this.boardId)
         .pipe(takeUntil(this.destroy$))
         .subscribe(boardMembers => {
           this.boardMembers = boardMembers;
-          console.log("boardMembers: ")
-          console.log(boardMembers)
         });
   }
+
+  if(this.task.performerId != null && this.task.performer != null){
     this.performerId = this.task.performerId;
+  }
+     
 }
 
   updatePerformer(){
-    console.log('value!: ')
-    console.log(this.performerId)
-    // console.log(value)
-    // var newPerformerId = value.performer
-    // var newPerformerId = newPerformer.id
-    
-    this.tasksService
+        this.tasksService
       .UpdateTaskPerformer(this.task.id, this.performerId)
       .subscribe((res)=>{
-        console.log(res)
+        // console.log(res)
     })
    }
  
