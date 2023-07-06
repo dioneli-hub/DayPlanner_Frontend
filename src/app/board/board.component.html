@@ -8,7 +8,7 @@
         <button type="button" 
         class="btn leave-button"
         data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}"
-        ><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        data-bs-toggle="tooltip" title="Leave board"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
       </div>
     </ng-template>
     
@@ -19,7 +19,7 @@
             <button type="button" 
                     class="btn delete-button" 
                     data-bs-toggle="modal" attr.data-bs-target="#deleteBoardConfirmationModal{{board.id}}"
-                    >
+                    data-bs-toggle="tooltip" title="Delete board">
             <i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
       </ng-template>

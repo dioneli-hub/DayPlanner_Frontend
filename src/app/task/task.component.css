@@ -1,26 +1,18 @@
-
 .card{
     border: none;
     border-radius: 12px;
     box-shadow: -2px 0 1px 0 #a49f9f; /* shadow to the left */
-    /* margin-right: 5px; */
 }
 
-.card-link {
+.task-text {
+    display:inline-block;
     color: black;
     text-decoration: none;
     font-weight: 500;
-    /* font-size: smaller; */
-    /* font-family: Verdana,  sans-serif; */
-    /* margin-left: 20px; */
 }
 
 .btn.disabled{
     border: none;
-}
-
-.btn-completion-status {
-    /* padding-bottom: 13px; */
 }
 
 .btn-completion-status:focus {
@@ -29,7 +21,6 @@
 .btn-completion-status :hover {
     color: green;
 }
-
 
 .btn-delete:focus{
     border:none;
@@ -40,36 +31,90 @@
 }
 
 
-/* for each member*/
+
+/*grid styling*/
+.task-card{
+    height: 120px;
+    display: grid;
+    grid-template-columns: [first] 4fr [divide-one] 5fr [divide-two] 1fr[end];
+    grid-template-rows: [row-start ]1fr [row-middle-one] 2fr[row-middle-two] 1fr [row-end];
+    justify-items: start; 
+    align-items: start;
+}
+
+
 .task-board {
+    grid-column-start: first;
+    grid-column-end: divide-one;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+    justify-self: start;
+
     color: grey;
     font-size: smaller;
+}
+
+.task-content {
+    grid-column-start: first;
+    grid-column-end: divide-one;
+    grid-row-start: row-middle-one;
+    grid-row-end: row-middle-two;
 }
 
 .task-due{
+    grid-column-start: first;
+    grid-column-end: divide-one;
+    grid-row-start: row-middle-two;
+    grid-row-end: row-end;
+    justify-self: start;
+
     color: grey;
     font-size: smaller;
 }
 
-.task-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    position: relative;
+
+.performer-marker{
+    grid-column-start: divide-one;
+    grid-column-end: divide-two;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+
+    color: grey;
+    font-size: smaller;
+}
+
+.task-performer{
+    grid-column-start: divide-one;
+    grid-column-end: divide-two;
+    grid-row-start: row-middle-one;
+    grid-row-end: row-middle-two;
+    justify-self: start;
+    align-self: center; 
 }
 
 .task-delete-button {
-    position: absolute;
-    right: 10px;
-}
-.task-delete-button > .btn {
-    position: relative;
-    top: 27px;
-    left: 15px;
+    grid-column-start: divide-two;
+    grid-column-end: end;
+    grid-row-start: row-middle-one;
+    grid-row-end: row-end;
+    justify-self: end;
+    align-self: end; 
 }
 
-.performer-box.form-control{
-    width: 170px;
+/*styling select*/
+
+.performer-box{
+    width: 170px; /*170*/
     font-size: smaller;
     border-radius:0;
+    overflow: hidden; /* cut whatever cannot suit into container */
+    padding-right: 5px; 
+    text-overflow: ellipsis; /*adding dots*/
+    white-space: nowrap;
+}
+
+.inactive-performer-info{
+    font-size: smaller;
+    margin-left: 10px;
+    color: grey;
 }

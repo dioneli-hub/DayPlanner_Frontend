@@ -4,7 +4,7 @@
       <div class="task-board">
          {{task.board.name}} {{task.isCompleted? '(Done)' : '(ToDo)'}}
       </div>
-      <div class="task-container">
+      <!-- <div class="task-container"> -->
         <div class="task-content">
 
           <ng-template [ngIf]="currentUserId == taskCreatorId 
@@ -33,31 +33,38 @@
             </button>
             
           </ng-template>
-          <a href="#" class="card-link">{{task.text}}</a>
+          <!-- <a href="#" class="card-link">{{task.text}}</a> -->
+          <div class="task-text">{{task.text}}</div>
         </div>
 
-
+        <div class="performer-marker">
+          Performer:
+        </div>
         <ng-template  [ngIf]="taskCreatorId == currentUserId" [ngIfElse]="userNotTaskCreator">
-        <form #updatePerformerForm="ngForm"  >
+        <form #updatePerformerForm="ngForm"  class="task-performer">
           <select aria-placeholder="task.performer" 
                   (change)="updatePerformer();" 
-                  class="performer-box form-control text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" 
+                  class=" form-control performer-box text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" 
                   [(ngModel)]="performerId" required>
             <option  [ngValue]="null" selected hidden>Select performer</option>
-            <option  *ngFor="let performer of boardMembers" [ngValue]="performer.id">{{performer.firstName}} {{performer.lastName}}</option>
+            <option  *ngFor="let performer of boardMembers" 
+                      [ngValue]="performer.id">
+                      
+                      {{performer.firstName}} {{performer.lastName}}</option>
           </select>
           </form>
         </ng-template>
         <ng-template #userNotTaskCreator>
-          <div class="performer-box form-control">
+          <!-- form-control -->
+          <div class="task-performer  inactive-performer-info">
             {{taskPerformerInfo}}
           </div>
           
         </ng-template>
 
-          <div class="task-delete-button">
-
-            <button type="button" 
+          <div *ngIf="taskCreatorId == currentUserId" class="task-delete-button">
+            <button 
+                    type="button" 
                     class="btn btn-delete" 
                     (click)="delete(task)"
                     data-bs-toggle="tooltip" title="Delete task">
@@ -66,7 +73,7 @@
             </button>
 
           </div>
-      </div>
+      <!-- </div> -->
       <div class="task-due">
         Due {{taskDate}}
       </div>
