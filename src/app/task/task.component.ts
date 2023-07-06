@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
@@ -20,6 +19,7 @@ export class TaskComponent implements OnInit, OnDestroy{
   boardId:number;
   currentUserId: number = null
   taskCreatorId: number = null;
+  isOverdue : boolean;
 
   @Input() 
   task: TaskModel | null = null;
@@ -47,8 +47,7 @@ export class TaskComponent implements OnInit, OnDestroy{
         .pipe(takeUntil(this.destroy$))
         .subscribe(boardMembers => {
           this.boardMembers = boardMembers;
-        });
-  }
+        });}
 
   if(this.task.performerId != null && this.task.performer != null){
     this.performerId = this.task.performerId;
@@ -60,7 +59,19 @@ export class TaskComponent implements OnInit, OnDestroy{
     .subscribe((currentUser)=>{
       this.currentUserId = currentUser.id;
     })
-     
+    
+    this.calculateOverdue()
+    //this.isOverdue = new Date(this.task.dueDate)//.getDate()
+}
+
+calculateOverdue(){
+  let taskDueDate = new Date(this.task.dueDate);
+  let now = new Date(new Date().toDateString());
+
+  console.log(taskDueDate < now)
+  this.isOverdue = (taskDueDate < now) && this.task.isCompleted == false?
+                    true : false;
+
 }
 
 get taskPerformerInfo(){
@@ -68,6 +79,8 @@ get taskPerformerInfo(){
         'No performer' 
         : `${this.task.performer.firstName} ${this.task.performer.lastName}`;
 }
+
+
 
   updatePerformer(){
         this.tasksService
