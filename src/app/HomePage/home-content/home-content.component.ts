@@ -1,11 +1,11 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import {  Component,  OnInit,} from '@angular/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { BoardModel } from 'src/api-models/board.model';
 import { TaskModel } from 'src/api-models/task.model';
 import { Subject } from 'rxjs';
 import { UsersService } from 'src/services/users.service';
 import { AuthenticationService } from 'src/services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserModel } from 'src/api-models/user.model';
 import { TasksService } from 'src/services/tasks.service';
 import { BoardsService } from 'src/services/boards.service';
@@ -61,7 +61,8 @@ export class HomeContentComponent implements OnInit{
                       this.todaysTasks = tasks;
                     });
         }
-       )}
+       )
+      }
 
        onDeleteBoard(board: BoardModel){
         this.boardsService.deleteBoard(board.id)

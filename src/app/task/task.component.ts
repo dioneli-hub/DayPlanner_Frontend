@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
@@ -19,7 +19,7 @@ export class TaskComponent implements OnInit, OnDestroy{
   boardId:number;
   currentUserId: number = null
   taskCreatorId: number = null;
-  isOverdue : boolean;
+  // isOverdue : boolean;
 
   @Input() 
   task: TaskModel | null = null;
@@ -59,20 +59,19 @@ export class TaskComponent implements OnInit, OnDestroy{
     .subscribe((currentUser)=>{
       this.currentUserId = currentUser.id;
     })
+  
     
-    this.calculateOverdue()
-    //this.isOverdue = new Date(this.task.dueDate)//.getDate()
 }
 
-calculateOverdue(){
-  let taskDueDate = new Date(this.task.dueDate);
-  let now = new Date(new Date().toDateString());
+// calculateOverdue(){
+//   let taskDueDate = new Date(this.task.dueDate);
+//   let now = new Date(new Date().toDateString());
 
-  console.log(taskDueDate < now)
-  this.isOverdue = (taskDueDate < now) && this.task.isCompleted == false?
-                    true : false;
+//   console.log(taskDueDate < now)
+//   this.task.isOverdue = (taskDueDate < now) && this.task.isCompleted == false?
+//                     true : false;
 
-}
+// }
 
 get taskPerformerInfo(){
   return this.performerId == null? 
@@ -80,13 +79,22 @@ get taskPerformerInfo(){
         : `${this.task.performer.firstName} ${this.task.performer.lastName}`;
 }
 
+get taskStatus(){
+  return this.task.isCompleted? '(Done)' 
+       : this.task.isOverdue? '(Overdue)':'(ToDo)'
+}
 
+get taskBgColor(){
+  return this.task.isCompleted? '#ecffd4' 
+       : this.task.isOverdue? '#f7c3c3' : '#fbfcb8'
+}
 
   updatePerformer(){
         this.tasksService
       .UpdateTaskPerformer(this.task.id, this.performerId)
       .subscribe((task: TaskModel)=>{
-
+        this.task.performer = task.performer;
+        this.task.performerId = task.performerId;
       })
    }
  
@@ -106,6 +114,11 @@ get taskPerformerInfo(){
         .pipe(takeUntil(this.destroy$))
         .subscribe(()=>{
           this.task.isCompleted = true;
+          this.tasksService
+            .UpdateTaskOverdue(this.task.id)
+            .subscribe((task: TaskModel)=>{
+              this.task.isOverdue = task.isOverdue;
+            })
         })  
   }
 
@@ -113,9 +126,13 @@ get taskPerformerInfo(){
     this.tasksService
         .markAsToDo(taskToMark.id)
         .pipe(takeUntil(this.destroy$))
-        .subscribe((res)=>{
-          console.log(res)
+        .subscribe(()=>{
           this.task.isCompleted = false;
+          this.tasksService
+            .UpdateTaskOverdue(this.task.id)
+            .subscribe((task: TaskModel)=>{
+              this.task.isOverdue = task.isOverdue;
+            })
         })  
   }
 

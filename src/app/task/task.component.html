@@ -1,10 +1,8 @@
   <div class="card mb-2"
-        [ngStyle]="{'background-color': task.isCompleted? '#ecffd4' :
-                                      isOverdue? '#f7c3c3' : '#fbfcb8'}">
+        [ngStyle]="{'background-color': taskBgColor}">
     <div class="card-body task-card">
       <div class="task-board">
-         {{task.board.name}} {{task.isCompleted? '(Done)' 
-                      : isOverdue? '(Overdue)':'(ToDo)'}}
+         {{task.board.name}} {{taskStatus}}
       </div>
         <div class="task-content">
 

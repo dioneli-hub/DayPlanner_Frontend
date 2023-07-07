@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { TaskModel } from "../api-models/task.model";
 import { environment } from "../environments/environment";
-import { Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -59,6 +58,14 @@ import { Subject } from "rxjs";
     UpdateTaskPerformer(taskId: number, newPerformerId:number)  {
       return this.httpClient.patch(
         `${environment.apiUrl}TaskItem/${taskId}/update-performer/${newPerformerId}`, 
+        {},
+        // {responseType: 'text'}
+        );
+    }
+
+    UpdateTaskOverdue(taskId: number)  {
+      return this.httpClient.patch(
+        `${environment.apiUrl}TaskItem/${taskId}/update-overdue`, 
         {},
         // {responseType: 'text'}
         );
