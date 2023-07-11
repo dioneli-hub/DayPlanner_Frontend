@@ -75,7 +75,7 @@
       <div class="task-due">
         Due {{taskDate}}
         <!-- placeholder="Due  {{taskDate}}" -->
-        <!-- <ng-template [ngIf]="taskCreatorId == currentUserId"> -->
+        <ng-template [ngIf]="taskCreatorId == currentUserId">
           <input 
                   name="taskDueDate" 
                   [minDate]="minDate"
@@ -92,7 +92,7 @@
                       >
                 <i class="fa fa-calendar" aria-hidden="true"></i>
               </button>
-        <!-- </ng-template> -->
+        </ng-template>
           
       </div>
     </div>
