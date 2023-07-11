@@ -34,7 +34,11 @@ export class AuthenticationService {
       .post(`${environment.apiUrl}auth/`, { email, password })
       .pipe(
         tap((tokenResponse: any) => {
-          AuthenticationService.setToken(tokenResponse.data)}),
+          if(tokenResponse.isSuccess == true){
+            AuthenticationService.setToken(tokenResponse.data);
+            this.isAuthenticated();
+          }
+        }),
       );
   }
   

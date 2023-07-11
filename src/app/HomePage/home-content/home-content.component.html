@@ -10,36 +10,37 @@
             <h6>{{currentUser.firstName}}'s boards</h6>
           </div>
           
-          <div class="card-body">
+          <div class="card-body scrollbar-area-card">
             <ul class="list-group list-group-flush mb-2">
               <li class="list-group-item" >
                 
                   <app-board
                   *ngFor="let board of boards"
                   [board]="board"
+                  (leaveBoard)="onLeaveBoard($event)"
                   (deleteBoard)="onDeleteBoard($event)"></app-board> 
               
               </li>
             </ul>
-            <app-add-new-board-modal
+          </div>
+          <app-add-new-board-modal
                 (boardCreate)="onCreateBoard($event)">
                 </app-add-new-board-modal>
-          </div>
         </div>
 
       </div>
       <!--User's boards finished-->
 
     </div>
-    <div class="col-sm-6 mb-sm-0">
+    <div class="col-sm-6 mb-3 mb-sm-0">
       <!--Today's tasks-->
       <div class="body">
-        <div class="card">
+        <div class="card ">
           <div class="st-heading">
             <h6>Tasks For Today</h6>
           </div>
           
-          <div class="card-body">
+          <div class="card-body scrollbar-area-card">
 
             <div class="card" *ngFor="let task of todaysTasks">
                 <app-task 
@@ -47,13 +48,14 @@
                   
                   [task]="task"></app-task>
             </div>
-            <app-add-new-task-modal 
-                (taskCreate)="onCreateTask($event)"
-                [boards]="boards">
-              </app-add-new-task-modal>
                 <!-- (outEnterTaskContent)="addTask($event)"> --> 
 
           </div>
+
+          <app-add-new-task-modal 
+                (taskCreate)="onCreateTask($event)"
+                [boards]="boards">
+              </app-add-new-task-modal>
         </div>
 
       </div>
@@ -65,7 +67,7 @@
     <div class="col-sm-12 mt-3">
       <!--All tasks-->
 
-      <div class="card">
+      <div class="card my-work-container">
         <div class="st-heading">
           <h6>My Work</h6>
         </div>
@@ -84,7 +86,7 @@
           <div class="tab-pane fade show active" id="nav-todo" role="tabpanel" aria-labelledby="nav-todo-tab">
             <div class="card" *ngFor="let task of tasks">
               <app-task 
-                *ngIf="task.isCompleted == false"
+                *ngIf="task.isCompleted == false && task.isOverdue != true"
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
             </div>
@@ -98,7 +100,12 @@
             </div>
           </div>
           <div class="tab-pane fade" id="nav-overdue" role="tabpanel" aria-labelledby="nav-overdue-tab">
-            <p>Overdue tasks...</p>
+            <div class="card" *ngFor="let task of tasks">
+            <app-task 
+                *ngIf="task.isOverdue == true"
+                [task]="task"
+                (deleteTask)="onDeleteTask($event)"></app-task>
+              </div>
           </div>
         </div>
 

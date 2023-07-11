@@ -1,51 +1,18 @@
-<!-- <div class="card" >
-    <div class="card-body task-card">
-
-      <div class="task-board">
-        {{task.board.name}}
-        
-      </div>
-
-      <div class="task-container">
-        <div class="task-content">
-          <a href="#" class="card-link">{{task.text}}</a>
-        </div>
-        <div class="task-btns-group"> 
-           <div class="task-complete-button">
-            <button type="button" class="btn btn-success">Complete</button>
-          </div>
-          <div class="task-delete-button">
-            <button type="button" class="btn btn-danger" (click)="onDeleteTask(task.id)">Delete</button>
-          </div>
-         </div>
-        
-      </div>
-
-      <div class="task-due">
-        Due {{taskDate}}
-      </div>
-
-    </div>
-  </div> -->
-
-
-
-
-
-
-
   <div class="card mb-2"
-        [ngStyle]="{'background-color': task.isCompleted? '#ecffd4' : '#fbfcb8'}">
+        [ngStyle]="{'background-color': taskBgColor}">
     <div class="card-body task-card">
       <div class="task-board">
-         {{task.board.name}} {{task.isCompleted? '(Done)' : '(ToDo)'}}
+         {{task.board.name}} {{taskStatus}}
       </div>
-      <div class="task-container">
         <div class="task-content">
 
-          <button *ngIf="task.isCompleted == false" 
+          <ng-template [ngIf]="currentUserId == taskCreatorId 
+                              || currentUserId == performerId"
+                       [ngIfElse]="notAllowedToPerform">
+
+            <button *ngIf="task.isCompleted == false" 
                     type="button" 
-                    class="btn btn-completion-status btn-complete me-2 mt-2" 
+                    class="btn btn-completion-status btn-complete me-2" 
                     (click)="complete(task)"
                     data-bs-toggle="tooltip" title="Complete task">
               <i class="fa fa-check" aria-hidden="true"></i>
@@ -53,18 +20,50 @@
 
             <button *ngIf="task.isCompleted == true" 
                     type="button" 
-                    class="btn btn-completion-status btn-mark-todo me-2 mt-2" 
+                    class="btn btn-completion-status btn-mark-todo me-2" 
                     (click)="markAsToDo(task)"
                     data-bs-toggle="tooltip" title="Mark task as ToDo">
              <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </button>
-
-          <a href="#" class="card-link">{{task.text}}</a>
+          </ng-template>
+          <ng-template #notAllowedToPerform>
+            <button type="button" class="btn disabled me-2">
+              <i class="fa fa-lock " aria-hidden="true"></i>
+            </button>
+            
+          </ng-template>
+          <!-- <a href="#" class="card-link">{{task.text}}</a> -->
+          <div class="task-text">{{task.text}}</div>
         </div>
 
-          <div class="task-delete-button">
+        <div class="performer-marker">
+          Performer:
+        </div>
+        <ng-template  [ngIf]="taskCreatorId == currentUserId" [ngIfElse]="userNotTaskCreator">
+        <form #updatePerformerForm="ngForm"  class="task-performer">
+          <select aria-placeholder="task.performer" 
+                  (change)="updatePerformer();" 
+                  class=" form-control performer-box text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" 
+                  [(ngModel)]="performerId" required>
+            <option  [ngValue]="null" selected hidden>Select performer</option>
+            <option  *ngFor="let performer of boardMembers" 
+                      [ngValue]="performer.id">
+                      
+                      {{performer.firstName}} {{performer.lastName}}</option>
+          </select>
+          </form>
+        </ng-template>
+        <ng-template #userNotTaskCreator>
+          <!-- form-control -->
+          <div class="task-performer  inactive-performer-info">
+            {{taskPerformerInfo}}
+          </div>
+          
+        </ng-template>
 
-            <button type="button" 
+          <div *ngIf="taskCreatorId == currentUserId" class="task-delete-button">
+            <button 
+                    type="button" 
                     class="btn btn-delete" 
                     (click)="delete(task)"
                     data-bs-toggle="tooltip" title="Delete task">
@@ -73,9 +72,28 @@
             </button>
 
           </div>
-      </div>
       <div class="task-due">
         Due {{taskDate}}
+        <!-- placeholder="Due  {{taskDate}}" -->
+        <ng-template [ngIf]="taskCreatorId == currentUserId">
+          <input 
+                  name="taskDueDate" 
+                  [minDate]="minDate"
+                  [(ngModel)]="newTaskDueDate"
+                  ngbDatepicker 
+                  #changeDueDate="ngbDatepicker"
+                  (dateSelect)="updateTaskDueDate()"
+                   />
+
+              <button type="button" 
+                      class="btn btn-sm" 
+                      (click)="changeDueDate.toggle()"
+                      data-bs-toggle="tooltip" title="Reschedule task"
+                      >
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+              </button>
+        </ng-template>
+          
       </div>
     </div>
   </div>

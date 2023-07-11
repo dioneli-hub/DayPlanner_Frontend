@@ -17,16 +17,30 @@
     position: relative;
 }
 
-.member-delete-button {
+.member-action-button {
     position: absolute;
-    right: 10px;
-        
+    border:none;
+    right: -10px;
+    bottom: 18px;
+}
+
+.member-action-button:focus {
+    border:none;
+}
+
+.member-action-button.leave-button:hover {
+    color:blue;
+}
+
+.member-action-button.delete-button:hover {
+    color:red;
 }
 
 .card{
     border: none;
     border-radius: 12px;
     box-shadow: -2px 0 1px 0 #a49f9f; /* shadow to the left */
+    margin-left: 10px;
 }
 
 .card-link {

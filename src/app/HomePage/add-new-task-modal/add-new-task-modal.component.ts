@@ -11,6 +11,7 @@ import { BoardsService } from 'src/services/boards.service';
 import { UsersService } from 'src/services/users.service';
 import { UserProvider } from 'src/providers/user.provider';
 import { TaskModel } from 'src/api-models/task.model';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-new-task-modal',
@@ -30,19 +31,37 @@ export class AddNewTaskModalComponent implements OnInit {
   taskText = null;
   taskDueDate = null;
   board = null;
+  minDate = undefined;
 
   constructor(private router: Router, 
     private boardsService: BoardsService,
     private usersService: UsersService,
-    private userProvider: UserProvider) { }
+    private userProvider: UserProvider,
+    private config: NgbDatepickerConfig) { 
+
+      
+    //datepicker
+    const current = new Date();
+    this.minDate = {
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate()
+    };
+  }
+
   submit(value) {
   this.boardsService.addTaskToBoard(value).subscribe(task=>{
     this.taskCreate.emit(task);
-  });
-  }
+  })}
+
   ngOnInit(): void {
   }
- }
+
+ 
+
+}
+
+
 
 // export class AddNewTaskModalComponent {
 //   @Input() 

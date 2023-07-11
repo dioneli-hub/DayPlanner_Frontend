@@ -31,10 +31,16 @@
     position: relative;
 }
 
+.board-members-content{
+    overflow-y: scroll;
+    height: 54vh;
+    
+}
+
 .add-new-member-btn{
     position: absolute;
     right: 2vw;
-    bottom: 2vw;
+    bottom: 0.8vw;
 }
 
 .tasks{
@@ -110,3 +116,48 @@
     right: 10px;
         
 }
+
+
+/**/
+
+.board-details-heading {
+    position: relative;
+}
+.board-delete-button {
+    position: absolute;
+    right: 10px;
+    top: -2px;
+}
+
+.btn-delete{
+    border:none;
+}
+
+
+.delete-button:focus{
+    border:none;
+}
+
+
+.delete-button:hover {
+    color: red;
+}
+
+
+
+/*scrollbar*/
+
+/* .scrollbar-area-card{
+   
+} */
+
+::-webkit-scrollbar-track { 
+    background: none;
+  }
+
+  /* Handle */
+   ::-webkit-scrollbar-thumb { 
+    box-shadow: inset 0 0 5px #7B7777;
+    background: white; 
+    border-radius: 0px;
+  }

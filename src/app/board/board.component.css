@@ -9,8 +9,32 @@
 
 .board-delete-button {
     position: absolute;
+    right: 12px;
+}
+
+.leave-board-button {
+    position: absolute;
     right: 10px;
 }
+
+.leave-button:hover {
+    color: blue;
+}
+
+.leave-button:focus {
+    border:none;
+}
+
+
+.delete-button:focus{
+    border:none;
+}
+
+
+.delete-button:hover {
+    color: red;
+}
+
 
 .card-link {
     color: black;

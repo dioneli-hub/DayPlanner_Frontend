@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
@@ -17,13 +17,28 @@ import { UsersService } from 'src/services/users.service';
 export class BoardDetailsComponent implements OnInit{
   
   private destroy$ = new Subject<void>();
+  @Output() leaveBoard = new EventEmitter<BoardModel>();
 
+  currentUser: UserModel | null = null;
   currentBoard: BoardModel | null = null;
   currentBoardName: string = '';
   boardMembers: Array<UserModel> = [];
   tasks: Array<TaskModel> = [];
   boardId: number | null = null;
   email: string = ''
+  isCreator: boolean = null;
+
+
+  delete(board: BoardModel) {
+    // this.deleteBoardo.emit(board);
+    this.boardsService.deleteBoard(board.id).subscribe(()=>{
+      this.router.navigate(['/']).then();
+    })
+  }
+
+  log(board: BoardModel) {
+    console.log(board.id)
+  }
 
   constructor(private usersService: UsersService,
               private tasksService: TasksService,
@@ -38,6 +53,9 @@ export class BoardDetailsComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
+    
+    
+
 
     this.route 
         .params
@@ -48,6 +66,12 @@ export class BoardDetailsComponent implements OnInit{
             .subscribe(currentBoard => {
               this.currentBoard = currentBoard;
               this.currentBoardName = currentBoard.name;
+
+              this.usersService
+                .current()
+                .subscribe(user => {
+                  this.currentBoard.creatorId == user.id ? this.isCreator = true : this.isCreator = false;
+                });
             });
           if (this.boardId) {
             this.usersService
@@ -64,6 +88,8 @@ export class BoardDetailsComponent implements OnInit{
                 });
               }
             });
+
+            
           }
 
 
@@ -81,6 +107,15 @@ export class BoardDetailsComponent implements OnInit{
         .pipe(takeUntil(this.destroy$))
         .subscribe(() => {
         this.boardMembers = this.boardMembers.filter(x => x.id !== member.id);
+       })
+      }
+
+      onLeaveBoard(user: UserModel){
+        this.usersService
+        .leaveBoard(user.id, this.currentBoard.id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+        this.router.navigate(['/']).then();
        })
       }
 

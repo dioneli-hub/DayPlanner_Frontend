@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbDatepickerConfig, NgbDatepickerModule, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { BoardModel } from 'src/api-models/board.model';
@@ -33,9 +33,20 @@ export class AddNewTaskFromBoardModalComponent {
 
   taskText = null;
   taskDueDate = null;
+  minDate=undefined;
 
   constructor(private router: Router, 
-    private boardsService: BoardsService) { }
+    private boardsService: BoardsService,  
+    private config: NgbDatepickerConfig) { 
+
+      
+      //datepicker
+      const current = new Date();
+      this.minDate = {
+        year: current.getFullYear(),
+        month: current.getMonth() + 1,
+        day: current.getDate()
+      }; }
 
   submit(value) {
   this.boardsService.addTaskFromBoard(this.boardId, value)

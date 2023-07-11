@@ -18,6 +18,7 @@ import { BoardDetailsComponent } from './board-details/board-details.component';
 import { MemberComponent } from './member/member.component';
 import { HttpErrorInterceptor } from 'src/interceptors/error.interceptor';
 import { AddNewTaskFromBoardModalComponent } from './add-new-task-from-board-modal/add-new-task-from-board-modal.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -35,7 +36,8 @@ const ERROR_INTERCEPTOR = {
 const appRoutes: Routes =[
     { path: '', component: HomeContentComponent},
     { path: 'login', component: LoginComponent},
-    { path: 'board-details/:id', component: BoardDetailsComponent, }
+    { path: 'board-details/:id', component: BoardDetailsComponent, },
+    { path: "**", component: NotFoundComponent, }
 ];
 @NgModule({
     declarations: [
@@ -48,6 +50,7 @@ const appRoutes: Routes =[
         LoginComponent,
         BoardDetailsComponent,
         MemberComponent,
+        NotFoundComponent,
         // AddNewTaskFromBoardModalComponent
         
     ],

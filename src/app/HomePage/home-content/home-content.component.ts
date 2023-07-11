@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {  Component,  OnInit,} from '@angular/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { BoardModel } from 'src/api-models/board.model';
 import { TaskModel } from 'src/api-models/task.model';
 import { Subject } from 'rxjs';
 import { UsersService } from 'src/services/users.service';
 import { AuthenticationService } from 'src/services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserModel } from 'src/api-models/user.model';
 import { TasksService } from 'src/services/tasks.service';
 import { BoardsService } from 'src/services/boards.service';
@@ -49,19 +49,20 @@ export class HomeContentComponent implements OnInit{
                     this.boards = boards;
                     }); 
                     this.tasksService
-                    .getUsersTasks(this.userId)
+                    .getUserBoardsTasks(this.userId)
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(tasks => {
                       this.tasks = tasks;
                     });
                     this.tasksService
-                    .getTodaysUsersTasks(this.userId)
+                    .getTodaysUserBoardsTasks(this.userId)
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(tasks => {
                       this.todaysTasks = tasks;
                     });
         }
-       )}
+       )
+      }
 
        onDeleteBoard(board: BoardModel){
         this.boardsService.deleteBoard(board.id)
@@ -81,6 +82,28 @@ export class HomeContentComponent implements OnInit{
     .subscribe(()=>{
       this.tasks = this.tasks.filter(x => x.id !== task.id);
       this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
+    })  
+ }
+
+ onLeaveBoard(value: any){ //userId: number, boardId: number
+  var userId = value.userId;
+  var boardId = value.boardId;
+  this.usersService.leaveBoard(userId, boardId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(()=>{
+      this.boards = this.boards.filter(x => x.id !== boardId);
+      this.tasksService
+                    .getUserBoardsTasks(this.userId)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(tasks => {
+                      this.tasks = tasks;
+                    });
+                    this.tasksService
+                    .getTodaysUserBoardsTasks(this.userId)
+                    .pipe(takeUntil(this.destroy$))
+                    .subscribe(tasks => {
+                      this.todaysTasks = tasks;
+                    });
     })  
  }
 
