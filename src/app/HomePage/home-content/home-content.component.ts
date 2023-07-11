@@ -86,8 +86,6 @@ export class HomeContentComponent implements OnInit{
  }
 
  onLeaveBoard(value: any){ //userId: number, boardId: number
-  console.log("home component emitter, value:")
-  console.log(value)
   var userId = value.userId;
   var boardId = value.boardId;
   this.usersService.leaveBoard(userId, boardId)

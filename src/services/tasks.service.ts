@@ -45,6 +45,12 @@ import { environment } from "../environments/environment";
       {responseType: 'text'}
       );
     }
+
+    updateTask(taskId: number, task: TaskModel){
+      return this.httpClient.patch(`${environment.apiUrl}TaskItem/${taskId}`, 
+      {...task},
+      );
+    }
         
 
     markAsToDo(taskId: number)  {

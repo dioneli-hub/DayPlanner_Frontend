@@ -1,4 +1,5 @@
 import { ApplicationRef, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { isString } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
@@ -13,12 +14,14 @@ import { UsersService } from 'src/services/users.service';
 })
 export class TaskComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
-  taskDate: Date;
+  taskDate: string;
   boardMembers: Array<UserModel> = undefined;
   performerId: number = null;
   boardId:number;
   currentUserId: number = null
   taskCreatorId: number = null;
+  newTaskDueDate = null;
+  minDate = undefined;
   // isOverdue : boolean;
 
   @Input() 
@@ -33,7 +36,16 @@ export class TaskComponent implements OnInit, OnDestroy{
   constructor(
     private tasksService: TasksService,
     private usersService: UsersService
-    ) {}
+    ) {
+
+    const current = new Date();
+    this.minDate = {
+      year: current.getFullYear(),
+      month: current.getMonth() + 1,
+      day: current.getDate()
+    };
+
+    }
    
 
 
@@ -60,8 +72,15 @@ export class TaskComponent implements OnInit, OnDestroy{
       this.currentUserId = currentUser.id;
     })
   
+    this.tasksService
+    .UpdateTaskOverdue(this.task.id)
+    .subscribe((task: TaskModel)=>{
+      this.task.isOverdue = task.isOverdue;
+      this.task.isCompleted = task.isCompleted;
+    })
     
 }
+
 
 // calculateOverdue(){
 //   let taskDueDate = new Date(this.task.dueDate);
@@ -97,10 +116,29 @@ get taskBgColor(){
         this.task.performerId = task.performerId;
       })
    }
+
+   updateTaskDueDate(){
+    let taskDueDate = new Date(Date.UTC(this.newTaskDueDate.year, this.newTaskDueDate.month-1, this.newTaskDueDate.day))
+    this.task.dueDate =  taskDueDate;
+    this.tasksService.updateTask(this.task.id, this.task)
+  .subscribe((task: TaskModel)=>{
+    this.dateFormat(task.dueDate);
+    this.tasksService
+            .UpdateTaskOverdue(this.task.id)
+            .subscribe((task: TaskModel)=>{
+              this.task.isOverdue = task.isOverdue;
+              this.task.isCompleted = task.isCompleted;
+            })
+  })
+}
  
   
   dateFormat (date) {
-    this.taskDate = date.replace('T', ' ').substring(0, 10)
+    if(typeof(date) == 'string'){
+      this.taskDate = date.replace('T', ' ').substring(0, 10);
+    } else {
+      this.taskDate = date.toISOString().replace('T', ' ').substring(0, 10);
+    }
     };
 
 

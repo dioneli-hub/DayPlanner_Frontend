@@ -74,6 +74,26 @@
           </div>
       <div class="task-due">
         Due {{taskDate}}
+        <!-- placeholder="Due  {{taskDate}}" -->
+        <!-- <ng-template [ngIf]="taskCreatorId == currentUserId"> -->
+          <input 
+                  name="taskDueDate" 
+                  [minDate]="minDate"
+                  [(ngModel)]="newTaskDueDate"
+                  ngbDatepicker 
+                  #changeDueDate="ngbDatepicker"
+                  (dateSelect)="updateTaskDueDate()"
+                   />
+
+              <button type="button" 
+                      class="btn btn-sm" 
+                      (click)="changeDueDate.toggle()"
+                      data-bs-toggle="tooltip" title="Reschedule task"
+                      >
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+              </button>
+        <!-- </ng-template> -->
+          
       </div>
     </div>
   </div>

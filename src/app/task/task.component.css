@@ -118,3 +118,36 @@
     margin-left: 10px;
     color: grey;
 }
+
+/*due date change area*/
+.task-due > button {
+    border: none;
+    padding: 0;
+    padding-bottom: 4px;
+    margin: 0;
+    color:gray;
+}
+
+.task-due > button:hover {
+    border: none;
+    color: black;
+}
+
+.task-due > button:focus {
+    border: none;
+    color: black;
+}
+
+.task-due > input {
+    border: none;
+    background-color: inherit;
+    width: 0px;
+}
+
+.task-due > input:focus {
+    border: none;
+}
+
+.task-due > input:active {
+    border: none;
+}
