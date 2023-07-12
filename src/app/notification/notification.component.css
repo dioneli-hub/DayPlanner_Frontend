@@ -1,6 +1,6 @@
 .notification-card {
     display: grid;
-    grid-template-columns: [first] 6fr [divide] 1fr[end];
+    grid-template-columns: [first] 4fr [divide] 1fr[end];
     grid-template-rows: [row-start ]1fr [row-middle-one] 2fr[row-middle-two] 1fr [row-end];
     justify-items: start; 
     align-items: start;

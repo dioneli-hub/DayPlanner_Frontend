@@ -1,4 +1,9 @@
-<app-notification *ngFor="let notification of notifications" 
-                 [notification]="notification"
-                 (deleteNotification)="onDeleteNotification($event)"></app-notification>
+<ng-template [ngIf]="notifications.length != 0" [ngIfElse]="noNotifications">
+    <app-notification *ngFor="let notification of notifications" 
+    [notification]="notification"
+    (deleteNotification)="onDeleteNotification($event)"></app-notification>
+</ng-template>
+<ng-template #noNotifications>
+    <h4>No new notifications </h4>
+</ng-template>
 

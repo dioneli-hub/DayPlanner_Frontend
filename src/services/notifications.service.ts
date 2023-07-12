@@ -8,7 +8,7 @@ import {environment} from "../environments/environment";
 import { TokenModel } from "src/api-models/token.model";
 import { BoardModel } from "src/api-models/board.model";
 import { BoardMemberModel } from "src/api-models/board-member.model";
-import { NotificationModel } from "src/api-models/notification.model";
+import { CreateNotificationModel, NotificationModel } from "src/api-models/notification.model";
 
 @Injectable({
   providedIn: 'root',
@@ -18,22 +18,18 @@ export class NotificationsService {
               private userProvider: UserProvider) {
   }
 
-//   create(firstName: string, lastName: string, email: string, password: string) {
-
-//     return this.httpClient.post<UserModel>(`${environment.apiUrl}User/`, {
-//       firstName,
-//       lastName,
-//       email,
-//       password
-//     });
-//   }
+  // createNotification(message: string) {
+  //   return this.httpClient.post<CreateNotificationModel>(`${environment.apiUrl}User/`, 
+  //     {
+  //       text: message
+  //     });
+  // }
 
   getUserNotifications(): Observable<Array<NotificationModel>> {
     return this.httpClient.get<Array<NotificationModel>>(`${environment.apiUrl}Notification`);
   }
 
   deleteNotification(notificationId: number): Observable<void>{
-    console.log("service")
     return this.httpClient.delete<void>(`${environment.apiUrl}Notification/${notificationId}`);
   }
 
