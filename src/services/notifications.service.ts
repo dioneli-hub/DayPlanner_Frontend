@@ -33,6 +33,9 @@ export class NotificationsService {
     return this.httpClient.delete<void>(`${environment.apiUrl}Notification/${notificationId}`);
   }
 
+  deleteUserNotifications(): Observable<void>{
+    return this.httpClient.delete<void>(`${environment.apiUrl}Notification`);
+  }
 
 
 

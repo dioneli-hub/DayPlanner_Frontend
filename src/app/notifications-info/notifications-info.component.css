@@ -1,0 +1,33 @@
+.heading {
+    display: grid;
+    grid-template-columns: [first] 7fr [divide] 1fr[end];
+    grid-template-rows: [row-start ] 1fr [row-end];
+    justify-items: start; 
+    align-items: start;
+
+    margin-bottom: 20px;
+}
+
+.heading-text{
+    grid-column-start: first;
+    grid-column-end: divide;
+    grid-row-start: row-start;
+    grid-row-end: row-end;
+}
+
+.clear-button{
+    grid-column-start: dividet;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-end;
+
+    justify-self: end;
+
+    border: none;
+    color: #f2f0f0;
+    border-radius: 0;
+    background-color:#7b7777;
+    /* opacity: 0.54; */
+}
+
+

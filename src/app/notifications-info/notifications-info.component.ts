@@ -35,8 +35,16 @@ export class NotificationsInfoComponent {
       })
 }
 
+clearAll(){
+  this.notificationsService
+    .deleteUserNotifications()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(()=>{
+      this.notifications = [];
+    })  
+}
+
 onDeleteNotification(notification: NotificationModel){
-  console.log("on delete notification")
   this.notificationsService
     .deleteNotification(notification.id)
     .pipe(takeUntil(this.destroy$))
