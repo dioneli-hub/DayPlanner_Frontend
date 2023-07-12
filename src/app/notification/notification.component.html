@@ -1,0 +1,14 @@
+
+<div class="notification-card card mb-2">
+    <div class="notification-text">
+        <!-- Your task <b>"Jog"</b> from board <b>"Sports"</b> got overdue. -->
+        {{notification.text}}
+    </div>
+    <div class="close-icon me-2">
+        <i class="fa fa-times" aria-hidden="true" (click)="delete(notification)"></i>
+    </div>
+    <div class="time me-2">
+        1 day ago
+    </div>
+</div>
+
