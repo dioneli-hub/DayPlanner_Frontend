@@ -1,0 +1,21 @@
+<ng-template [ngIf]="notifications.length != 0" [ngIfElse]="noNotifications">
+    <div class="heading">
+        <div class="heading-text">
+            <h4>Notifications </h4>
+        </div>
+        <div class="clear-button">
+            <button class="btn btn-secondary" (click)="clearAll()">
+                Clear all
+            </button>
+        </div>
+        
+    </div>
+    
+    <app-notification *ngFor="let notification of notifications" 
+    [notification]="notification"
+    (deleteNotification)="onDeleteNotification($event)"></app-notification>
+</ng-template>
+<ng-template #noNotifications>
+    <h4>No new notifications </h4>
+</ng-template>
+

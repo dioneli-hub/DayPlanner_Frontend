@@ -1,0 +1,55 @@
+.notification-card {
+    display: grid;
+    grid-template-columns: [first] 4fr [divide] 1fr[end];
+    grid-template-rows: [row-start ]1fr [row-middle-one] 2fr[row-middle-two] 1fr [row-end];
+    justify-items: start; 
+    align-items: start;
+
+    /* max-width: 600px; */
+    /* min-width: 300px; */
+    /* height: 60px; */
+    border-radius: 5px;
+    border-color: blueviolet;
+    border-style: inset;
+    border-width: 2px;
+}
+
+.notification-text{
+    grid-column-start: first;
+    grid-column-end: divide;
+    grid-row-start: row-middle-one;
+    grid-row-end: row-middle-two;
+
+    margin-left: 30px;
+    /* justify-self: start;  */
+    /* align-self: center; */
+}
+
+.close-icon{
+    grid-column-start: divide;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+    justify-self: end;
+}
+
+.close-icon:hover{
+    color:red;
+}
+
+.close-icon:focus{
+    color:red;
+}
+
+.time {
+    grid-column-start: divide;
+    grid-column-end: end;
+    grid-row-start: row-middle-two;
+    grid-row-end: row-end;
+    justify-self: end;
+    /* align-self: start; */
+
+    color: grey;
+    font-size: smaller;
+}
+

@@ -3,6 +3,7 @@ import { isString } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
+import { NotificationsService } from 'src/services/notifications.service';
 import { TasksService } from 'src/services/tasks.service';
 import { UsersService } from 'src/services/users.service';
 
@@ -35,7 +36,8 @@ export class TaskComponent implements OnInit, OnDestroy{
 
   constructor(
     private tasksService: TasksService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private notificationsService: NotificationsService
     ) {
 
     const current = new Date();
@@ -72,12 +74,12 @@ export class TaskComponent implements OnInit, OnDestroy{
       this.currentUserId = currentUser.id;
     })
   
-    this.tasksService
-    .UpdateTaskOverdue(this.task.id)
-    .subscribe((task: TaskModel)=>{
-      this.task.isOverdue = task.isOverdue;
-      this.task.isCompleted = task.isCompleted;
-    })
+    // this.tasksService
+    // .UpdateTaskOverdue(this.task.id)
+    // .subscribe((task: TaskModel)=>{
+    //   this.task.isOverdue = task.isOverdue;
+    //   this.task.isCompleted = task.isCompleted;
+    // })
     
 }
 

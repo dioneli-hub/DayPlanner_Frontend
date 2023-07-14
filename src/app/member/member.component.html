@@ -12,7 +12,7 @@
             <button type="button" 
             class="btn member-action-button delete-button"
             (click)="delete(member)"
-            data-bs-toggle="tooltip" title="Delete member"
+            ngbTooltip="Delete member"
             ><i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
           
@@ -22,7 +22,7 @@
           <button type="button" 
           class="btn member-action-button leave-button"
           data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}"
-          data-bs-toggle="tooltip" title="Leave board"
+          ngbTooltip="Leave board"
           >
           <i class="fa fa-sign-out" aria-hidden="true"></i></button>
         </div>
