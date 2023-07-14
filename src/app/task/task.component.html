@@ -14,7 +14,7 @@
                     type="button" 
                     class="btn btn-completion-status btn-complete me-2" 
                     (click)="complete(task)"
-                    data-bs-toggle="tooltip" title="Complete task">
+                    ngbTooltip="Complete task" placement="bottom-left">
               <i class="fa fa-check" aria-hidden="true"></i>
             </button>
 
@@ -22,7 +22,7 @@
                     type="button" 
                     class="btn btn-completion-status btn-mark-todo me-2" 
                     (click)="markAsToDo(task)"
-                    data-bs-toggle="tooltip" title="Mark task as ToDo">
+                    ngbTooltip="Mark task as ToDo" placement="bottom-left">
              <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </button>
           </ng-template>
@@ -66,7 +66,7 @@
                     type="button" 
                     class="btn btn-delete" 
                     (click)="delete(task)"
-                    data-bs-toggle="tooltip" title="Delete task">
+                    ngbTooltip="Delete task" placement="left">
 
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
@@ -88,7 +88,7 @@
               <button type="button" 
                       class="btn btn-sm" 
                       (click)="changeDueDate.toggle()"
-                      data-bs-toggle="tooltip" title="Reschedule task"
+                      ngbTooltip="Reschedule task" placement="right"
                       >
                 <i class="fa fa-calendar" aria-hidden="true"></i>
               </button>

@@ -36,10 +36,6 @@ export class BoardDetailsComponent implements OnInit{
     })
   }
 
-  log(board: BoardModel) {
-    console.log(board.id)
-  }
-
   constructor(private usersService: UsersService,
               private tasksService: TasksService,
               private boardsService: BoardsService,
