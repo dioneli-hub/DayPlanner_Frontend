@@ -19,8 +19,11 @@ export class LoginComponent implements OnInit {
   first_name = '';
   last_name = '';
 
+  verification_token = '';
+
   error = '';
   errorMessage: string = '';
+  successMessage: string = '';
 
   constructor(private authService: AuthenticationService,
               private usersService: UsersService,
@@ -36,6 +39,26 @@ export class LoginComponent implements OnInit {
                 this.authenticate(this.email, this.password);
               }
             
+
+              verify() {
+                this.error = '';
+                this.errorMessage = '';
+                this.successMessage = '';
+
+                this.usersService.verify(this.verification_token)
+                  .subscribe({
+                    next:(res: any) => {
+                      if(res){
+                        this.errorMessage = ''
+                        this.successMessage = res + "Please, try to log in.";
+                      } else {
+                        this.errorMessage = "Wrong token. Please, try again."
+                      }
+                  },
+                    error: error => console.log(error)
+                });
+              }
+
               authenticate(email: string, password: string) {
                 // this.error = '';
                 // this.authService
@@ -47,13 +70,13 @@ export class LoginComponent implements OnInit {
                 //   }, err => this.error = err.error.error)
                   this.error = '';
                   this.errorMessage = '';
+                  this.successMessage = '';
 
                   this.authService
                     .auth(email, password)
                     .subscribe
                       ({
                           next:(res: any) => {
-                            console.log(res);
                             if(res)
                             if(res.isSuccess == true){
                               this.router.navigate(['/']).then();
@@ -68,6 +91,7 @@ export class LoginComponent implements OnInit {
             
               createAccount() 
               {
+                this.successMessage = '';
                 this.errorMessage = '';
                 this.error = '';
                 
@@ -76,10 +100,13 @@ export class LoginComponent implements OnInit {
                     .subscribe
                     ({
                         next:(res: any) => {
-                          console.log(res)
+                          //console.log(res)
                           if(res.isSuccess == true){
-                            this.authenticate(this.new_email, this.new_password);
+                            //this.authenticate(this.new_email, this.new_password);
+                            this.errorMessage = '';
+                            this.successMessage = res.message;
                           } else {
+                            
                             this.errorMessage = res.message
                           }
                       },

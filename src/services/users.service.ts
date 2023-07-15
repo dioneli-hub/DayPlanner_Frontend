@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserModel} from "../api-models/user.model";
 import {Observable, of} from "rxjs";
 import {tap} from "rxjs/operators";
@@ -40,6 +40,17 @@ export class UsersService {
       .get<UserModel>(`${environment.apiUrl}Auth`)
       .pipe(
         tap(user => this.userProvider.currentUser = user)
+      )
+  }
+
+  verify(verification_token: string) {
+    console.log(verification_token)
+    let token = '"' + verification_token + '"';
+    //console.log(token)
+    return this.httpClient
+      .patch(`${environment.apiUrl}User/verify`,
+      { "token": verification_token } ,
+      {responseType: 'text'}
       )
   }
 
