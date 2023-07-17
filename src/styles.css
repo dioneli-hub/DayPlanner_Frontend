@@ -18,4 +18,10 @@
     border-radius: 5px;
   }
   
+/*go back link: used at forgot&reset password*/
+  .back-link{
+    position: fixed;
+    bottom: 40px;
+    left: 50px;
+}
  

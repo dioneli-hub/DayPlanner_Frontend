@@ -44,14 +44,33 @@ export class UsersService {
   }
 
   verify(verification_token: string) {
-    console.log(verification_token)
-    let token = '"' + verification_token + '"';
-    //console.log(token)
     return this.httpClient
       .patch(`${environment.apiUrl}User/verify`,
       { "token": verification_token } ,
       {responseType: 'text'}
       )
+  }
+
+  forgotPassword(email: string) {
+    return this.httpClient
+    .patch(`${environment.apiUrl}User/forgot-password`,
+    { "email": email } ,
+    { //observe: 'response',
+    //headers: 'HttpHeaders',
+    // observe: "response", // to display the full response
+    responseType: "json" }
+    )
+  }
+
+  resetPassword(reset_token: string, new_password: string) {
+    return this.httpClient
+    .patch(`${environment.apiUrl}User/reset-password`,
+    { 
+      "resetPasswordToken": reset_token,
+      "newPassword": new_password 
+    },
+    {responseType: 'json'}
+    )
   }
 
   getBoards(userId: number): Observable<Array<BoardModel>> { //User in URL

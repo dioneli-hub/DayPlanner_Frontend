@@ -21,6 +21,8 @@ import { AddNewTaskFromBoardModalComponent } from './add-new-task-from-board-mod
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NotificationsInfoComponent } from './notifications-info/notifications-info.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -40,6 +42,8 @@ const appRoutes: Routes =[
     { path: 'login', component: LoginComponent},
     { path: 'board-details/:id', component: BoardDetailsComponent, },
     { path: 'notifications', component: NotificationsInfoComponent, },
+    { path: "forgot-password", component: ForgotPasswordComponent, },
+    { path: "reset-password", component: ResetPasswordComponent, },
     { path: "**", component: NotFoundComponent, }
 ];
 @NgModule({
@@ -56,6 +60,8 @@ const appRoutes: Routes =[
         NotFoundComponent,
         NotificationsInfoComponent,
         NotificationComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent,
         // AddNewTaskFromBoardModalComponent
         
     ],
