@@ -27,10 +27,6 @@ export class UsersService {
     });
   }
 
-  getUser(userId: number): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(`${environment.apiUrl}User/${userId}`);
-  }
-
   current(): Observable<UserModel> {
     if (this.userProvider.currentUser !== null) {
       return of(this.userProvider.currentUser)
@@ -90,6 +86,10 @@ export class UsersService {
     return this.httpClient.delete(`${environment.apiUrl}BoardMember/boards/${boardId}/delete-member/${memberId}`,
     {responseType: 'text'});
   }
+
+  getSuggestedSearchUsers(emailSearched: string): Observable<Array<string>>{
+    return this.httpClient.get<Array<string>>(`${environment.apiUrl}BoardMember/get-suggested-search-users/${emailSearched}`);
+  }
   
   
   leaveBoard(userId: number, boardId:number) {
@@ -97,3 +97,9 @@ export class UsersService {
     {responseType: 'text'});
   }
 }
+
+
+
+  // getUser(userId: number): Observable<UserModel> {
+  //   return this.httpClient.get<UserModel>(`${environment.apiUrl}User/${userId}`);
+  // }

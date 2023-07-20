@@ -19,6 +19,7 @@ export class BoardDetailsComponent implements OnInit{
   private destroy$ = new Subject<void>();
   @Output() leaveBoard = new EventEmitter<BoardModel>();
 
+
   currentUser: UserModel | null = null;
   currentBoard: BoardModel | null = null;
   currentBoardName: string = '';
@@ -27,6 +28,8 @@ export class BoardDetailsComponent implements OnInit{
   boardId: number | null = null;
   email: string = ''
   isCreator: boolean = null;
+  searchOptions: Array<string> = []
+  searchedEmail: string = ''
 
 
   delete(board: BoardModel) {
@@ -84,10 +87,17 @@ export class BoardDetailsComponent implements OnInit{
                 });
               }
             });
-
-            
           }
 
+
+          loadSearchOptions(){
+            if(this.searchedEmail.length > 0){
+              this.usersService.getSuggestedSearchUsers(this.searchedEmail)
+              .subscribe(users =>{
+                this.searchOptions = users;
+              })
+            }
+          }
 
           addBoardMember(value) {
             this.usersService

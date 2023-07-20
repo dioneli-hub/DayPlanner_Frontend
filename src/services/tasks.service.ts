@@ -10,18 +10,6 @@ import { environment } from "../environments/environment";
   export class TasksService {
     constructor(private httpClient: HttpClient) {
     }
-  
-    getTasks(): Observable<Array<TaskModel>> {
-      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}taskItem`);
-    }
-
-    getUsersTasks(userId: number): Observable<Array<TaskModel>> {
-      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-tasks`);
-    }
-
-    getTodaysUsersTasks(userId: number): Observable<Array<TaskModel>> {
-      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-todays-tasks`);
-    }
 
     getBoardTasks(boardId: number): Observable<Array<TaskModel>> {
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks`);
@@ -76,4 +64,22 @@ import { environment } from "../environments/environment";
         // {responseType: 'text'}
         );
     }
+
+    
 }
+
+
+
+
+
+    // getTasks(): Observable<Array<TaskModel>> {
+    //   return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}taskItem`);
+    // }
+
+    // getUsersTasks(userId: number): Observable<Array<TaskModel>> {
+    //   return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-tasks`);
+    // }
+
+    // getTodaysUsersTasks(userId: number): Observable<Array<TaskModel>> {
+    //   return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-todays-tasks`);
+    // }
