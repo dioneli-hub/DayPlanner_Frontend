@@ -8,6 +8,7 @@ import {environment} from "../environments/environment";
 import { TokenModel } from "src/api-models/token.model";
 import { BoardModel } from "src/api-models/board.model";
 import { BoardMemberModel } from "src/api-models/board-member.model";
+import { ServiceResponse } from "src/api-models/service-response.model";
 
 @Injectable({
   providedIn: 'root',
@@ -77,8 +78,8 @@ export class UsersService {
     return this.httpClient.get<Array<UserModel>>(`${environment.apiUrl}BoardMember/boards/${boardId}/get-members`);
   }
 
-  addBoardMember(boardId: number, email: string): Observable<UserModel>  {
-    return this.httpClient.post<UserModel>(`${environment.apiUrl}BoardMember/boards/${boardId}/add-board-member-by-email/${email}`, {});
+  addBoardMember(boardId: number, email: string): Observable<ServiceResponse<UserModel>>  {
+    return this.httpClient.post<ServiceResponse<UserModel>>(`${environment.apiUrl}BoardMember/boards/${boardId}/add-board-member-by-email/${email}`, {});
   }
  
 

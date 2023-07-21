@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
+import { ServiceResponse } from 'src/api-models/service-response.model';
 import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
 import { AuthenticationService } from 'src/services/authentication.service';
@@ -30,6 +31,8 @@ export class BoardDetailsComponent implements OnInit{
   isCreator: boolean = null;
   searchOptions: Array<string> = []
   searchedEmail: string = ''
+  showModalErrorToast: boolean = false;
+  modalErrorToastText: string = '';
 
 
   delete(board: BoardModel) {
@@ -51,10 +54,6 @@ export class BoardDetailsComponent implements OnInit{
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']).then();
     }
-
-    
-    
-
 
     this.route 
         .params
@@ -100,12 +99,26 @@ export class BoardDetailsComponent implements OnInit{
           }
 
           addBoardMember(value) {
+
             this.usersService
            .addBoardMember(this.boardId, value.email)
            .pipe(takeUntil(this.destroy$))
-           .subscribe(m => {
-            this.boardMembers.push(m);
-           });
+           .subscribe((memberResponse: ServiceResponse<UserModel>) => {
+            if (memberResponse.isSuccess == true){
+              this.showModalErrorToast = false;
+              this.boardMembers.push(memberResponse.data);
+            } else {
+              this.showModalErrorToast = true;
+              this.modalErrorToastText = memberResponse.message;
+              setTimeout(()=> this.showModalErrorToast = false, 7000);
+            }
+            
+          })
+        }
+       
+
+       removeModalErrorToast(){
+        this.showModalErrorToast = false;
        }
 
        onDeleteMember(member: UserModel){

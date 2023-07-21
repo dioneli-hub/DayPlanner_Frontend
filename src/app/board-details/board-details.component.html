@@ -1,3 +1,5 @@
+
+
 <div class="board-details-container">
     <div class="board-details-heading">
         <h5>{{currentBoardName}}</h5>
@@ -42,7 +44,7 @@
                     Add new+
                 </button>
 
-                <div class="modal fade" id="addNewMemberModal" tabindex="-1" aria-labelledby="addNewMemberModalLabel" aria-hidden="true">
+                <div class="modal fade" (hiddden)="removeModalErrorToast()" id="addNewMemberModal" tabindex="-1" aria-labelledby="addNewMemberModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -58,8 +60,25 @@
                                     <input type="text" class="form-control" placeholder="Please, enter the user's email" name="email" [(ngModel)]="email" required>
                                 </div> -->
 
+                                <!-- <ngb-toast header="Error!" 
+                                class="mb-3"
+                                *ngIf="showModalErrorToast" 
+                                (hide)="showModalErrorToast = false" 
+                                [autohide]="false"
+                                >
+                                {{modalErrorToastText}}
+                                </ngb-toast> -->
+
+                                <i 
+                                class="mb-3 mt-3 text-danger"
+                                *ngIf="showModalErrorToast" 
+                                >
+                                {{modalErrorToastText}}
+                            </i>
+
                                 <div class="input-group">
                                     <input type="text" class="form-control" type="search" list="searchOptions" [(ngModel)]="searchedEmail" placeholder="Search" (keyup)="loadSearchOptions()" name="email"/>
+                                    
                                     <datalist id="searchOptions" >
                                         <option *ngFor="let option of searchOptions" >{{option}}</option>
 
@@ -68,16 +87,17 @@
                                             <span class="fa fa-search"></span>
                                         </button>
                                 </div>
+                                
+                                
+                               
                                 </div>
                 
-                
-                
+          
                                 <div class="modal-footer">
                                     <button type="button" class="modal-btn cancel-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="modal-btn confirm-btn btn btn-secondary" 
                                     [disabled]="addBoardMemberForm.invalid"
-                                    data-bs-dismiss="modal"
-                                   >Create</button>
+                                   >Add</button>
                                 </div> 
                             </form>
                             </div>
@@ -138,3 +158,4 @@
       </div>
     </div>
   </div>
+
