@@ -1,4 +1,4 @@
-import { ApplicationRef, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { isString } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
@@ -6,6 +6,7 @@ import { UserModel } from 'src/api-models/user.model';
 import { NotificationsService } from 'src/services/notifications.service';
 import { TasksService } from 'src/services/tasks.service';
 import { UsersService } from 'src/services/users.service';
+import { HomeContentComponent } from '../HomePage/home-content/home-content.component';
 
 
 @Component({
@@ -24,18 +25,18 @@ export class TaskComponent implements OnInit, OnDestroy{
   newTaskDueDate = null;
   minDate = undefined;
   // isOverdue : boolean;
+  homeComponent: HomeContentComponent
 
   @Input() 
   task: TaskModel | null = null;
 
-  @Output()
-  deleteTask = new EventEmitter<TaskModel>();
-
-  @Output()
-   completeTask = new EventEmitter<TaskModel>();
+  @Output() deleteTask = new EventEmitter<TaskModel>();
+  @Output() completeTask = new EventEmitter<TaskModel>();
+  @Output() dueDateUpdated = new EventEmitter<TaskModel>();
 
   constructor(
     private tasksService: TasksService,
+    private viewContainerRef: ViewContainerRef,
     private usersService: UsersService,
     private notificationsService: NotificationsService
     ) {
@@ -73,14 +74,6 @@ export class TaskComponent implements OnInit, OnDestroy{
     .subscribe((currentUser)=>{
       this.currentUserId = currentUser.id;
     })
-  
-    // this.tasksService
-    // .UpdateTaskOverdue(this.task.id)
-    // .subscribe((task: TaskModel)=>{
-    //   this.task.isOverdue = task.isOverdue;
-    //   this.task.isCompleted = task.isCompleted;
-    // })
-    
 }
 
 
@@ -93,6 +86,7 @@ export class TaskComponent implements OnInit, OnDestroy{
 //                     true : false;
 
 // }
+
 
 get taskPerformerInfo(){
   return this.performerId == null? 
@@ -125,6 +119,7 @@ get taskBgColor(){
     this.tasksService.updateTask(this.task.id, this.task)
   .subscribe((task: TaskModel)=>{
     this.dateFormat(task.dueDate);
+    
     this.tasksService
             .UpdateTaskOverdue(this.task.id)
             .subscribe((task: TaskModel)=>{

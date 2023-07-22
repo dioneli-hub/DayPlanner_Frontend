@@ -42,13 +42,13 @@
           
           <div class="card-body scrollbar-area-card">
 
-            <div class="card" *ngFor="let task of todaysTasks">
+            <div class="card" *ngFor="let task of tasks">
                 <app-task 
+                  *ngIf="isToday(task.dueDate)"
                   (deleteTask)="onDeleteTask($event)"
-                  
                   [task]="task"></app-task>
             </div>
-                <!-- (outEnterTaskContent)="addTask($event)"> --> 
+
 
           </div>
 
