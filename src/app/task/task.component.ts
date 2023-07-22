@@ -1,5 +1,4 @@
-import { ApplicationRef, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewContainerRef } from '@angular/core';
-import { isString } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
@@ -16,7 +15,6 @@ import { HomeContentComponent } from '../HomePage/home-content/home-content.comp
 })
 export class TaskComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
-  taskDate: string;
   boardMembers: Array<UserModel> = undefined;
   performerId: number = null;
   boardId:number;
@@ -24,7 +22,6 @@ export class TaskComponent implements OnInit, OnDestroy{
   taskCreatorId: number = null;
   newTaskDueDate = null;
   minDate = undefined;
-  // isOverdue : boolean;
   homeComponent: HomeContentComponent
 
   @Input() 
@@ -53,8 +50,6 @@ export class TaskComponent implements OnInit, OnDestroy{
 
 
   ngOnInit(): void {
-    this.dateFormat(this.task.dueDate)
-
     this.boardId = this.task.boardId;
     if (this.boardId) {
       this.usersService
@@ -104,6 +99,11 @@ get taskBgColor(){
        : this.task.isOverdue? '#f7c3c3' : '#fbfcb8'
 }
 
+get taskDueDate(){
+  return new Date(this.task.dueDate).toISOString().replace('T', ' ').substring(0, 10);
+  }
+
+
   updatePerformer(){
         this.tasksService
       .UpdateTaskPerformer(this.task.id, this.performerId)
@@ -118,7 +118,7 @@ get taskBgColor(){
     this.task.dueDate =  taskDueDate;
     this.tasksService.updateTask(this.task.id, this.task)
   .subscribe((task: TaskModel)=>{
-    this.dateFormat(task.dueDate);
+    this.task.dueDate = task.dueDate;
     
     this.tasksService
             .UpdateTaskOverdue(this.task.id)
@@ -130,13 +130,13 @@ get taskBgColor(){
 }
  
   
-  dateFormat (date) {
-    if(typeof(date) == 'string'){
-      this.taskDate = date.replace('T', ' ').substring(0, 10);
-    } else {
-      this.taskDate = date.toISOString().replace('T', ' ').substring(0, 10);
-    }
-    };
+  // dateFormat (date) {
+  //   if(typeof(date) == 'string'){
+  //     this.taskDate = date.replace('T', ' ').substring(0, 10);
+  //   } else {
+  //     this.taskDate = date.toISOString().replace('T', ' ').substring(0, 10);
+  //   }
+  //   };
 
 
   delete(taskToDelete: TaskModel) {
