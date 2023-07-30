@@ -14,10 +14,11 @@ export class MemberComponent implements OnInit, OnChanges {
   @Input() board: BoardModel;
   @Input() isCreator: boolean;
   
-  currentUserId;
-  currentMemberId;
-  currentBoardCreatorId;
-  isUserCreator;
+  currentUserId: number;
+  currentMemberId: number;
+  currentBoardCreatorId: number;
+  isUserCreator: boolean;
+  boardId: number;
 
   @Output()  deleteMember = new EventEmitter<UserModel>();
   @Output()  leaveBoard = new EventEmitter<UserModel>();
@@ -28,9 +29,13 @@ export class MemberComponent implements OnInit, OnChanges {
     this.usersService
       .current()
       .subscribe((user)=>{
-        this.currentUserId = user.id;
+        this.currentUserId = user?.id;
       })
-    
+    this.boardId = this.board?.id
+  }
+
+  get memberName(){
+    return `${this.member.firstName} ${this.member.lastName}`
   }
 
   ngOnChanges(changes: SimpleChanges) {

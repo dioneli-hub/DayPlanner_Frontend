@@ -35,23 +35,21 @@
                         ngbDatepicker 
                         #dueDate="ngbDatepicker" />
   
-                    <div class="input-group-append">
-                  <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dueDate.toggle()" type="button">
+                  <button class="btn btn-secondary confirm-btn bi bi-calendar3" (click)="dueDate.toggle()" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-calendar" viewBox="0 0 16 16">
                       <path
                         d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                     </svg>
                   </button>
-                </div>
               </div>
               </div>
             </div>
   
   
           <div class="modal-footer">
-            <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn modal-btn btn-primary"
+            <button type="button" class="modal-btn cancel-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="modal-btn confirm-btn btn btn-secondary"
             [disabled]="taskCreateFromBoardForm.invalid"
             data-bs-dismiss="modal" >Create</button>
           </div>

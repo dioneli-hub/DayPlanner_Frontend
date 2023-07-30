@@ -32,6 +32,7 @@ export class ForgotPasswordComponent {
                         this.router.navigate(['/reset-password']).then();
                       } else {
                         this.errorMessage = res.message
+                        console.log(this.errorMessage)
                       }
                   },
                     error: (error) => {

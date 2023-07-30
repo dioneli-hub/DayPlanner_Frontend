@@ -1,67 +1,92 @@
 <div class="card mb-2">
-    <div class="card-body member-card">
-      <div class="member-status">
-        {{currentBoardCreatorId == currentMemberId? 'Owner':'Member'}}
+  <div class="card-body member-card">
+    <div class="member-status">
+      {{currentBoardCreatorId == currentMemberId? 'Owner':'Member'}}
+    </div>
+    <div class="member-container">
+      <div class="member-info">
+        <a href="#" class="card-link"> {{member.firstName}} {{member.lastName}}</a>
       </div>
-      <div class="member-container">
-        <div class="member-info">
-          <a href="#" class="card-link"> {{member.firstName}} {{member.lastName}}</a>
-        </div>
-          <div *ngIf="isUserCreator && currentBoardCreatorId != currentMemberId" 
-                >
-            <button type="button" 
-            class="btn member-action-button delete-button"
-            (click)="delete(member)"
-            ngbTooltip="Delete member"
-            ><i class="fa fa-trash" aria-hidden="true"></i></button>
-          </div>
-          
-          <!--LEAVE BOARD TRIGGER MODAL BUTTON-->
-        <div *ngIf="currentMemberId == currentUserId && currentBoardCreatorId != currentMemberId" 
+        <div *ngIf="isUserCreator && currentBoardCreatorId != currentMemberId" 
               >
           <button type="button" 
-          class="btn member-action-button leave-button"
-          data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}"
-          ngbTooltip="Leave board"
-          >
-          <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+          class="btn member-action-button delete-button"
+          data-bs-toggle="modal" attr.data-bs-target="#deleteMemberConfirmationModal{{currentMemberId}}:{{boardId}}"
+          ngbTooltip="Delete member"
+          ><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
-      </div>
-      <div class="member-email">
-        {{member.email}}
-
         
+        <!--LEAVE BOARD TRIGGER MODAL BUTTON-->
+      <div *ngIf="currentMemberId == currentUserId && currentBoardCreatorId != currentMemberId" 
+            >
+        <button type="button" 
+        class="btn member-action-button leave-button"
+        data-bs-toggle="modal" attr.data-bs-target="#leaveBoardConfirmationModal{{currentUserId}}:{{boardId}}"
+        ngbTooltip="Leave board"
+        >
+        <i class="fa fa-sign-out" aria-hidden="true"></i></button>
       </div>
     </div>
+    <div class="member-email">
+      {{member.email}}
+
+      
+    </div>
   </div>
+</div>
 
 
 
-  
+
 
 
 <!-- (leave board) Modal -->
 
-<div class="modal fade" id="leaveBoardConfirmationModal{{currentUserId}}:{{board.id}}" tabindex="-1" aria-labelledby="leaveBoardConfirmationModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h6 class="modal-title" id="leaveBoardConfirmationModalLabel">
-          Are you sure you want to leave board "{{board.name}}"?
-      </h6>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <b class="text-danger">You will not be able to join it unless you are invited again. </b>
-        <p>
-          All board's tasks will not be visible for you as well.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn modal-btn btn-danger" (click)="leave(member)" data-bs-dismiss="modal">Yes</button>
-      </div>
+<div class="modal fade" id="leaveBoardConfirmationModal{{currentUserId}}:{{boardId}}" tabindex="-1" aria-labelledby="leaveBoardConfirmationModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h6 class="modal-title" id="leaveBoardConfirmationModalLabel">
+        Are you sure you want to leave board "{{board.name}}"?
+    </h6>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <b class="text-danger">You will not be able to join it unless you are invited again. </b>
+      <p>
+        All board's tasks will not be visible for you as well.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn modal-btn btn-secondary" data-bs-dismiss="modal">No</button>
+      <button type="button" class="btn modal-btn btn-danger" (click)="leave(member)" data-bs-dismiss="modal">Yes</button>
     </div>
   </div>
+</div>
+</div>
+
+<!-- (delete member confirmation) Modal -->
+
+<div class="modal fade" id="deleteMemberConfirmationModal{{currentMemberId}}:{{boardId}}" tabindex="-1" aria-labelledby="deleteMemberConfirmationModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h6 class="modal-title" id="deleteMemberConfirmationModalLabel">
+        Are you sure you want to delete member {{memberName}}?
+    </h6>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <b class="text-danger">{{memberName}} will be notified</b>
+      <p>
+        All board's tasks will not be visible for you as well.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn modal-btn cancel-btn btn-secondary" data-bs-dismiss="modal">No</button>
+      <button type="button" class="btn modal-btn confirm-btn btn-danger" (click)="delete(member)" data-bs-dismiss="modal">Yes</button>
+    </div>
+  </div>
+</div>
 </div>
 

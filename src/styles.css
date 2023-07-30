@@ -24,4 +24,59 @@
     bottom: 40px;
     left: 50px;
 }
- 
+
+/*Add new styled button*/
+.add-new-btn{
+  background-color: #7b7777;
+  border: none;
+  border-radius: 20px;
+  color: #f2f0f0;
+}
+
+.add-new-btn:hover{
+  background-color: #676464;
+}
+
+/* .add-new-btn.focus{
+  background-color: #535050;
+} */
+
+
+/*restyling modal*/
+.btn.modal-btn {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-content {
+  border-radius: 0;
+}
+
+
+.confirm-btn{
+  background-color:#7b7777;
+}
+
+.confirm-btn:disabled{
+  background-color:#858181;
+}
+
+.confirm-btn:hover{
+  background-color:#676464;
+}
+
+/* .confirm-btn:focus{
+  background-color:#535050;
+} */
+
+.cancel-btn{
+  background-color:#CCCCCC ;
+}
+
+.cancel-btn:hover{
+  background-color:#b8b8b8;
+}
+
+/* .cancel-btn:focus{
+  background-color:#a5a5a5;
+} */
