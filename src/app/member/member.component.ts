@@ -32,10 +32,15 @@ export class MemberComponent implements OnInit, OnChanges {
         this.currentUserId = user?.id;
       })
     this.boardId = this.board?.id
+    
   }
 
   get memberName(){
     return `${this.member.firstName} ${this.member.lastName}`
+  }
+
+  get memberStatus(){
+    return this.board.creatorId == this.currentMemberId? 'Owner':'Member'
   }
 
   ngOnChanges(changes: SimpleChanges) {

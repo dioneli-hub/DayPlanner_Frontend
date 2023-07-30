@@ -1,7 +1,7 @@
 <div class="card mb-2">
   <div class="card-body member-card">
     <div class="member-status">
-      {{currentBoardCreatorId == currentMemberId? 'Owner':'Member'}}
+      {{memberStatus}}
     </div>
     <div class="member-container">
       <div class="member-info">
@@ -84,7 +84,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn modal-btn cancel-btn btn-secondary" data-bs-dismiss="modal">No</button>
-      <button type="button" class="btn modal-btn confirm-btn btn-danger" (click)="delete(member)" data-bs-dismiss="modal">Yes</button>
+      <button type="button" class="btn modal-btn btn-danger" (click)="delete(member)" data-bs-dismiss="modal">Yes</button>
     </div>
   </div>
 </div>
