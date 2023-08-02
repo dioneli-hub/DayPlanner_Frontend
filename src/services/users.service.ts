@@ -97,6 +97,8 @@ export class UsersService {
     return this.httpClient.delete(`${environment.apiUrl}BoardMember/boards/${userId}/leave-board/${boardId}`,
     {responseType: 'text'});
   }
+
+  
 }
 
 

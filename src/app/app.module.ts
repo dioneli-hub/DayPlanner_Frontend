@@ -23,6 +23,7 @@ import { NotificationsInfoComponent } from './notifications-info/notifications-i
 import { NotificationComponent } from './notification/notification.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -43,7 +44,8 @@ const appRoutes: Routes =[
     { path: 'board-details/:id', component: BoardDetailsComponent, },
     { path: 'notifications', component: NotificationsInfoComponent, },
     { path: "forgot-password", component: ForgotPasswordComponent, },
-    { path: "reset-password", component: ResetPasswordComponent, },
+    { path: "reset-password", component: ResetPasswordComponent, },   
+    { path: "verify", component: VerifyEmailComponent, },
     { path: "**", component: NotFoundComponent, }
 ];
 @NgModule({
@@ -62,6 +64,7 @@ const appRoutes: Routes =[
         NotificationComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
+        VerifyEmailComponent,
         // AddNewTaskFromBoardModalComponent
         
     ],
