@@ -23,6 +23,17 @@
     bottom: 40px;
     left: 50px;
 }
+/*reset button styles*/
+button {
+  display: inline-block;
+  border: none;
+  padding: 6px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--confirm-text-color); /* Default text color */
+}
+
 
 /*Add new styled button*/
 .add-new-btn{
@@ -36,6 +47,9 @@
   background-color: var(--add-new-color-hover);
 }
 
+.add-new-btn:active{
+  background-color: var(--add-new-color-active);
+}
 /* .add-new-btn.focus{
   background-color: #535050;
 } */
@@ -54,6 +68,7 @@
 
 .confirm-btn{
   background-color:var(--confirm-color);
+  color: var(--confirm-text-color);
 }
 
 .confirm-btn:disabled{
@@ -63,6 +78,11 @@
 .confirm-btn:hover{
   background-color:var(--confirm-color-hover);
 }
+
+.confirm-btn:active {
+  background-color: var(--confirm-color-active);
+}
+
 
 /* .confirm-btn:focus{
   background-color:#535050;
@@ -75,6 +95,11 @@
 .cancel-btn:hover{
   background-color:var(--cancel-color-hover);
 }
+
+.cancel-btn:active{
+  background-color:var(--cancel-color-active);
+}
+
 
 /* .cancel-btn:focus{
   background-color:#a5a5a5;
@@ -122,17 +147,49 @@
   color: var(--home-heading-text-color);
 }
 
+.calendar-search-btn{
+  border-radius: 0.35rem;
+}
 
+body{
+  background-color: var(--background-color);
+}
 
 /*theming*/
 
 :root {
+  --primary-color: #007BFF;
+  --st-members-bg: #f2f0f0;
+  --st-members-shadow: #a49f9f;
+  --background-color: white;
+  --add-new-color: #7b7777;
+  --add-new-color-hover: #676464;
+  --add-new-text-color: #f2f0f0;
+  --add-new-color-active: #525050;
+  --confirm-color: #7b7777;
+  --confirm-text-color: white;
+  --confirm-color-hover: #676464;
+  --confirm-color-active: #525050;
+  --confirm-color-disabled: #858181;
+  --cancel-color: #CCCCCC;
+  --cancel-color-hover: #b8b8b8;
+  --cancel-color-active: #a5a5a5;
+  --navbar-and-scrollbar-track-color: #212529;
+  --scrollbar-thumb-color: black;
+  --scrollbar-thumb-box-shadow-color: #A49F9F;
+  --home-heading-bg-color: #cec7c7;
+  --home-heading-border-top-color:black;
+  --home-heading-text-color: white;
+}
+
+/* :root {
   --primary-color: #007BFF;
   --background-color: #f3f3f3;
   --add-new-color: #7b7777;
   --add-new-color-hover: #676464;
   --add-new-text-color: #f2f0f0;
   --confirm-color: #7b7777;
+  --confirm-text-color: white;
   --confirm-color-hover: #676464;
   --confirm-color-disabled: #858181;
   --cancel-color: #CCCCCC;
@@ -143,6 +200,6 @@
   --home-heading-bg-color: #cec7c7;
   --home-heading-border-top-color:black;
   --home-heading-text-color: white;
-}
+} */
 
 

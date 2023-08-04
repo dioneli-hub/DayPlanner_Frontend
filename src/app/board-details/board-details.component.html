@@ -1,7 +1,7 @@
 
 
 <div class="board-details-container">
-    <div class="board-details-heading">
+    <div class="st-heading">
         <h5>{{currentBoardName}}</h5>
 
         <!-- DELETE BOARD Button trigger modal -->
@@ -23,7 +23,7 @@
             <div class="board-members-heading">
                 <h6 class="pt-2 pb-1">Board Members</h6>
             </div>
-            <div class="board-members-content">
+            <div class="board-members-content st-content">
                 
                 <div class="scrollbar-area-card">
                     <app-member 
@@ -37,7 +37,7 @@
             </div>
            
             <button type="button" 
-                    class="add-new-btn add-new-member-btn btn btn-secondary"
+                    class="add-new-btn add-new-member-btn"
                     *ngIf="isCreator"
                     data-bs-toggle="modal" 
                     data-bs-target="#addNewMemberModal">
@@ -83,7 +83,7 @@
                                         <option *ngFor="let option of searchOptions" >{{option}}</option>
 
                                     </datalist>
-                                        <button class="btn btn-secondary confirm-btn">
+                                        <button class="calendar-search-btn confirm-btn">
                                             <span class="fa fa-search"></span>
                                         </button>
                                 </div>
@@ -94,8 +94,8 @@
                 
           
                                 <div class="modal-footer">
-                                    <button type="button" class="modal-btn cancel-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="modal-btn confirm-btn btn btn-secondary" 
+                                    <button type="button" class="modal-btn cancel-btn " data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="modal-btn confirm-btn " 
                                     [disabled]="addBoardMemberForm.invalid"
                                    >Add</button>
                                 </div> 
@@ -152,7 +152,7 @@
           All board's tasks will be deleted as well.
         </div>
         <div class="modal-footer">
-          <button type="button" class="modal-btn cancel-btn btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="modal-btn cancel-btn " data-bs-dismiss="modal">No</button>
           <button type="button" class="modal-btn btn btn-danger" (click)="delete(currentBoard)" data-bs-dismiss="modal">Yes</button>
         </div>
       </div>

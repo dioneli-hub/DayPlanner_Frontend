@@ -25,16 +25,16 @@
 
 
 .board-members{
-    background-color: #f2f0f0;
     height: 70vh;
-    box-shadow: 0 1vh 0 0 #a49f9f;
     position: relative;
+    background-color: var(--st-members-bg);
+    box-shadow: 0 1vh 0 0 var(--st-members-shadow);
+
 }
 
 .board-members-content{
     overflow-y: scroll;
     height: 54vh;
-    
 }
 
 .add-new-member-btn{
@@ -112,9 +112,9 @@
 
 /**/
 
-.board-details-heading {
+/* .board-details-heading {
     position: relative;
-}
+} */
 .board-delete-button {
     position: absolute;
     right: 10px;
@@ -153,3 +153,4 @@
     background: white; 
     border-radius: 0px;
   }
+  

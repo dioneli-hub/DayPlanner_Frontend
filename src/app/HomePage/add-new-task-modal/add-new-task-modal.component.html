@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary add-new-btn mt-3" data-bs-toggle="modal" data-bs-target="#addNewTaskModal">
+<button type="button" class="add-new-btn mt-3" data-bs-toggle="modal" data-bs-target="#addNewTaskModal">
   Add new task+
 </button>
 
@@ -55,7 +55,7 @@
                         ngbDatepicker 
                         #dueDate="ngbDatepicker" />
 
-                <button class="btn btn-secondary confirm-btn bi bi-calendar3" (click)="dueDate.toggle()" type="button">
+                <button class="calendar-search-btn confirm-btn bi bi-calendar3" (click)="dueDate.toggle()" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-calendar" viewBox="0 0 16 16">
                     <path
@@ -73,8 +73,8 @@
           
 
         <div class="modal-footer">
-          <button type="button" class="modal-btn cancel-btn btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="modal-btn confirm-btn btn btn-secondary"
+          <button type="button" class="modal-btn cancel-btn" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="modal-btn confirm-btn"
           [disabled]="taskCreateForm.invalid" 
           data-bs-dismiss="modal">Create</button>
           <!-- (click)="enterTaskContent(taskContentInput, taskBoardInput, model) -->
