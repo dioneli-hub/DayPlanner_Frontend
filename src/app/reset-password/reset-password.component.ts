@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/services/users.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { UsersService } from 'src/services/users.service';
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
-export class ResetPasswordComponent {
+export class ResetPasswordComponent implements OnInit{
 
   new_password = '';
   reset_token = '';
@@ -19,7 +19,14 @@ export class ResetPasswordComponent {
 
   constructor(
               private usersService: UsersService,
-              private router: Router) { }
+              private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['token'] != undefined)
+      this.reset_token = decodeURIComponent(params['token']);
+    })
+  }
 
               resetPassword() {
                 this.error = '';

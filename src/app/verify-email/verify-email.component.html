@@ -1,11 +1,9 @@
-<div class="container" *ngIf="!verificationToken">
-        <div class="status-message">
-            <h1> <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div></h1>
-            <p>Loading...</p>
-          </div>
-      </div>
-  <div class="container" *ngIf="verificationToken">
-        <div class="status-message">
+<div *ngIf="!verificationToken">
+  <app-loading></app-loading>
+  </div>
+        
+  <div class="process-status-container" *ngIf="verificationToken">
+        <div class="process-status-message">
           <h1>Your Account Verified Successfully</h1>
           <p>Congratulations! Your account has been successfully verified.</p>
         </div>

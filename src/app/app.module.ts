@@ -24,6 +24,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { LoadingComponent } from './loading/loading.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -65,6 +66,7 @@ const appRoutes: Routes =[
         ForgotPasswordComponent,
         ResetPasswordComponent,
         VerifyEmailComponent,
+        LoadingComponent,
         // AddNewTaskFromBoardModalComponent
         
     ],
