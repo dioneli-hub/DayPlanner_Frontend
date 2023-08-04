@@ -11,15 +11,15 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
-  email = '';
-  password = '';
+  email: string = '';
+  password: string = '';
 
-  new_email = '';
-  new_password = '';
-  first_name = '';
-  last_name = '';
+  new_email: string = '';
+  new_password: string = '';
+  first_name: string = '';
+  last_name: string = '';
 
-  verification_token = '';
+  // verification_token: string = '';
 
   error = '';
   errorMessage: string = '';
@@ -40,34 +40,8 @@ export class LoginComponent implements OnInit {
               }
             
 
-              verify() {
-                this.error = '';
-                this.errorMessage = '';
-                this.successMessage = '';
-
-                this.usersService.verify(this.verification_token)
-                  .subscribe({
-                    next:(res: any) => {
-                      if(res){
-                        this.errorMessage = ''
-                        this.successMessage = res + "Please, try to log in.";
-                      } else {
-                        this.errorMessage = "Wrong token. Please, try again."
-                      }
-                  },
-                    error: error => console.log(error)
-                });
-              }
-
+           
               authenticate(email: string, password: string) {
-                // this.error = '';
-                // this.authService
-                //   .auth(email, password)
-                //   .subscribe((res) => {
-                //     if (res) {
-                //       this.router.navigate(['/']).then();
-                //     }
-                //   }, err => this.error = err.error.error)
                   this.error = '';
                   this.errorMessage = '';
                   this.successMessage = '';
@@ -129,4 +103,24 @@ export class LoginComponent implements OnInit {
               //       this.error = err.error.error;
               //     }})
               // }
+
+                 // verify() {
+              //   this.error = '';
+              //   this.errorMessage = '';
+              //   this.successMessage = '';
+
+              //   this.usersService.verify(this.verification_token)
+              //     .subscribe({
+              //       next:(res: any) => {
+              //         if(res){
+              //           this.errorMessage = ''
+              //           this.successMessage = res + "Please, try to log in.";
+              //         } else {
+              //           this.errorMessage = "Wrong token. Please, try again."
+              //         }
+              //     },
+              //       error: error => console.log(error)
+              //   });
+              // }
+
 }
