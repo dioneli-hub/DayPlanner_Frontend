@@ -7,13 +7,13 @@
 ::-webkit-scrollbar-track { /* Track */
     /* box-shadow: inset 0 0 5px grey;  */
     /* border-radius: 5px; */
-    background-color: #212529;
+    background-color: var(--navbar-and-scrollbar-track-color);
   }
    
   
   ::-webkit-scrollbar-thumb { /* Handle */
-    box-shadow: inset 0 0 5px #A49F9F;
-    background: black; 
+    box-shadow: inset 0 0 5px var(--scrollbar-thumb-box-shadow-color);
+    background: var(--scrollbar-thumb-color); 
     border-radius: 5px;
   }
   
@@ -26,14 +26,14 @@
 
 /*Add new styled button*/
 .add-new-btn{
-  background-color: #7b7777;
+  background-color: var(--add-new-color);
   border: none;
   border-radius: 20px;
-  color: #f2f0f0;
+  color: var(--add-new-text-color);
 }
 
 .add-new-btn:hover{
-  background-color: #676464;
+  background-color: var(--add-new-color-hover);
 }
 
 /* .add-new-btn.focus{
@@ -53,15 +53,15 @@
 
 
 .confirm-btn{
-  background-color:#7b7777;
+  background-color:var(--confirm-color);
 }
 
 .confirm-btn:disabled{
-  background-color:#858181;
+  background-color:var(--confirm-color-disabled);
 }
 
 .confirm-btn:hover{
-  background-color:#676464;
+  background-color:var(--confirm-color-hover);
 }
 
 /* .confirm-btn:focus{
@@ -69,11 +69,11 @@
 } */
 
 .cancel-btn{
-  background-color:#CCCCCC ;
+  background-color:var(--cancel-color) ;
 }
 
 .cancel-btn:hover{
-  background-color:#b8b8b8;
+  background-color:var(--cancel-color-hover);
 }
 
 /* .cancel-btn:focus{
@@ -106,5 +106,43 @@
 }
 
 .process-status-message h1 {
-  color: #007BFF;
+  color: var(--primary-color);
 }
+
+/*styled heading at home page*/
+.st-heading{
+  border-top: 5px solid var(--home-heading-border-top-color);
+  background-color: var(--home-heading-bg-color);
+  padding-top: 2px;
+  padding-bottom: 0.5px;
+}
+
+.st-heading > *{
+  margin-left: 10vw;
+  color: var(--home-heading-text-color);
+}
+
+
+
+/*theming*/
+
+:root {
+  --primary-color: #007BFF;
+  --background-color: #f3f3f3;
+  --add-new-color: #7b7777;
+  --add-new-color-hover: #676464;
+  --add-new-text-color: #f2f0f0;
+  --confirm-color: #7b7777;
+  --confirm-color-hover: #676464;
+  --confirm-color-disabled: #858181;
+  --cancel-color: #CCCCCC;
+  --cancel-color-hover: #b8b8b8;
+  --navbar-and-scrollbar-track-color: #212529;
+  --scrollbar-thumb-color: black;
+  --scrollbar-thumb-box-shadow-color: #A49F9F;
+  --home-heading-bg-color: #cec7c7;
+  --home-heading-border-top-color:black;
+  --home-heading-text-color: white;
+}
+
+

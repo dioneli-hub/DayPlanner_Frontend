@@ -21,26 +21,7 @@
 }
 
 
-/*styled heading*/
-.st-heading{
-    border-top: 5px solid black;
-    background-color: #cec7c7;
-    padding-top: 2px;
-    padding-bottom: 0.5px;
-}
 
-.st-heading > *{
-    margin-left: 10vw;
-    color: white;
-}
-
-/*Add new styled button*/
-.add-new-btn{
-    background-color: #7b7777;
-    border: none;
-    border-radius: 20px;
-    color: #f2f0f0;
-}
 
 /*scrollbars*/
 
@@ -60,27 +41,3 @@
     border-radius: 0px;
   }
 
-/*styling scrollbar*/
-/* width */
-/* ::-webkit-scrollbar { 
-    width: 5px;
-  } */
-  
-  /* Track */
-/* ::-webkit-scrollbar-track { 
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 5px;
-  } */
-   
-  /* Handle */
-  /* ::-webkit-scrollbar-thumb { 
-    background: #A49F9F; 
-    border-radius: 5px;
-  }
-   */
-
-   /* Handle on hover */
-/*   
-  ::-webkit-scrollbar-thumb:hover { 
-    background: #7B7777; 
-  } */
