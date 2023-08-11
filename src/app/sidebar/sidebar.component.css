@@ -12,6 +12,23 @@
     bottom: 10px;
 }
 
+.navbar, .offcanvas, .dropdown-menu{
+    background-color: var(--navbar-and-scrollbar-track-color);
+}
+
+.nav-link {
+    color:var(--sidebar-navlink);
+}
+
+.nav-link.active {
+    color:var(--sidebar-navlink-active);
+}
+
+
+/* .dropdown-menu{
+    border-color: red
+} */
+
 
 /*styling logo*/
 
@@ -27,7 +44,7 @@
     font-family: 'Arial', sans-serif;
     font-size: 25px;
     font-weight: bold;
-    color: white;
+    color: var(--navbar-logo-color);
     /* d gray #34495e; */
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -35,7 +52,7 @@
 
 .logo-subtitle {
     font-size: 12px;
-    color:  #d1d0d0; /* L gray  #7f8c8d; */
+    color:  var(--navbar-logo-subtitle-color); /* L gray  #7f8c8d; */
     margin-top: -8px;
     /* font-family: 'Dancing Script', cursive; */
     /* font-style: italic; */
