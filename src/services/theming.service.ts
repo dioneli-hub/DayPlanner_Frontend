@@ -47,7 +47,7 @@ export class ThemingService {
   }
 }
 
-const Themes = {
+export const Themes = {
   DEFAULT: 'default-theme',
   COLDBLUE: 'coldblue-theme',
 };

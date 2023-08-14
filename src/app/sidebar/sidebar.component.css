@@ -12,6 +12,12 @@
     bottom: 10px;
 }
 
+.theme-changer{
+    position: absolute;
+    right: 255px;
+    bottom: 12px;
+}
+
 .navbar, .offcanvas, .dropdown-menu{
     background-color: var(--navbar-and-scrollbar-track-color);
 }

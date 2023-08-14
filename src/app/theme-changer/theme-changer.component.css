@@ -1,0 +1,102 @@
+*{
+    box-sizing: border-box;
+}
+  
+.changer-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh;
+    margin: 0;
+    background-color: #623ca0; */
+}
+
+.switch{
+    height: 30px;
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-color: #8b66c7;
+    border-radius: 50px;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.switch-radios{
+    position: relative;
+}
+
+.switch-radios > *{
+    position: absolute;
+}
+
+.switch-fas{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 3px;
+}
+
+input[type = "radio"]:first-of-type{
+    right: 22px;
+}
+
+input[type = "radio"]:nth-of-type(2){
+    right: -10px;
+}
+
+input[type= "radio"]:last-of-type{
+    right: -42px;
+}
+
+.fa-moon{
+    color: #623ca0;
+}
+
+.fa-sun{
+    color: #faea2d;;
+}
+
+.fa-meteor{
+    color: #f39529;
+}
+
+.ball{
+    background: #fff;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    transition: all .5s ease;
+}
+
+.changer-body.moon{
+    background-color: #623ca0;
+}
+
+.changer-body.sun{
+    background-color: #faea2d;
+}
+
+.changer-body.meteor{
+    background-color: #f39529;
+}
+
+.changer-body.sun .switch{
+    background-color: #fff481;
+}
+
+.changer-body.meteor .switch{
+    background-color: #f7ce9f;
+}
+
+input[type="radio"]{
+    cursor: pointer;
+    opacity: 0;
+}

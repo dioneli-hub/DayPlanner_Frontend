@@ -26,6 +26,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ThemingService } from 'src/services/theming.service';
+import { ThemeChangerComponent } from './theme-changer/theme-changer.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -72,6 +73,7 @@ const appRoutes: Routes =[
         ResetPasswordComponent,
         VerifyEmailComponent,
         LoadingComponent,
+        ThemeChangerComponent,
         // AddNewTaskFromBoardModalComponent
         
     ],
