@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ThemingService } from 'src/services/theming.service';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -37,6 +38,10 @@ const ERROR_INTERCEPTOR = {
     useClass: HttpErrorInterceptor,
     multi: true
   };
+
+
+// export const THEMING_SERVICE_TOKEN = new InjectionToken<ThemingService>('ThemingService');
+
 
   // определение маршрутов
 const appRoutes: Routes =[
@@ -72,7 +77,13 @@ const appRoutes: Routes =[
     ],
     providers: [
         AUTHENTICATION_INTERCEPTOR,
-        ERROR_INTERCEPTOR
+        ERROR_INTERCEPTOR,
+        ThemingService
+        // {
+        //     provide: THEMING_SERVICE_TOKEN, 
+        //     useClass: ThemingService,
+        //     multi: true
+        // }
     ],
     bootstrap: [AppComponent],
     imports: [

@@ -10,15 +10,15 @@ import { UsersService } from 'src/services/users.service';
 })
 export class MemberComponent implements OnInit, OnChanges {
 
-  @Input() member: UserModel;
-  @Input() board: BoardModel;
-  @Input() isCreator: boolean;
+  @Input() member: UserModel = null;
+  @Input() board: BoardModel = null;
+  @Input() isCreator: boolean = null;
   
-  currentUserId: number;
-  currentMemberId: number;
-  currentBoardCreatorId: number;
-  isUserCreator: boolean;
-  boardId: number;
+  currentUserId: number = null;
+  currentMemberId: number = null;
+  currentBoardCreatorId: number = null;
+  isUserCreator: boolean = null;
+  boardId: number = null;
 
   @Output()  deleteMember = new EventEmitter<UserModel>();
   @Output()  leaveBoard = new EventEmitter<UserModel>();
@@ -31,7 +31,7 @@ export class MemberComponent implements OnInit, OnChanges {
       .subscribe((user)=>{
         this.currentUserId = user?.id;
       })
-    this.boardId = this.board?.id
+    // this.boardId = this.board?.id
     
   }
 
@@ -40,7 +40,7 @@ export class MemberComponent implements OnInit, OnChanges {
   }
 
   get memberStatus(){
-    return this.board.creatorId == this.currentMemberId? 'Owner':'Member'
+    return this.board?.creatorId == this.currentMemberId? 'Owner':'Member'
   }
 
   ngOnChanges(changes: SimpleChanges) {

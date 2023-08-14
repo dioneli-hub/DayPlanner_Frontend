@@ -184,9 +184,10 @@ input.form-control, select.form-control{
 
 /*theming*/
 
- :root {
+/* .cold-blue-theme { */
+  /* :root{
   --primary-color: #4682B4;
-  --primary-color-hover: #4682B4;
+  --primary-color-hover: #386890;
 
   --st-members-bg: white;
   --st-members-shadow: #B4B9C0;
@@ -247,65 +248,133 @@ input.form-control, select.form-control{
   --sidebar-navlink-active: #333333;
 
   --modal-input-border: thin solid lightgray;
-} 
+}  */
 
+.coldblue-theme {
+  --primary-color: #4682B4;
+  --primary-color-hover: #386890;
 
-
-/* :root { 
-   --primary-color: #007BFF;
-  --st-members-bg: #f2f0f0;
-  --st-members-shadow: #a49f9f;
+  --st-members-bg: white;
+  --st-members-shadow: #B4B9C0;
   --background-color: white;
-  --add-new-color: #7b7777;
-  --add-new-text-color: #f2f0f0;
-  --add-new-color-hover: #676464;
-  --add-new-text-color-hover: #f2f0f0;
-  --add-new-color-active: #525050;
-  --add-new-text-color-active: #f2f0f0;
-  
-  --add-new-border:none;
-  --add-new-border-hover:none;
-  --add-new-border-active:none;
 
 
-  --confirm-color: #7b7777;
-  --confirm-text-color: white;
-  --confirm-color-hover: #676464;
-  --confirm-text-color-hover: white;
-  --confirm-color-active: #525050;
-  --confirm-text-color-active: white;
-  --confirm-color-disabled: #858181;
+  --add-new-color: #D5D5D5;
+  --add-new-text-color: #000000;
+  --add-new-color-hover: #AEC8E8;
+  --add-new-text-color-hover: #FFFFF0;
+  --add-new-color-active: #B0C4DE;
+  --add-new-text-color-active: #FFFFF0;
 
-  --confirm-border:none;
-  --confirm-border-hover:none;
-  --confirm-border-active:none;
+  --add-new-border: thin solid #C0C0C0;
+  --add-new-border-hover:thin solid #4682B4;
+  --add-new-border-active:thin solid #778899;
 
-  --cancel-color: #CCCCCC;
-  --cancel-text-color: white;
-  --cancel-color-hover: #b8b8b8;
-  --cancel-text-color-hover: white;
-  --cancel-color-active: #a5a5a5;
-  --cancel-text-color-active: white;
 
-  
-  --cancel-border:none;
-  --cancel-border-hover:none;
-  --cancel-border-active:none;
+  --confirm-color: #C6DFFD;
+  --confirm-text-color: #001F3F;
+  --confirm-color-hover: #87CEFA;
+  --confirm-text-color-hover: #FFFFF0;
+  --confirm-color-active: #B0E0E6;
+  --confirm-text-color-active: #FFFFF0;
+  --confirm-color-disabled: #D3D3D3;
+  --confirm-text-color-disabled: #696969;
 
-  --navbar-and-scrollbar-track-color: #212529;
-  --navbar-logo-color: white;
-  --navbar-logo-subtitle-color: #d1d0d0;
+  --confirm-border:thin solid #B0C4DE;
+  --confirm-border-hover:thin solid #6495ED;
+  --confirm-border-active:thin solid #778899;
+  --confirm-border-disabled:thin solid #DCDCDC;
 
-  --scrollbar-thumb-color: black;
+
+  --cancel-color: #FFE4E1;
+  --cancel-text-color: #A30000;
+  --cancel-color-hover: #F08080;
+  --cancel-text-color-hover: #FFFFF0;
+  --cancel-color-active: #BC8F8F;
+  --cancel-text-color-active: #FFFFF0;
+
+  --cancel-border:thin solid #F08080;
+  --cancel-border-hover:thin solid #CD5C5C;
+  --cancel-border-active:thin solid #B22222;
+
+
+  --navbar-and-scrollbar-track-color: #E1E8F0;
+  --navbar-logo-color: #333333;
+  --navbar-logo-subtitle-color: #333333;
+
+  --scrollbar-thumb-color: #D3D3D3;
   --scrollbar-thumb-box-shadow-color: #A49F9F;
 
-  --home-heading-bg-color: #cec7c7;
-  --home-heading-border-top-color:black;
+  --home-heading-bg-color: #B4B9C0;
+  --home-heading-border-top-color:#333333;
   --home-heading-text-color: white;
 
   --sidebar-navlink: grey;
-  --sidebar-navlink-active: #FFFFFF;
+  --sidebar-navlink-active: #333333;
 
   --modal-input-border: thin solid lightgray;
+}
+
+.default-theme{
+  --primary-color: #007BFF;
+   --primary-color-hover: #386890;
+
+ --st-members-bg: #f2f0f0;
+ --st-members-shadow: #a49f9f;
+
+ --background-color: white;
+
+ --add-new-color: #7b7777;
+ --add-new-text-color: #f2f0f0;
+ --add-new-color-hover: #676464;
+ --add-new-text-color-hover: #f2f0f0;
+ --add-new-color-active: #525050;
+ --add-new-text-color-active: #f2f0f0;
  
-}  */
+ --add-new-border:none;
+ --add-new-border-hover:none;
+ --add-new-border-active:none;
+
+
+ --confirm-color: #7b7777;
+ --confirm-text-color: white;
+ --confirm-color-hover: #676464;
+ --confirm-text-color-hover: white;
+ --confirm-color-active: #525050;
+ --confirm-text-color-active: white;
+ --confirm-color-disabled: #858181;
+ --confirm-text-color-disabled: #696969;
+
+ --confirm-border:none;
+ --confirm-border-hover:none;
+ --confirm-border-active:none;
+ --confirm-border-disabled:none;
+
+ --cancel-color: #CCCCCC;
+ --cancel-text-color: white;
+ --cancel-color-hover: #b8b8b8;
+ --cancel-text-color-hover: white;
+ --cancel-color-active: #a5a5a5;
+ --cancel-text-color-active: white;
+
+ 
+ --cancel-border:none;
+ --cancel-border-hover:none;
+ --cancel-border-active:none;
+
+ --navbar-and-scrollbar-track-color: #212529;
+ --navbar-logo-color: white;
+ --navbar-logo-subtitle-color: #d1d0d0;
+
+ --scrollbar-thumb-color: black;
+ --scrollbar-thumb-box-shadow-color: #A49F9F;
+
+ --home-heading-bg-color: #cec7c7;
+ --home-heading-border-top-color:black;
+ --home-heading-text-color: white;
+
+ --sidebar-navlink: grey;
+ --sidebar-navlink-active: #FFFFFF;
+
+ --modal-input-border: thin solid lightgray;
+}

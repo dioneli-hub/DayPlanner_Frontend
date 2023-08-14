@@ -21,13 +21,13 @@ export class BoardDetailsComponent implements OnInit{
   @Output() leaveBoard = new EventEmitter<BoardModel>();
 
 
-  currentUser: UserModel | null = null;
+  // currentUser: UserModel | null = null;
   currentBoard: BoardModel | null = null;
   currentBoardName: string = '';
   boardMembers: Array<UserModel> = [];
   tasks: Array<TaskModel> = [];
   boardId: number | null = null;
-  email: string = ''
+  email: string = '';
   isCreator: boolean = null;
   searchOptions: Array<string> = []
   searchedEmail: string = ''
@@ -35,8 +35,9 @@ export class BoardDetailsComponent implements OnInit{
   modalErrorToastText: string = '';
 
 
+
+
   delete(board: BoardModel) {
-    // this.deleteBoardo.emit(board);
     this.boardsService.deleteBoard(board.id).subscribe(()=>{
       this.router.navigate(['/']).then();
     })
@@ -55,6 +56,7 @@ export class BoardDetailsComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
+
     this.route 
         .params
         .pipe(takeUntil(this.destroy$))
@@ -68,8 +70,14 @@ export class BoardDetailsComponent implements OnInit{
               this.usersService
                 .current()
                 .subscribe(user => {
-                  this.currentBoard.creatorId == user.id ? this.isCreator = true : this.isCreator = false;
-                });
+                  // this.currentUser = user;
+                  console.log(currentBoard.creatorId == user.id )
+                  this.isCreator = currentBoard.creatorId == user.id? 
+                     true :  false;
+                     console.log(this.isCreator)
+                  }
+
+                );
             });
           if (this.boardId) {
             this.usersService
@@ -86,8 +94,13 @@ export class BoardDetailsComponent implements OnInit{
                 });
               }
             });
+
+
+           console.log(this.boardId)
+
           }
 
+          
 
           loadSearchOptions(){
             if(this.searchedEmail.length > 0){
