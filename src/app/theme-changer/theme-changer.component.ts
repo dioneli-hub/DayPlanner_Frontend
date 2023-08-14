@@ -1,4 +1,5 @@
 import { Component, ElementRef, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { Themes, ThemingService } from 'src/services/theming.service';
 
 @Component({
   selector: 'app-theme-changer',
@@ -10,13 +11,38 @@ export class ThemeChangerComponent {
   @ViewChild('ball', { static: true }) ball: ElementRef;
   @ViewChild('changerBody', { static: true }) body: ElementRef;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2,
+              private themingService: ThemingService) {}
 
-// ngAfterViewInit(){
+  ngAfterViewInit(){
+      let theme = this.themingService.getActiveColorTheme();
   
-// }
+      if(theme == Themes.DEFAULT){
+        this.moveToFirstPosition();
+      } else if (theme == Themes.COLDBLUE) {
+        this.moveToSecondPosition()
+      } else {
+        this.moveToThirdPosition()
+      }
+  }
 
-changeFirstTheme(){
+  changeToFirstTheme(){
+    this.themingService.setTheme(Themes.DEFAULT)
+    this.moveToFirstPosition();
+
+  }
+
+  changeToSecondTheme(){
+    this.themingService.setTheme(Themes.COLDBLUE)
+    this.moveToSecondPosition()
+  }
+
+  changeToThirdTheme(){
+    console.log('roses theme... theme-changer component')
+    this.moveToThirdPosition()
+  }
+
+private moveToFirstPosition(){
   const ball = this.ball.nativeElement;
   const body = this.body.nativeElement;
   this.renderer.setStyle(ball, 'left', '4px');
@@ -24,7 +50,7 @@ changeFirstTheme(){
   this.renderer.removeClass(body, 'meteor');
 }
 
-changeSecondTheme(){
+private moveToSecondPosition(){
   const ball = this.ball.nativeElement;
   const body = this.body.nativeElement;
   this.renderer.setStyle(ball, 'left', '38px');
@@ -35,7 +61,7 @@ changeSecondTheme(){
 
 
 
-changeThirdTheme(){
+private moveToThirdPosition(){
   const ball = this.ball.nativeElement;
   const body = this.body.nativeElement;
     this.renderer.setStyle(ball, 'left', '72px');
