@@ -50,5 +50,6 @@ export class ThemingService {
 export const Themes = {
   DEFAULT: 'default-theme',
   COLDBLUE: 'coldblue-theme',
+  BARBIE: 'barbie-theme'
 };
 

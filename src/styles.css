@@ -182,6 +182,35 @@ input.form-control, select.form-control{
 }
 
 
+/* restyling bootstrap colors */
+
+.btn-outline-primary {
+  color: var(--primary-color) ;
+  border-color: var(--primary-color) ;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  color: var(--primary-btn-focused-text-color);               
+  background-color: var(--primary-color) ;   
+  border-color: var(--primary-color) ;        
+}
+
+.btn-outline-primary:disabled {
+  
+  color: var(--primary-disabled-color);               
+  border-color: var(--primary-disabled-color);        
+}
+
+/* custom primary links*/
+a.primary-link {
+  color: var(--primary-color);
+}
+
+a.primary-link:hover{
+  color: var(--primary-color-hover);
+}
+
 /*theming*/
 
 /* .cold-blue-theme { */
@@ -253,6 +282,8 @@ input.form-control, select.form-control{
 .coldblue-theme {
   --primary-color: #4682B4;
   --primary-color-hover: #386890;
+  --primary-disabled-color: #6c757d;
+  --primary-btn-focused-text-color: white;
 
   --st-members-bg: white;
   --st-members-shadow: #B4B9C0;
@@ -317,7 +348,9 @@ input.form-control, select.form-control{
 
 .default-theme{
   --primary-color: #007BFF;
-   --primary-color-hover: #386890;
+  --primary-disabled-color: #6c757d;
+  --primary-color-hover: #386890;
+  --primary-btn-focused-text-color: white;
 
  --st-members-bg: #f2f0f0;
  --st-members-shadow: #a49f9f;
@@ -377,4 +410,75 @@ input.form-control, select.form-control{
  --sidebar-navlink-active: #FFFFFF;
 
  --modal-input-border: thin solid lightgray;
+}
+
+
+.barbie-theme {
+  --primary-color: #E63995;
+  --primary-disabled-color: #FFBCD9;
+  /* #FFBCD9; */
+  --primary-color-hover: #B82D77;
+  --primary-btn-focused-text-color: white;
+
+  --st-members-bg: white;
+  --st-members-shadow: #FFBCD9;
+  --background-color: white;
+
+
+  --add-new-color: #FFD1DC;
+  --add-new-text-color: #DA70D6;
+  --add-new-color-hover: #FFB6C1;
+  --add-new-text-color-hover: #FFFFF0;
+  --add-new-color-active: #FFF0F5;
+  --add-new-text-color-active: #FFFFF0;
+
+  --add-new-border: thin solid #FFB6C1;
+  --add-new-border-hover:thin solid #BA55D3;
+  --add-new-border-active:thin solid #D8BFD8;
+
+
+  --confirm-color: #E63995;
+  --confirm-text-color: #FFFFF0;
+  --confirm-color-hover: #C71585;
+  --confirm-text-color-hover: #FFFFF0;
+  --confirm-color-active: #9932CC;
+  --confirm-text-color-active: #FFFFF0;
+  --confirm-color-disabled: #FFE4E1;
+  --confirm-text-color-disabled: #DB7093;
+
+  --confirm-border:thin solid #C71585;
+  --confirm-border-hover:thin solid #9932CC;
+  --confirm-border-active:thin solid #663399;
+  --confirm-border-disabled:thin solid #F08080;
+
+
+  --cancel-color: #FFBCD9;
+  --cancel-text-color: #FF1493;
+  --cancel-color-hover: #F08080;
+  --cancel-text-color-hover: #FFFFF0;
+  --cancel-color-active: #FFA07A;
+  --cancel-text-color-active: #FFFFF0;
+
+  --cancel-border:thin solid #F08080;
+  --cancel-border-hover:thin solid #CD5C5C;
+  --cancel-border-active:thin solid #FA8072;
+
+
+  --navbar-and-scrollbar-track-color: #E63995;
+  --navbar-logo-color: #FFFFF0;
+  --navbar-logo-subtitle-color: #FFFFF0;
+
+  --scrollbar-thumb-color: #FFF0F5;
+  --scrollbar-thumb-box-shadow-color: #D8BFD8;
+  /* Hover State for thistle: #D8BFD8 */
+
+  --home-heading-bg-color: #FFBCD9;
+  --home-heading-border-top-color:#333333;
+  --home-heading-text-color: white;
+
+
+  --sidebar-navlink: #FFBCD9;
+  --sidebar-navlink-active: #FFFFF0;
+
+  --modal-input-border: thin solid #FFBCD9;
 }

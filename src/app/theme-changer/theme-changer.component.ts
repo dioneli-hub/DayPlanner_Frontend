@@ -38,7 +38,7 @@ export class ThemeChangerComponent {
   }
 
   changeToThirdTheme(){
-    console.log('roses theme... theme-changer component')
+    this.themingService.setTheme(Themes.BARBIE)
     this.moveToThirdPosition()
   }
 
