@@ -7,7 +7,7 @@
 ::-webkit-scrollbar-track { /* Track */
     /* box-shadow: inset 0 0 5px grey;  */
     /* border-radius: 5px; */
-    background-color: var(--navbar-and-scrollbar-track-color);
+    background-color: var(--scrollbar-track-color);
   }
    
   
@@ -16,6 +16,24 @@
     background: var(--scrollbar-thumb-color); 
     border-radius: 5px;
   }
+
+  .leave-button:hover {
+    color: var(--leave-icon-color);
+}
+
+.leave-button:focus {
+    border:none;
+}
+
+
+.delete-button:focus{
+    border:none;
+}
+
+
+.delete-button:hover {
+    color: var(--delete-icon-color);
+}
   
 /*go back link: used at forgot&reset password*/
   .back-link{
@@ -202,6 +220,23 @@ input.form-control, select.form-control{
   border-color: var(--primary-disabled-color);        
 }
 
+.logout-btn.btn-outline-danger {
+  color: var(--logout-danger-color) ;
+  border-color: var(--logout-danger-color) ;
+}
+
+.logout-btn.btn-outline-danger:hover {
+  color: var(--logout-danger-btn-focused-text-color) ;               
+  background-color: var(--logout-danger-color) ;   
+  border-color: var(--logout-danger-color) ;        
+}
+.logout-btn.btn-outline-danger:active {
+  color: var(--logout-danger-btn-active-text-color) ;               
+  background-color: var(--logout-danger-color) ;   
+  border-color: var(--logout-danger-color) ;        
+}
+
+
 /* custom primary links*/
 a.primary-link {
   color: var(--primary-color);
@@ -279,11 +314,22 @@ a.primary-link:hover{
   --modal-input-border: thin solid lightgray;
 }  */
 
+:root{
+  --logout-danger-color: #dc3545;
+  --logout-danger-btn-focused-text-color: white;
+  --logout-danger-btn-active-text-color: white;
+
+  --leave-icon-color: blue;
+  --delete-icon-color:red;
+}
+
 .coldblue-theme {
   --primary-color: #4682B4;
   --primary-color-hover: #386890;
   --primary-disabled-color: #6c757d;
   --primary-btn-focused-text-color: white;
+
+
 
   --st-members-bg: white;
   --st-members-shadow: #B4B9C0;
@@ -329,7 +375,10 @@ a.primary-link:hover{
   --cancel-border-active:thin solid #B22222;
 
 
-  --navbar-and-scrollbar-track-color: #E1E8F0;
+  /* --navbar-color:  linear-gradient(to right, #F0F4F8, #E1E8F0);;
+  --scrollbar-track-color: #E1E8F0; */
+  --navbar-color:  linear-gradient(to right, #E1E8F0, #F0F4F8);;
+  --scrollbar-track-color: #F0F4F8;
   --navbar-logo-color: #333333;
   --navbar-logo-subtitle-color: #333333;
 
@@ -344,6 +393,8 @@ a.primary-link:hover{
   --sidebar-navlink-active: #333333;
 
   --modal-input-border: thin solid lightgray;
+
+  --notification-border-color:#aba9a9;
 }
 
 .default-theme{
@@ -395,7 +446,8 @@ a.primary-link:hover{
  --cancel-border-hover:none;
  --cancel-border-active:none;
 
- --navbar-and-scrollbar-track-color: #212529;
+ --navbar-color: #212529;
+ --scrollbar-track-color: #212529;
  --navbar-logo-color: white;
  --navbar-logo-subtitle-color: #d1d0d0;
 
@@ -410,15 +462,24 @@ a.primary-link:hover{
  --sidebar-navlink-active: #FFFFFF;
 
  --modal-input-border: thin solid lightgray;
+
+ --notification-border-color:#aba9a9;
 }
 
 
 .barbie-theme {
   --primary-color: #E63995;
   --primary-disabled-color: #FFBCD9;
-  /* #FFBCD9; */
   --primary-color-hover: #B82D77;
   --primary-btn-focused-text-color: white;
+
+  --leave-icon-color: #DA70D6;
+  --delete-icon-color:#D87373;
+
+  --logout-danger-color: white;
+  /* --logout-danger-btn-hover-color: white; */
+  --logout-danger-btn-focused-text-color: #B82D77;
+  --logout-danger-btn-active-text-color: #801F53;
 
   --st-members-bg: white;
   --st-members-shadow: #FFBCD9;
@@ -464,7 +525,8 @@ a.primary-link:hover{
   --cancel-border-active:thin solid #FA8072;
 
 
-  --navbar-and-scrollbar-track-color: #E63995;
+  --navbar-color: linear-gradient(to right, #F36EA0, #E63995);
+  --scrollbar-track-color: #E63995;
   --navbar-logo-color: #FFFFF0;
   --navbar-logo-subtitle-color: #FFFFF0;
 
@@ -481,4 +543,22 @@ a.primary-link:hover{
   --sidebar-navlink-active: #FFFFF0;
 
   --modal-input-border: thin solid #FFBCD9;
+
+  --notification-border-color: #C71585;
 }
+
+/* .styled-leave-icon{
+
+}
+
+.styled-leave-icon:hover{
+  
+}
+
+.styled-delete-icon{
+
+}
+
+.styled-delete-icon :hover{
+  
+} */

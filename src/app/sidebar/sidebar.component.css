@@ -19,7 +19,7 @@
 }
 
 .navbar, .offcanvas, .dropdown-menu{
-    background-color: var(--navbar-and-scrollbar-track-color);
+    background: var(--navbar-color);
 }
 
 .nav-link {

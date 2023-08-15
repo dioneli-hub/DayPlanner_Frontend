@@ -121,11 +121,11 @@
     top: -2px;
 }
 
-.btn-delete{
+ .btn-delete{
     border:none;
 }
 
-
+/*
 .delete-button:focus{
     border:none;
 }
@@ -133,7 +133,7 @@
 
 .delete-button:hover {
     color: red;
-}
+} */
 
 
 

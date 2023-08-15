@@ -17,8 +17,8 @@
     right: 10px;
 }
 
-.leave-button:hover {
-    color: blue;
+/* .leave-button:hover {
+    color: var(--leave-icon-color);
 }
 
 .leave-button:focus {
@@ -32,8 +32,8 @@
 
 
 .delete-button:hover {
-    color: red;
-}
+    color: var(--delete-icon-color);
+} */
 
 
 .card-link {

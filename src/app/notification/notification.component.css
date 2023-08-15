@@ -10,7 +10,7 @@
     /* height: 60px; */
     /* border-radius: 5px; */
     border-radius: 0px;
-    border-color: #aba9a9;
+    border-color: var(--notification-border-color);
     border-style: inset;
     border-width: 3px;
 }
