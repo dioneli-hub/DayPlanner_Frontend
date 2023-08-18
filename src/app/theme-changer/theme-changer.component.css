@@ -59,13 +59,17 @@ input[type= "radio"]:last-of-type{
     color: #623ca0;
 }
 
-.fa-sun{
-    color: #faea2d;;
+.fa-snowflake{
+    color:  #bbdaff;
+     /* #faea2d;; */
 }
 
-.fa-meteor{
-    color: #f39529;
+.fa-star{
+    color: #faea2d;
 }
+/* .fa-meteor{
+    color: #f39529;
+} */
 
 .ball{
     background: #fff;
@@ -91,11 +95,11 @@ input[type= "radio"]:last-of-type{
 }
 
 .changer-body.moon .switch{
-    background-color: white;
+    background-color: #50C878;
 }
 
 .changer-body.sun .switch{
-    background-color: #fff481;
+    background-color: #fff481;;
 }
 
 .changer-body.meteor .switch{

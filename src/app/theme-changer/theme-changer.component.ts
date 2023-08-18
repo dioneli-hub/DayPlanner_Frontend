@@ -46,6 +46,7 @@ private moveToFirstPosition(){
   const ball = this.ball.nativeElement;
   const body = this.body.nativeElement;
   this.renderer.setStyle(ball, 'left', '4px');
+  this.renderer.addClass(body, 'moon');
   this.renderer.removeClass(body, 'sun');
   this.renderer.removeClass(body, 'meteor');
 }

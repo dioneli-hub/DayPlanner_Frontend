@@ -1,7 +1,7 @@
 
 .board-details-container{
     width: 100%;
-   
+   position: relative;
 }
 
 .board-details-heading{
@@ -21,8 +21,6 @@
     padding-bottom: 0.5px;
     margin-left: 2vw;
 }
-
-
 
 .board-members{
     height: 70vh;
@@ -79,8 +77,6 @@
     color: black;
     text-decoration: none;
     font-weight: 500;
-    /* font-size: smaller; */
-    /* font-family: Verdana,  sans-serif; */
     margin-left: 20px;
 }
 
@@ -109,39 +105,17 @@
         
 }
 
-
-/**/
-
-/* .board-details-heading {
-    position: relative;
-} */
 .board-delete-button {
     position: absolute;
     right: 10px;
-    top: -2px;
+    top: 3px;
 }
 
  .btn-delete{
     border:none;
 }
 
-/*
-.delete-button:focus{
-    border:none;
-}
 
-
-.delete-button:hover {
-    color: red;
-} */
-
-
-
-/*scrollbar*/
-
-/* .scrollbar-area-card{
-   
-} */
 
 ::-webkit-scrollbar-track { 
     background: none;
