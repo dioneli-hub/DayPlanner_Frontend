@@ -69,6 +69,10 @@ export class TaskComponent implements OnInit, OnDestroy{
     .subscribe((currentUser)=>{
       this.currentUserId = currentUser.id;
     })
+
+    if (new Date() > new Date(this.task.dueDate) && this.task.isCompleted == false){
+      this.updateTaskOverdue();
+    }
 }
 
 
@@ -119,15 +123,18 @@ get taskDueDate(){
     this.tasksService.updateTask(this.task.id, this.task)
   .subscribe((task: TaskModel)=>{
     this.task.dueDate = task.dueDate;
-    
+    this.updateTaskOverdue();
+  })
+}
+
+  updateTaskOverdue(){
     this.tasksService
             .UpdateTaskOverdue(this.task.id)
             .subscribe((task: TaskModel)=>{
               this.task.isOverdue = task.isOverdue;
               this.task.isCompleted = task.isCompleted;
             })
-  })
-}
+  }
  
   
   // dateFormat (date) {
