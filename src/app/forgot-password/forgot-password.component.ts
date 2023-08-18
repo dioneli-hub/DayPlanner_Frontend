@@ -44,8 +44,8 @@ export class ForgotPasswordComponent implements OnInit{
                         this.showProcessSuccessMessage = true;
                         
                       } else {
+                        this.showProcessLoadingMessage = false;
                         this.errorMessage = res.message
-                        console.log(this.errorMessage)
                       }
                   },
                     error: (error) => {
