@@ -10,7 +10,7 @@ import { TaskComponent } from './task/task.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoardComponent } from './board/board.component';
 import { AddNewTaskModalComponent } from './HomePage/add-new-task-modal/add-new-task-modal.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddNewBoardModalComponent } from './HomePage/add-new-board-modal/add-new-board-modal.component';
 import { AuthenticationInterceptor } from 'src/interceptors/authentication.interceptor';
 import { LoginComponent } from './login/login.component';
@@ -92,6 +92,7 @@ const appRoutes: Routes =[
         BrowserModule,
         RouterModule.forRoot(appRoutes),
         NgbModule,
+        ReactiveFormsModule,
         FormsModule,
         AddNewTaskModalComponent,
         AddNewTaskFromBoardModalComponent,

@@ -93,7 +93,70 @@
                       >
                 <i class="fa fa-calendar" aria-hidden="true"></i>
               </button>
+
+
+
         </ng-template>
+
+        
+        <ng-template #recurrencePopoverContent >
+
+          <form #recurrenceAddPopover="ngForm" (ngSubmit)="submit(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
+
+          <!-- <input 
+            name="recurrence" 
+            [(ngModel)]="recurrencePattern"
+            #changeRecurrence
+             /> -->
+
+             <div class="form-group">
+              <label *ngFor="let recurringType of recurringTypes" class="radio-label">
+                <input type="radio" name="recurringType" [value]="recurringType" [(ngModel)]="selectedRecurringType" required>
+                {{ recurringType }}
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="occurencesNumber">Enter a number (max: 20):</label>
+              <input
+                type="number"
+                id="occurencesNumber"
+                name="occurencesNumber"
+                [(ngModel)]="occurencesNumber"
+                min="0"
+                max="20"
+                required
+              >
+              <div class="error-message" *ngIf="occurencesNumberInput.invalid && occurencesNumberInput.dirty">
+                Please enter a valid number between 0 and 20.
+              </div>
+            </div>
+            
+
+            <button type="submit" class="btn btn-primary" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Submit</button>
+            </form>
+
+           
+        </ng-template>
+        
+        <button type="button" 
+        class="btn btn-sm" 
+        [ngbPopover]="recurrencePopoverContent"
+        triggers="manual"
+        #p="ngbPopover"
+        (click)="p.open()"
+        popoverTitle="Recurrence"
+        placement="top"
+        [autoClose]="'outside'"
+        
+        >
+        <!-- placement="top-left" -->
+  <i class="fa fa-repeat"  aria-hidden="true" ngbTooltip="Set recurrence"  placement="right"></i>
+</button>
+        
+
+
+        
           
       </div>
     </div>

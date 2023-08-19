@@ -6,6 +6,7 @@ import { NotificationsService } from 'src/services/notifications.service';
 import { TasksService } from 'src/services/tasks.service';
 import { UsersService } from 'src/services/users.service';
 import { HomeContentComponent } from '../HomePage/home-content/home-content.component';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -23,6 +24,25 @@ export class TaskComponent implements OnInit, OnDestroy{
   newTaskDueDate = null;
   minDate = undefined;
   homeComponent: HomeContentComponent
+
+
+  recurrencePattern
+  recurringTypes = ['Daily', 'Weekly', 'Monthly']
+  selectedRecurringType
+  popoverVisible = false;
+
+  occurencesNumber: number = null;
+  occurencesNumberInput = new FormControl(null, [Validators.required, Validators.min(0), Validators.max(20)]);
+  
+  submit(value: any){
+    this.tasksService
+        .addRecurrence(this.task.id, value.recurringType, value.occurencesNumber)
+        .subscribe(()=> 
+          {console.log('value');
+          console.log(value);})
+    
+  }
+
 
   @Input() 
   task: TaskModel | null = null;

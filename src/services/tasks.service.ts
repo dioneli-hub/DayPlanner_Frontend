@@ -65,6 +65,16 @@ import { environment } from "../environments/environment";
         );
     }
 
+    addRecurrence(taskId: number, recurringType: number, occurencesNumber: number)  {
+      return this.httpClient.post(
+        `${environment.apiUrl}TaskItem/add-recurrence`, 
+        {"taskId": taskId,
+        "recurringType": 1, //real value
+        "occurencesNumber": occurencesNumber},
+        // {responseType: 'text'}
+        );
+    }
+
     
 }
 

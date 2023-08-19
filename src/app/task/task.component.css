@@ -1,3 +1,14 @@
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+
+
+i.fa-repeat{
+    margin-left: 2px;;
+}
 .card{
     border: none;
     border-radius: 12px;
