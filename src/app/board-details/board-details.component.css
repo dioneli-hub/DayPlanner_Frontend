@@ -1,3 +1,8 @@
+#toggle-members {
+    color: var(--primary-color);
+    width: 12px;
+    height: 12px;
+}
 
 .board-details-container{
     width: 100%;
@@ -16,14 +21,14 @@
     color: white;
 }
 
-
 .board-members-heading{
     padding-bottom: 0.5px;
     margin-left: 2vw;
 }
 
 .board-members{
-    height: 70vh;
+    height: 62vh;
+
     position: relative;
     background-color: var(--st-members-bg);
     box-shadow: 0 1vh 0 0 var(--st-members-shadow);
@@ -31,8 +36,9 @@
 }
 
 .board-members-content{
+    width: 400px;
     overflow-y: scroll;
-    height: 54vh;
+    height: 50vh;
 }
 
 .add-new-member-btn{
@@ -41,29 +47,60 @@
     bottom: 0.8vw;
 }
 
-.tasks{
+.page-content{
     display: grid;
-    grid-template-columns: [first] 3fr [divide] 1fr [end];
-    grid-template-rows: [row-start ]1fr [row-middle] 8fr [row-end];
     justify-items: stretch;
-    align-items: start;
+    grid-template-columns: [col-start]  1fr [col-mid] 1fr [col-end]; 
+    grid-template-rows: [row-start] 1fr [row-mid] 10fr [row-end];
+
+}
+
+.board-members-heading{
+    grid-column-start: col-start;
+    grid-column-end: col-mid;
+    grid-row-start: row-start;
+    grid-row-end: row-mid;
+    justify-self: start;
 }
 
 .add-new-task-btn-container{
-    grid-column-start: divide;
-    grid-column-end: end;
+    grid-column-start: col-mid;
+    grid-column-end: col-end;
     grid-row-start: row-start;
-    grid-row-end: row-middle;
+    grid-row-end: row-mid;
     justify-self: end;
 }
 
-.tasks-container{
-    grid-column-start: first;
-    grid-column-end: end;
-    grid-row-start: row-middle;
+.logical-content{
+    grid-column-start: col-start;
+    grid-column-end: col-end;
+    grid-row-start: row-mid;
     grid-row-end: row-end;
 
+    display: flex;
+    flex-wrap: wrap;
 }
+
+.tasks-container {
+    transition: grid-template-columns 0s linear 0.3s, opacity 0.3s ease;
+}
+
+.tasks {
+    flex: 1; 
+}
+
+  .task {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+  } 
+  
+  .task:nth-child(odd) {
+    grid-column: 1; 
+  }
+
+  
+
 
 /* cards */
 
@@ -79,7 +116,6 @@
     font-weight: 500;
     margin-left: 20px;
 }
-
 
 /* for each member*/
 .task-board {
@@ -116,7 +152,6 @@
 }
 
 
-
 ::-webkit-scrollbar-track { 
     background: none;
   }
@@ -128,3 +163,5 @@
     border-radius: 0px;
   }
   
+
+

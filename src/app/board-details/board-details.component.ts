@@ -33,6 +33,7 @@ export class BoardDetailsComponent implements OnInit{
   searchedEmail: string = ''
   showModalErrorToast: boolean = false;
   modalErrorToastText: string = '';
+  isMembersListVisible: boolean = true;
 
 
 
@@ -162,6 +163,28 @@ export class BoardDetailsComponent implements OnInit{
        onCreateTask(task: TaskModel){
         this.tasks.push(task);
         this.sortTasksByDate();
+      }
+
+      
+      get getColumnStyle(){
+        if(this.isMembersListVisible == false){
+          return {
+            'display' : 'grid',
+            'grid-template-columns': 'repeat(2, 1fr)',
+          }
+        };
+        return {
+          'display': 'grid',
+          'grid-template-columns': '1fr'
+      }
+      }
+
+      get toggleMembersIcon(){
+        return this.isMembersListVisible == false? "fa fa-plus-square" : "fa fa-minus-square";
+      }
+
+      toggleMembers(){
+        this.isMembersListVisible = !this.isMembersListVisible;
       }
 
       // onCompleteTask(task: TaskModel){

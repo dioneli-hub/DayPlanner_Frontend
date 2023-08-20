@@ -1,5 +1,3 @@
-
-
 <div class="board-details-container">
     <div class="st-heading">
         <h5>{{currentBoardName}}</h5>
@@ -18,13 +16,28 @@
   
 
     </div>
-    <div class="row mt-sm-3 ps-sm-3">
-        <div class="board-members col-sm-4 ms-sm-3">
-          
+    <div class="mt-sm-3 ps-sm-3 page-content">
+        <!-- <div class="subheading"> -->
             <div class="board-members-heading">
-                <h6 class="pt-2 pb-1">Board Members</h6>
+                <h6 class="pt-2 pb-1">Board Members <button id="toggle-members" (click)="toggleMembers()"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button></h6>
             </div>
-            <div class="board-members-content st-content">
+
+            <div class="add-new-task-btn-container p-2">
+                <app-add-new-task-from-board-modal 
+                [boardId]="boardId"
+                (taskFromBoardCreate)="onCreateTask($event)"
+                >
+                </app-add-new-task-from-board-modal>
+            <!-- <button type="button" class="mt-1 mb-1 add-new-task-btn add-new-btn btn btn-secondary">Add new+</button> -->
+            </div>
+        <!-- </div> -->
+
+        <div class="logical-content" >
+
+       
+        <div class="board-members" *ngIf="isMembersListVisible == true">
+            
+            <div  class="board-members-content st-content">
                 
                 <div class="scrollbar-area-card">
                     <app-member 
@@ -35,9 +48,8 @@
                     (deleteMember)="onDeleteMember($event)"
                     (leaveBoard)="onLeaveBoard($event)" ></app-member>
                 </div>
-            </div>
-           
-            <button type="button" 
+
+                <button type="button" 
                     class="add-new-btn add-new-member-btn"
                     *ngIf="isCreator"
                     data-bs-toggle="modal" 
@@ -56,20 +68,6 @@
                                 <form #addBoardMemberForm="ngForm" (ngSubmit)="addBoardMember(addBoardMemberForm.value); addBoardMemberForm.resetForm(); ">
 
                                 <div class="form-group">
-<!--                 
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Please, enter the user's email" name="email" [(ngModel)]="email" required>
-                                </div> -->
-
-                                <!-- <ngb-toast header="Error!" 
-                                class="mb-3"
-                                *ngIf="showModalErrorToast" 
-                                (hide)="showModalErrorToast = false" 
-                                [autohide]="false"
-                                >
-                                {{modalErrorToastText}}
-                                </ngb-toast> -->
-
                                 <i 
                                 class="mb-3 mt-3 text-danger"
                                 *ngIf="showModalErrorToast" 
@@ -105,25 +103,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+           
+            
         </div>
 
-        <div class="tasks col-sm-7">
+        <div class="tasks">
+            <!--  col-sm-7 -->
 
-           
-            <div class="add-new-task-btn-container p-2">
-                <app-add-new-task-from-board-modal 
-                    [boardId]="boardId"
-                    (taskFromBoardCreate)="onCreateTask($event)"
-                >
-                </app-add-new-task-from-board-modal>
-                <!-- <button type="button" class="mt-1 mb-1 add-new-task-btn add-new-btn btn btn-secondary">Add new+</button> -->
-            </div>
-
-            
-
-
-            <div class="tasks-container ps-3">
+            <div [ngStyle]="getColumnStyle" class="tasks-container ps-3">
                 <app-task 
+                class="task"
                 *ngFor="let task of tasks" 
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"
@@ -131,6 +121,7 @@
             </div>
 
         </div>
+    </div>
     </div>
 </div>
 
