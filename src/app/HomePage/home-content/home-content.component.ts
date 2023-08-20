@@ -53,6 +53,8 @@ export class HomeContentComponent implements OnInit{
                     .pipe(takeUntil(this.destroy$))
                     .subscribe(tasks => {
                       this.tasks = tasks;
+                      this.sortTasksByDate();
+                      
                     });
                     this.tasksService
                     .getTodaysUserBoardsTasks(this.userId)
@@ -74,7 +76,10 @@ export class HomeContentComponent implements OnInit{
       });
       }
 
-       
+ sortTasksByDate(){
+  this.tasks.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+ }   
+
  onDeleteTask(task: TaskModel){
   this.tasksService
     .deleteTask(task.id)
@@ -113,6 +118,7 @@ export class HomeContentComponent implements OnInit{
 
   onCreateTask(task: TaskModel){
     this.tasks.push(task);
+    this.sortTasksByDate()
     if(this.isToday(task.dueDate)){
       this.todaysTasks.push(task);
     }

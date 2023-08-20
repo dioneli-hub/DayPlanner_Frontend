@@ -53,7 +53,8 @@
                         [minDate]="minDate"
                         [(ngModel)]="taskDueDate"
                         ngbDatepicker 
-                        #dueDate="ngbDatepicker" />
+                        #dueDate="ngbDatepicker"
+                        required/>
 
                 <button class="calendar-search-btn confirm-btn bi bi-calendar3" (click)="dueDate.toggle()" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

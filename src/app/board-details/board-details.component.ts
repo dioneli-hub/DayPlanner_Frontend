@@ -70,11 +70,9 @@ export class BoardDetailsComponent implements OnInit{
               this.usersService
                 .current()
                 .subscribe(user => {
-                  // this.currentUser = user;
-                  console.log(currentBoard.creatorId == user.id )
                   this.isCreator = currentBoard.creatorId == user.id? 
                      true :  false;
-                     console.log(this.isCreator)
+
                   }
 
                 );
@@ -91,16 +89,16 @@ export class BoardDetailsComponent implements OnInit{
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(tasks => {
                   this.tasks = tasks;
+                  this.sortTasksByDate();
                 });
               }
             });
 
-
-           console.log(this.boardId)
-
           }
 
-          
+          sortTasksByDate(){
+            this.tasks.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+           }   
 
           loadSearchOptions(){
             if(this.searchedEmail.length > 0){
@@ -163,6 +161,7 @@ export class BoardDetailsComponent implements OnInit{
 
        onCreateTask(task: TaskModel){
         this.tasks.push(task);
+        this.sortTasksByDate();
       }
 
       // onCompleteTask(task: TaskModel){

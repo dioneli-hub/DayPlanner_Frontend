@@ -54,13 +54,11 @@ export class AddNewTaskModalComponent implements OnInit {
   submit(value) {
   let ifSetPerformer = this.isSetPerformerChecked;
   this.boardsService.addTaskToBoard(value).subscribe(task=>{
-     console.log('this.isSetPerformerChecked === true: ' + ifSetPerformer )
     if (ifSetPerformer == true){
-      console.log('in the true')
       this.usersService.current()
                       .subscribe(user => {
                         this.tasksService.UpdateTaskPerformer(task.id, user.id)
-                        .subscribe(res => console.log(res))
+                        .subscribe()
                       })}
     this.taskCreate.emit(task);
   })}
