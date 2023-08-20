@@ -12,6 +12,7 @@ import { UsersService } from 'src/services/users.service';
 import { UserProvider } from 'src/providers/user.provider';
 import { TaskModel } from 'src/api-models/task.model';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TasksService } from 'src/services/tasks.service';
 
 @Component({
   selector: 'app-add-new-task-modal',
@@ -32,11 +33,12 @@ export class AddNewTaskModalComponent implements OnInit {
   taskDueDate = null;
   board = null;
   minDate = undefined;
+  isSetPerformerChecked: boolean = false;
 
   constructor(private router: Router, 
     private boardsService: BoardsService,
+    private tasksService: TasksService,
     private usersService: UsersService,
-    private userProvider: UserProvider,
     private config: NgbDatepickerConfig) { 
 
       
@@ -50,9 +52,19 @@ export class AddNewTaskModalComponent implements OnInit {
   }
 
   submit(value) {
+  let ifSetPerformer = this.isSetPerformerChecked;
   this.boardsService.addTaskToBoard(value).subscribe(task=>{
+     console.log('this.isSetPerformerChecked === true: ' + ifSetPerformer )
+    if (ifSetPerformer == true){
+      console.log('in the true')
+      this.usersService.current()
+                      .subscribe(user => {
+                        this.tasksService.UpdateTaskPerformer(task.id, user.id)
+                        .subscribe(res => console.log(res))
+                      })}
     this.taskCreate.emit(task);
   })}
+    
 
   ngOnInit(): void {
   }

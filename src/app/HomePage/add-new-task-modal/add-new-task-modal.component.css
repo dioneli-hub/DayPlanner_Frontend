@@ -1,0 +1,61 @@
+/* Style for the container */
+.custom-performer-checkbox {
+    position: relative;
+    display: inline-block;
+    padding-left: 28px; /* Adjust as needed */
+    margin-bottom: 12px; /* Adjust as needed */
+    cursor: pointer;
+    font-size: 16px; /* Adjust as needed */
+  }
+  
+  /* Hide the default checkbox */
+  .custom-performer-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Style the custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px; /* Adjust as needed */
+    width: 20px; /* Adjust as needed */
+    background-color: #eee; /* Background color */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+  }
+  
+  /* Style the checked state */
+  .custom-performer-checkbox input:checked ~ .checkmark {
+    background-color: var(--primary-color); /* Change color when checked */
+  }
+  
+  /* Style the checkmark (the tick) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .custom-performer-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Position and style the checkmark */
+  .custom-performer-checkbox .checkmark:after {
+    left: 6px; /* Adjust as needed */
+    top: 2px; /* Adjust as needed */
+    width: 5px; /* Adjust as needed */
+    height: 10px; /* Adjust as needed */
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+
+  label.custom-performer-checkbox {
+   color: gray;
+  }
+  

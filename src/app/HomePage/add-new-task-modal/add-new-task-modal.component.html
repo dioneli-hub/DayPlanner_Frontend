@@ -71,6 +71,11 @@
             <app-date-picker (outEnterTaskDueDate)="setTaskDueDate($event)"></app-date-picker>
            -->
           
+           <label class="custom-performer-checkbox">
+            <input name="setPerformerCheckbox" type="checkbox"  [(ngModel)]="isSetPerformerChecked"/>
+            <span class="checkmark"></span>
+            Set me as performer
+          </label>
 
         <div class="modal-footer">
           <button type="button" class="modal-btn cancel-btn" data-bs-dismiss="modal">Close</button>
