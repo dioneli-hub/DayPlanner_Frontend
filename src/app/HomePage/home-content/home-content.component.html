@@ -11,18 +11,27 @@
           </div>
           
           <div class="card-body scrollbar-area-card">
-            <ul class="list-group list-group-flush mb-2">
-              <li class="list-group-item" >
+            <div *ngIf="showBoards; else noBoards">
+              <ul class="list-group list-group-flush mb-2">
+                <li class="list-group-item" >
+                  
+                    <app-board
+                    *ngFor="let board of boards"
+                    [board]="board"
+                    (leaveBoard)="onLeaveBoard($event)"
+                    (deleteBoard)="onDeleteBoard($event)"></app-board> 
                 
-                  <app-board
-                  *ngFor="let board of boards"
-                  [board]="board"
-                  (leaveBoard)="onLeaveBoard($event)"
-                  (deleteBoard)="onDeleteBoard($event)"></app-board> 
-              
-              </li>
-            </ul>
-          </div>
+                </li>
+              </ul>
+            </div>
+            </div>
+            
+            <ng-template #noBoards>
+              <div class="no-items">
+                Currently you have no boards.
+              </div>
+            </ng-template>
+
           <app-add-new-board-modal
                 (boardCreate)="onCreateBoard($event)">
                 </app-add-new-board-modal>
@@ -47,6 +56,10 @@
                   *ngIf="isToday(task.dueDate)"
                   (deleteTask)="onDeleteTask($event)"
                   [task]="task"></app-task>
+            </div>
+
+            <div *ngIf="noTodaysTasks" class="no-items">
+                You have no tasks for today.
             </div>
 
 
@@ -89,7 +102,11 @@
                 *ngIf="task.isCompleted == false && task.isOverdue != true"
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
+         
             </div>
+            <div *ngIf="noTodoTasks" class="card no-items">
+              Noting To Do...
+          </div>
           </div>
           <div class="tab-pane fade" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
             <div class="card" *ngFor="let task of tasks">
@@ -98,6 +115,10 @@
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
             </div>
+
+            <div *ngIf="noDoneTasks" class="card no-items">
+              Seems that you do not have completed tasks.
+          </div>
           </div>
           <div class="tab-pane fade" id="nav-overdue" role="tabpanel" aria-labelledby="nav-overdue-tab">
             <div class="card" *ngFor="let task of tasks">
@@ -106,6 +127,10 @@
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
               </div>
+
+              <div *ngIf="noOverdueTasks" class="card no-items">
+                No overdue tasks.
+            </div>
           </div>
         </div>
 

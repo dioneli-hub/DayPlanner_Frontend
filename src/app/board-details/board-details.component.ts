@@ -165,7 +165,10 @@ export class BoardDetailsComponent implements OnInit{
         this.sortTasksByDate();
       }
 
-      
+      get noBoardTasks() : boolean{
+        return this.tasks.length > 0? false: true;
+      }
+
       get getColumnStyle(){
         if(this.isMembersListVisible == false){
           return {

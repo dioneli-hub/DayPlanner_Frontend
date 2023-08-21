@@ -33,6 +33,7 @@ export class HomeContentComponent implements OnInit{
   }
 
   ngOnInit() {
+
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']).then();
     }
@@ -54,13 +55,6 @@ export class HomeContentComponent implements OnInit{
                     .subscribe(tasks => {
                       this.tasks = tasks;
                       this.sortTasksByDate();
-                      
-                    });
-                    this.tasksService
-                    .getTodaysUserBoardsTasks(this.userId)
-                    .pipe(takeUntil(this.destroy$))
-                    .subscribe(tasks => {
-                      this.todaysTasks = tasks;
                     });
         }
        )
@@ -126,10 +120,32 @@ export class HomeContentComponent implements OnInit{
   isToday (date: Date) {  
     const now = new Date()
     const d = new Date(date) 
-      return d.getUTCDate() === now.getUTCDate() &&
-           d.getUTCMonth() === now.getUTCMonth() &&
-           d.getUTCFullYear() === now.getUTCFullYear()
+    let isToday = d.getUTCDate() === now.getUTCDate() &&
+                  d.getUTCMonth() === now.getUTCMonth() &&
+                  d.getUTCFullYear() === now.getUTCFullYear();
+    return isToday;
   }
+
+  get noTodaysTasks(): boolean{
+    return this.tasks.some(task => this.isToday(task.dueDate) == true)? false:true;
+  }
+
+  get noTodoTasks(): boolean {
+    return this.tasks.some(task => task.isCompleted == false && task.isOverdue != true)? false:true;
+  }
+
+  get noDoneTasks(): boolean{
+    return this.tasks.some(task => task.isCompleted == true)? false:true;
+  }
+
+  get noOverdueTasks(): boolean{
+    return this.tasks.some(task => task.isOverdue == true)? false:true;
+  }
+
+  get showBoards():boolean{
+    return this.boards.length > 0? true: false;
+  }
+
       ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
