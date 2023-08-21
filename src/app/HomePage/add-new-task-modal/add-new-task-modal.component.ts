@@ -25,6 +25,7 @@ export class AddNewTaskModalComponent implements OnInit {
   taskCreate = new EventEmitter<TaskModel>();
 
   @Input() boards: BoardModel[];
+  @Input() buttonDisabled: boolean;
 
   taskText = null;
   taskDueDate = null;

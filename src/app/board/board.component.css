@@ -41,7 +41,23 @@
     text-decoration: underline;
     font-weight: 450;
     margin-left: 20px;
+
+    transition: all 0.15s ease-in-out;
+    opacity: 0.8;
 }
+
+.card-link:hover{
+    opacity: 1;
+}
+/* 
+.board-content{
+    transition: tranform 0.4s ease-in-out;
+} */
+
+/* .board-content:hover{
+    
+    transform: translateY(-2px);
+} */
 
 /*restyling modal*/
 .modal-btn {

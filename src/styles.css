@@ -83,6 +83,14 @@ button {
   border: var(--add-new-border);
 }
 
+.add-new-btn:disabled{
+  background-color: var(--add-new-color-disabled );
+  color: var(--add-new-text-color-disabled);
+  border: var(--add-new-border-disabled) ;
+  cursor: default;
+  pointer-events: none;
+}
+
 .add-new-btn:hover{
   background-color: var(--add-new-color-hover);
   color: var(--add-new-text-color-hover);
@@ -363,10 +371,14 @@ a.primary-link:hover{
   --add-new-text-color-hover: #FFFFF0;
   --add-new-color-active: #B0C4DE;
   --add-new-text-color-active: #FFFFF0;
+  --add-new-color-disabled: #cedef1;
+  --add-new-text-color-disabled:#f3f6f4;
+  
 
   --add-new-border: thin solid #C0C0C0;
   --add-new-border-hover:thin solid #4682B4;
   --add-new-border-active:thin solid #778899;
+  --add-new-border-disabled:thin solid #d6e3f3  ;
 
 
   --confirm-color: #C6DFFD;
@@ -415,7 +427,7 @@ a.primary-link:hover{
 
   --modal-input-border: thin solid lightgray;
 
-  --notification-border-color:#aba9a9;
+  --notification-border-color:#cfe2f3;
 }
 
 .default-theme{
@@ -435,10 +447,14 @@ a.primary-link:hover{
  --add-new-text-color-hover: #f2f0f0;
  --add-new-color-active: #525050;
  --add-new-text-color-active: #f2f0f0;
+ --add-new-color-disabled: #bbbbbb;
+ --add-new-text-color-disabled: #ececec;
  
+
  --add-new-border:none;
  --add-new-border-hover:none;
  --add-new-border-active:none;
+ --add-new-border-disabled:none;
 
 
  --confirm-color: #7b7777;
@@ -513,10 +529,13 @@ a.primary-link:hover{
   --add-new-text-color-hover: #FFFFF0;
   --add-new-color-active: #FFF0F5;
   --add-new-text-color-active: #FFFFF0;
-
+  --add-new-color-disabled: #ffd3d9;
+  --add-new-text-color-disabled: #FFFFF0;
+  
   --add-new-border: thin solid #FFB6C1;
   --add-new-border-hover:thin solid #BA55D3;
   --add-new-border-active:thin solid #D8BFD8;
+  --add-new-border-disabled: thin solid #ebdfeb;
 
 
   --confirm-color: #E63995;

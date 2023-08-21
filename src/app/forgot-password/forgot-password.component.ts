@@ -9,7 +9,7 @@ import { UsersService } from 'src/services/users.service';
 })
 export class ForgotPasswordComponent implements OnInit{
 
-  email = '';
+  email: string = '';
   
   error = '';
   errorMessage: string = '';

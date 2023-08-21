@@ -66,6 +66,7 @@
           </div>
 
           <app-add-new-task-modal 
+                [buttonDisabled]="!showBoards"
                 (taskCreate)="onCreateTask($event)"
                 [boards]="boards">
               </app-add-new-task-modal>

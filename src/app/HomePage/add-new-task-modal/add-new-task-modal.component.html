@@ -1,5 +1,9 @@
 <!-- Button trigger modal -->
-<button type="button" class="add-new-btn mt-3" data-bs-toggle="modal" data-bs-target="#addNewTaskModal">
+<button type="button" class="add-new-btn mt-3" 
+        data-bs-toggle="modal"
+        data-bs-target="#addNewTaskModal"
+        [disabled]="buttonDisabled"
+        >
   Add new task+
 </button>
 

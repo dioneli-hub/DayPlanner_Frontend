@@ -4,12 +4,12 @@
     grid-template-rows: [row-start ]1fr [row-middle-one] 2fr[row-middle-two] 1fr [row-end];
     justify-items: start; 
     align-items: start;
-
+    height: 105px;
     /* max-width: 600px; */
     /* min-width: 300px; */
     /* height: 60px; */
     /* border-radius: 5px; */
-    border-radius: 0px;
+    border-radius: 15px;
     border-color: var(--notification-border-color);
     border-style: inset;
     border-width: 3px;
@@ -32,15 +32,18 @@
     grid-row-start: row-start;
     grid-row-end: row-middle-one;
     justify-self: end;
+    padding-right: 7px;
+    margin-top: 7px;
+    color:var(--primary-color);
 }
 
 .close-icon:hover{
-    color:red;
+    color:var(--primary-color-hover);
 }
 
-.close-icon:focus{
-    color:red;
-}
+/* .close-icon:focus{
+    
+} */
 
 .time {
     grid-column-start: divide;
@@ -52,5 +55,8 @@
 
     color: grey;
     font-size: smaller;
+
+    padding-right: 7px;
+    margin-bottom: 7px;
 }
 
