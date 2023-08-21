@@ -22,11 +22,22 @@ import { Subject } from "rxjs";
     deleteBoard (boardId: number): Observable<void>{
       return this.httpClient.delete<void>(`${environment.apiUrl}Board/${boardId}`)}
 
-    addTaskToBoard(value: any) : Observable<TaskModel>{
-      return this.httpClient.post<TaskModel>(`${environment.apiUrl}Board/${value.board.id}/tasks`,{
-        text: value.taskText,
-        dueDate: new Date(Date.UTC(value.taskDueDate.year, value.taskDueDate.month-1, value.taskDueDate.day))
-      })
+    addTaskToBoard(value: any, performerId? :number) : Observable<TaskModel>{
+      let requestBody;
+      if (performerId != null){
+        requestBody = {
+          text: value.taskText,
+          dueDate: new Date(Date.UTC(value.taskDueDate.year, value.taskDueDate.month-1, value.taskDueDate.day)),
+          performerId: performerId
+        }
+      } else {
+        requestBody = {
+          text: value.taskText,
+          dueDate: new Date(Date.UTC(value.taskDueDate.year, value.taskDueDate.month-1, value.taskDueDate.day)),
+        }
+      }
+      return this.httpClient.post<TaskModel>(`${environment.apiUrl}Board/${value.board.id}/tasks`, 
+            requestBody)
     }
 
     addTaskFromBoard(boardId: number, value: any) : Observable<TaskModel>{

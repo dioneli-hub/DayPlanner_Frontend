@@ -1,3 +1,12 @@
+
+
+.process-status-message p{
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 7px;
+}
+
 /* You can add global styles to this file, and also import other style files */
 
 ::-webkit-scrollbar { /* width */

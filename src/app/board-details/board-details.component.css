@@ -51,7 +51,7 @@
     display: grid;
     justify-items: stretch;
     grid-template-columns: [col-start]  1fr [col-mid] 1fr [col-end]; 
-    grid-template-rows: [row-start] 1fr [row-mid] 10fr [row-end];
+    grid-template-rows: [row-start] 1fr [row-mid] 23fr [row-end];
 
 }
 

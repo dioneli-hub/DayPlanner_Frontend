@@ -1,3 +1,7 @@
+.no-new-notifications{
+    text-align: center;
+}
+
 .heading {
     display: grid;
     grid-template-columns: [first] 7fr [divide] 1fr[end];

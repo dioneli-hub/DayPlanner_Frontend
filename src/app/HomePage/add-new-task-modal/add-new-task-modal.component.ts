@@ -1,15 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { BoardModel } from 'src/api-models/board.model';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { BoardsService } from 'src/services/boards.service';
 import { UsersService } from 'src/services/users.service';
-import { UserProvider } from 'src/providers/user.provider';
 import { TaskModel } from 'src/api-models/task.model';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TasksService } from 'src/services/tasks.service';
@@ -51,17 +48,19 @@ export class AddNewTaskModalComponent implements OnInit {
     };
   }
 
+
   submit(value) {
-  let ifSetPerformer = this.isSetPerformerChecked;
-  this.boardsService.addTaskToBoard(value).subscribe(task=>{
-    if (ifSetPerformer == true){
-      this.usersService.current()
-                      .subscribe(user => {
-                        this.tasksService.UpdateTaskPerformer(task.id, user.id)
-                        .subscribe()
-                      })}
-    this.taskCreate.emit(task);
-  })}
+    if (this.isSetPerformerChecked){this.usersService.current()
+      .subscribe(user => {
+        this.boardsService.addTaskToBoard(value, user.id)
+            .subscribe(task=>{
+              this.taskCreate.emit(task);
+        })})} 
+    else {
+      this.boardsService.addTaskToBoard(value)
+            .subscribe(task=>{
+              this.taskCreate.emit(task);
+    })}}
     
 
   ngOnInit(): void {
