@@ -10,8 +10,10 @@
 
 .board-details-container{
     width: 100%;
-   position: relative;
+    height: 450px;
+    position: relative;
 }
+
 
 .board-details-heading{
     border-top: 5px solid black;
@@ -52,6 +54,7 @@
 }
 
 .page-content{
+    height: inherit;
     display: grid;
     justify-items: stretch;
     grid-template-columns: [col-start]  1fr [col-mid] 1fr [col-end]; 

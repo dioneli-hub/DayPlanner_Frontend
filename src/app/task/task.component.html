@@ -123,17 +123,17 @@
                 id="occurencesNumber"
                 name="occurencesNumber"
                 [(ngModel)]="occurencesNumber"
-                min="0"
+                min="1"
                 max="20"
                 required
               >
             </label>
               <div class="error-message" *ngIf="occurencesNumberInput.invalid && occurencesNumberInput.dirty">
-                Please enter a valid number between 0 and 20.
+                Please enter a valid number between 1 and 20.
               </div>
             </div>
 
-            <button type="submit" class="confirm-btn" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Submit</button>
+            <button type="submit" class="confirm-btn" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Recur</button>
             </form>
 
            

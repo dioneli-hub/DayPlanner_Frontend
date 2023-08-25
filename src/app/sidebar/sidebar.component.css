@@ -40,9 +40,17 @@
 
 .logo-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: start;
     margin-left: 20px;
+    cursor: pointer;
+}
+
+.logo-container > .info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 5px;
     cursor: pointer;
 }
 
