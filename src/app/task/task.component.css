@@ -4,7 +4,9 @@
     margin-top: 5px;
   }
   
-
+.radio-label{
+    margin-right: 10px;
+}
 
 i.fa-repeat{
     margin-left: 2px;;
@@ -162,3 +164,73 @@ i.fa-repeat{
 .task-due > input:active {
     border: none;
 }
+
+/* 
+.recurring-type-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+.recurring-type-container input[type="radio"] {
+    display: none;
+  }
+
+  .recurring-type-container label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+  }
+  
+  .recurring-type-container label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+
+  input[type="radio"]:checked + label:before {
+    background-color: #3498db;
+    border-color: #3498db;  } */
+
+    .recur-number-container > label {
+        display: block;
+        margin-bottom: 2px;
+        margin-top: 10px;
+      }
+      
+    .recur-number-container > label > input[type="number"] {
+        width: 55px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 15px;
+      }
+      
+      /* Style for when the input is in focus */
+    .recur-number-container >  label>input[type="number"]:focus {
+        outline: none;
+        /* border-color: var(--primary-color);
+        box-shadow: 0 0 5px var(--primary-color-hover); */
+        border-color:lightgray;
+        box-shadow: 0 0 5px lightgray;
+      }
+
+    .recurrence-popover-form> button.confirm-btn {
+        margin-top:15px;
+        margin-left:30%;
+    }
+
+    input[type='radio'] {
+        accent-color: var(--primary-color);
+    }
+    .recurrence-popover-form {
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+    }

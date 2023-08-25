@@ -173,7 +173,7 @@ export class BoardDetailsComponent implements OnInit{
         if(this.isMembersListVisible == false){
           return {
             'display' : 'grid',
-            'grid-template-columns': 'repeat(2, 1fr)',
+            'grid-template-columns': 'repeat(3, 1fr)',
           }
         };
         return {

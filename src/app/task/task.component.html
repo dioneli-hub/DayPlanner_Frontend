@@ -27,8 +27,7 @@
             </button>
           </ng-template>
           <ng-template #notAllowedToPerform >
-            <button type="button" class="btn disabled me-2"
-                    >
+            <button type="button" class="btn disabled me-2">
               <i class="fa fa-lock " aria-hidden="true" ></i>
             </button>
             
@@ -101,7 +100,7 @@
         
         <ng-template #recurrencePopoverContent >
 
-          <form #recurrenceAddPopover="ngForm" (ngSubmit)="submit(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
+          <form #recurrenceAddPopover="ngForm" class="recurrence-popover-form" (ngSubmit)="submit(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
 
           <!-- <input 
             name="recurrence" 
@@ -109,15 +108,16 @@
             #changeRecurrence
              /> -->
 
-             <div class="form-group">
+             <div class="recurring-type-container form-group">
               <label *ngFor="let recurringType of recurringTypes" class="radio-label">
-                <input type="radio" name="recurringType" [value]="recurringType" [(ngModel)]="selectedRecurringType" required>
+                <input type="radio" class="recurring-type" name="recurringType" [value]="recurringType" [(ngModel)]="selectedRecurringType" required>
                 {{ recurringType }}
               </label>
+              <span class="checkmark"></span>
             </div>
 
-            <div class="form-group">
-              <label for="occurencesNumber">Enter a number (max: 20):</label>
+            <div class="recur-number-container form-group">
+              <label for="occurencesNumber">Repeat times (max: 20)
               <input
                 type="number"
                 id="occurencesNumber"
@@ -127,13 +127,13 @@
                 max="20"
                 required
               >
+            </label>
               <div class="error-message" *ngIf="occurencesNumberInput.invalid && occurencesNumberInput.dirty">
                 Please enter a valid number between 0 and 20.
               </div>
             </div>
-            
 
-            <button type="submit" class="btn btn-primary" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Submit</button>
+            <button type="submit" class="confirm-btn" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Submit</button>
             </form>
 
            
@@ -146,12 +146,11 @@
         #p="ngbPopover"
         (click)="p.open()"
         popoverTitle="Recurrence"
-        placement="top"
         [autoClose]="'outside'"
         
         >
         <!-- placement="top-left" -->
-  <i class="fa fa-repeat"  aria-hidden="true" ngbTooltip="Recur"  placement="right"></i>
+  <i class="fa fa-repeat"  aria-hidden="true" ngbTooltip="Recurrence settings"  placement="right"></i>
 </button>
           
       </div>
