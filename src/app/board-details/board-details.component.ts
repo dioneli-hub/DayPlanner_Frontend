@@ -38,7 +38,19 @@ export class BoardDetailsComponent implements OnInit{
   taskGroupsByPerformer: Array<any> = []
   showTasksGroupedByCompleted: boolean = false;
   showTasksGroupedByPerformer: boolean = false;
+  tasksGroupedByPerformerVisibility: { [groupKeyId: string] :boolean } = {}; 
 
+
+  toggleGroupData(groupKey) {
+   
+    if(groupKey == null){
+      // console.log('MY NULL')
+      this.tasksGroupedByPerformerVisibility['no_performer'] = !this.tasksGroupedByPerformerVisibility['no_performer'];
+    }
+    else { 
+      // console.log(groupKey)
+    this.tasksGroupedByPerformerVisibility[groupKey.id] = !this.tasksGroupedByPerformerVisibility[groupKey.id];}
+  }
 
 
 
@@ -192,16 +204,19 @@ export class BoardDetailsComponent implements OnInit{
       }
 
       get getTasksColumnStyle(){
-        if(this.isMembersListVisible == false){
+        if(this.isMembersListVisible == false && !this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted){
           return {
             // 'width' : '600px',
             'display' : 'grid',
+            'justify-items': 'stretch',
             'grid-template-columns': 'repeat(2, 1fr)',
           }
         };
-        return {
+        // else if(this.isMembersListVisible == true && !showTasksGroupedByPerformer && !showTasksGroupedByCompleted)
+         return {
           // 'width' : '400px',
           'display': 'grid',
+          'justify-items': 'stretch',
           'grid-template-columns': '1fr'
       }
       }
@@ -215,22 +230,27 @@ export class BoardDetailsComponent implements OnInit{
           }
         };
         return {
-          'width' : '400px',
+          'width' : '413px',
           // 'display': 'grid',
           // 'grid-template-columns': '1fr'
       }
       }
 
+      log(item){
+        console.log(item)
+      }
       get getTasksStyle(){
         if(this.isMembersListVisible == false){
           return {
             'grid-column-start': 'col-start',
-            'grid-column-end': 'col-end'
+            'grid-column-end': 'col-end',
+            'grid-template-columns': 'repeat(2, 1fr)',
           }
         };
         return {
           'grid-column-start': 'col-mid',
-          'grid-column-end': 'col-end'
+          'grid-column-end': 'col-end',
+          'grid-template-columns': 'repeat(1, 1fr)',
       }
       }
 
