@@ -34,6 +34,10 @@ export class BoardDetailsComponent implements OnInit{
   showModalErrorToast: boolean = false;
   modalErrorToastText: string = '';
   isMembersListVisible: boolean = true;
+  taskGroupsByCompleted: Array<any> = []
+  taskGroupsByPerformer: Array<any> = []
+  showTasksGroupedByCompleted: boolean = false;
+  showTasksGroupedByPerformer: boolean = false;
 
 
 
@@ -94,6 +98,24 @@ export class BoardDetailsComponent implements OnInit{
                 });
               }
             });
+
+
+            this.tasksService
+                .getBoardTasksGroupedByCompleted(this.boardId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(taskGroups => {
+                  console.log('by completed')
+                  console.log(taskGroups)
+                  this.taskGroupsByCompleted = taskGroups;
+                });
+           this.tasksService
+                .getBoardTasksGroupedByPerformer(this.boardId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(taskGroups => {
+                  console.log('by performer')
+                  console.log(taskGroups)
+                  this.taskGroupsByPerformer = taskGroups;
+                });
 
           }
 
@@ -169,18 +191,86 @@ export class BoardDetailsComponent implements OnInit{
         return this.tasks.length > 0? false: true;
       }
 
-      get getColumnStyle(){
+      get getTasksColumnStyle(){
         if(this.isMembersListVisible == false){
           return {
+            // 'width' : '600px',
             'display' : 'grid',
-            'grid-template-columns': 'repeat(3, 1fr)',
+            'grid-template-columns': 'repeat(2, 1fr)',
           }
         };
         return {
+          // 'width' : '400px',
           'display': 'grid',
           'grid-template-columns': '1fr'
       }
       }
+
+      get getTasksWidth(){
+        if(this.isMembersListVisible == false){
+          return {
+            'width' : '600px',
+            // 'display' : 'grid',
+            // 'grid-template-columns': 'repeat(2, 1fr)',
+          }
+        };
+        return {
+          'width' : '400px',
+          // 'display': 'grid',
+          // 'grid-template-columns': '1fr'
+      }
+      }
+
+      get getTasksStyle(){
+        if(this.isMembersListVisible == false){
+          return {
+            'grid-column-start': 'col-start',
+            'grid-column-end': 'col-end'
+          }
+        };
+        return {
+          'grid-column-start': 'col-mid',
+          'grid-column-end': 'col-end'
+      }
+      }
+
+      toggleGroupByCompleted() {
+        this.showTasksGroupedByCompleted = !this.showTasksGroupedByCompleted
+        this.showTasksGroupedByPerformer = false;
+      }
+
+      toggleGroupByPerformer() {
+        this.showTasksGroupedByPerformer = !this.showTasksGroupedByPerformer
+        this.showTasksGroupedByCompleted = false;
+      }
+
+      // get getGroupedTasksStyle(){
+      //   if(this.isMembersListVisible == false){
+      //     return {
+      //       'grid-column-start': 'col-start',
+      //       'grid-column-end': 'col-end'
+      //     }
+      //   };
+      //   return {
+      //     'grid-column-start': 'col-mid',
+      //     'grid-column-end': 'col-end'
+      // }
+      // }
+
+      get getGroupedTaskStyle(){
+        if(this.isMembersListVisible == false){
+          return {
+
+            // 'flex' : '0 0 400px'
+          }
+        };
+        return {
+          // 'flex' : '0 0 400px'
+      }
+      }
+
+
+
 
       get toggleMembersIcon(){
         return this.isMembersListVisible == false? "fa fa-plus-square" : "fa fa-minus-square";

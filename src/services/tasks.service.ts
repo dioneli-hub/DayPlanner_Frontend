@@ -15,6 +15,15 @@ import { environment } from "../environments/environment";
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks`);
     }
 
+    getBoardTasksGroupedByCompleted(boardId: number) {
+      return this.httpClient.get<Array<any>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/grouped-by-completed`);
+    }
+
+    getBoardTasksGroupedByPerformer(boardId: number) {
+      return this.httpClient.get<Array<any>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/grouped-by-performer`);
+    }
+
+
     getTodaysUserBoardsTasks(userId: number): Observable<Array<TaskModel>> {
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/user-boards-todays-tasks`);
     }

@@ -10,7 +10,7 @@
 
 .board-details-container{
     width: 100%;
-    height: 450px;
+    height: 400px;
     position: relative;
 }
 
@@ -33,18 +33,35 @@
 }
 
 .board-members{
-    height: 62vh;
+    width: 380px;
+    margin-right: 25px;
+    height: 63.5vh;
 
     position: relative;
     background-color: var(--st-members-bg);
     box-shadow: 0 1vh 0 0 var(--st-members-shadow);
 
+    grid-column-start: col-start;
+    grid-column-end: col-mid;
+}
+
+.group-button{
+    grid-column-start: col-start;
+    grid-column-end: col-mid;
+    grid-row-start: row-start;
+    grid-row-end: row-mid;
+
+    justify-self: end;
 }
 
 .board-members-content{
     width: 400px;
+    overflow-y: hidden;
+    height: 55vh;
+}
+
+.board-members-content:hover{
     overflow-y: scroll;
-    height: 50vh;
 }
 
 .add-new-member-btn{
@@ -84,8 +101,15 @@
     grid-row-start: row-mid;
     grid-row-end: row-end;
 
-    display: flex;
-    flex-wrap: wrap;
+    height: inherit;
+    display: grid;
+    justify-items: stretch;
+    grid-template-columns: [col-start]  1fr [col-mid] 3fr [col-end]; 
+
+    /* overflow-x: auto; */
+
+    /* display: flex;
+    flex-wrap: wrap; */
 }
 
 .tasks-container {
@@ -96,7 +120,7 @@
     flex: 1; 
 }
 
-  .task {
+.task {
     margin-right: 10px;
     margin-bottom: 5px;
     margin-top: 0px;
@@ -106,7 +130,54 @@
     grid-column: 1; 
   } */
 
+
+  .task-groups-container{
+    margin-left: 5px;
+    height: 400px;
+    overflow:hidden;
+    margin-left: 21.5px;
+    padding-left: 2px;
+    /* margin-right: 20px; */
+        /* overflow-x: auto; */
+        /* overflow-y: none;  */
+  }
+
   
+  .task-groups-container:hover{
+    overflow: scroll;
+}
+
+  .task-groups {
+    grid-column-start: col-mid;
+    grid-column-end: col-end;
+
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 10px; */
+/* 
+    width: 800px; Example width */
+    /* height: 200px; Example height */
+    /* overflow: auto; */
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px 10px;
+  }
+
+
+  .task-group{
+    /* width: 100%; */
+    /* overflow-x: scroll;
+    overflow-y: none;  */
+  }
+
+  .grouped-tasks{
+    /* min-height: 350px; */
+    width: 400px;
+
+  }
 
 
 /* cards */
@@ -158,7 +229,10 @@
     border:none;
 }
 
-
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
 ::-webkit-scrollbar-track { 
     background: none;
   }
@@ -168,6 +242,10 @@
     box-shadow: inset 0 0 5px #7B7777;
     background: white; 
     border-radius: 0px;
+  }
+
+  .scrollbar-area-card{
+    width: 370px;
   }
   
 

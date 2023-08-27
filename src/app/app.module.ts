@@ -27,6 +27,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ThemingService } from 'src/services/theming.service';
 import { ThemeChangerComponent } from './theme-changer/theme-changer.component';
+import { TaskGroupComponent } from './task-group/task-group.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -74,6 +75,7 @@ const appRoutes: Routes =[
         VerifyEmailComponent,
         LoadingComponent,
         ThemeChangerComponent,
+        TaskGroupComponent,
         // AddNewTaskFromBoardModalComponent
         
     ],

@@ -144,33 +144,8 @@
 
         </div>
 
-
-        <div class="task-groups-container" [ngStyle]="getTasksStyle">   
-            <div  class="task-groups by-performer" *ngIf="showTasksGroupedByPerformer">
-                <div   *ngFor="let group of taskGroupsByPerformer"  class="task-group">
-                    <div>
-                        <h6>{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}</h6>
-                    </div>
-        
-                    <div class="grouped-tasks">
-                    <app-task *ngFor="let task of group.tasks"
-                                [ngStyle]="getGroupedTaskStyle"
-                                class="task"
-                                [task]="task"
-                                (deleteTask)="onDeleteTask($event)">
-                    </app-task>
-                </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        
         <div class="tasks task-groups by-completed" *ngIf="showTasksGroupedByCompleted" [ngStyle]="getTasksStyle">
+            <!-- [ngStyle]="getColumnStyle" -->
             <div  *ngFor="let group of taskGroupsByCompleted" class="task-group">
                 <div>
                     <h6>{{group.groupKey == true? 'Done' : 'ToDo'}}</h6>
@@ -178,6 +153,7 @@
     
                 <div [ngStyle]="getTasksWidth">
                 <app-task *ngFor="let task of group.tasks"
+                            
                             class="grouped-task"
                             [task]="task"
                             (deleteTask)="onDeleteTask($event)">
@@ -204,9 +180,6 @@
             </div>
         </div>
     </div>
-
-
-    
     </div>
     </div>
 </div>
