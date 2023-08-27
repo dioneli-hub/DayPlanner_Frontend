@@ -16,11 +16,28 @@
   
 
     </div>
+
+
     <div class="mt-sm-3 ps-sm-3 page-content">
+
+
+
         <!-- <div class="subheading"> -->
             <div class="board-members-heading">
                 <h6 class="pt-2 pb-1">Board Members <button id="toggle-members" (click)="toggleMembers()"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button></h6>
             </div>
+
+            <div class="group-button">
+            <div class="input-group ">
+                <button class="add-new-btn" (click)="toggleGroupByPerformer()">
+                    Performer
+                </button>
+                <button class="add-new-btn" (click)="toggleGroupByCompleted()">
+                    Status
+                </button>
+            </div>
+        </div>
+            
 
             <div class="add-new-task-btn-container p-2">
                 <app-add-new-task-from-board-modal 
@@ -35,6 +52,8 @@
         <div class="logical-content" >
 
        
+         
+
         <div class="board-members" *ngIf="isMembersListVisible == true">
             
             <div  class="board-members-content st-content">
@@ -108,10 +127,9 @@
             
         </div>
 
-        <div class="tasks">
-            <!--  col-sm-7 -->
+        <div class="tasks" [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer">
 
-            <div [ngStyle]="getColumnStyle" class="tasks-container ps-3">
+            <div [ngStyle]="getTasksColumnStyle" class="tasks-container ps-3">
                 <app-task 
                 class="task"
                 *ngFor="let task of tasks" 
@@ -125,6 +143,70 @@
             </div>
 
         </div>
+
+
+        <div class="task-groups-container" [ngStyle]="getTasksStyle">   
+            <div  class="task-groups by-performer" *ngIf="showTasksGroupedByPerformer">
+                <div   *ngFor="let group of taskGroupsByPerformer"  class="task-group">
+                    <div>
+                        <h6>{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}</h6>
+                    </div>
+        
+                    <div class="grouped-tasks">
+                    <app-task *ngFor="let task of group.tasks"
+                                [ngStyle]="getGroupedTaskStyle"
+                                class="task"
+                                [task]="task"
+                                (deleteTask)="onDeleteTask($event)">
+                    </app-task>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        
+        <div class="tasks task-groups by-completed" *ngIf="showTasksGroupedByCompleted" [ngStyle]="getTasksStyle">
+            <div  *ngFor="let group of taskGroupsByCompleted" class="task-group">
+                <div>
+                    <h6>{{group.groupKey == true? 'Done' : 'ToDo'}}</h6>
+                </div>
+    
+                <div [ngStyle]="getTasksWidth">
+                <app-task *ngFor="let task of group.tasks"
+                            class="grouped-task"
+                            [task]="task"
+                            (deleteTask)="onDeleteTask($event)">
+                </app-task>
+            </div>
+            </div>
+        </div>
+
+        <div class="task-groups-container" [ngStyle]="getTasksStyle">   
+        <div  class="task-groups by-performer" *ngIf="showTasksGroupedByPerformer">
+            <div   *ngFor="let group of taskGroupsByPerformer"  class="task-group">
+                <div>
+                    <h6>{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}</h6>
+                </div>
+    
+                <div class="grouped-tasks">
+                <app-task *ngFor="let task of group.tasks"
+                            [ngStyle]="getGroupedTaskStyle"
+                            class="task"
+                            [task]="task"
+                            (deleteTask)="onDeleteTask($event)">
+                </app-task>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    
     </div>
     </div>
 </div>
