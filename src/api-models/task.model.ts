@@ -22,5 +22,11 @@ import { UserModel } from "./user.model";
         dueDate: Date,
     }
 
+    export interface TaskGroup {
+        groupKey: any,
+        tasks: Array<TaskModel>
+    }
+
+
 
   

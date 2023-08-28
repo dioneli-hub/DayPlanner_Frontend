@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
 import { ServiceResponse } from 'src/api-models/service-response.model';
-import { TaskModel } from 'src/api-models/task.model';
+import { TaskGroup, TaskModel } from 'src/api-models/task.model';
 import { UserModel } from 'src/api-models/user.model';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { BoardsService } from 'src/services/boards.service';
@@ -34,8 +34,8 @@ export class BoardDetailsComponent implements OnInit{
   showModalErrorToast: boolean = false;
   modalErrorToastText: string = '';
   isMembersListVisible: boolean = true;
-  taskGroupsByCompleted: Array<any> = []
-  taskGroupsByPerformer: Array<any> = []
+  taskGroupsByCompleted: Array<TaskGroup> = []
+  taskGroupsByPerformer: Array<TaskGroup> = []
   showTasksGroupedByCompleted: boolean = false;
   showTasksGroupedByPerformer: boolean = false;
   tasksGroupedByPerformerVisibility: { [groupKeyId: string] :boolean } = {}; 
@@ -47,14 +47,13 @@ export class BoardDetailsComponent implements OnInit{
   }
   }
 
+  
   toggleDataGroupedByPerformer(groupKey) {
    
     if(groupKey == null){
-      // console.log('MY NULL')
       this.tasksGroupedByPerformerVisibility['no_performer'] = !this.tasksGroupedByPerformerVisibility['no_performer'];
     }
     else { 
-      // console.log(groupKey)
     this.tasksGroupedByPerformerVisibility[groupKey.id] = !this.tasksGroupedByPerformerVisibility[groupKey.id];}
   }
 
@@ -125,23 +124,29 @@ export class BoardDetailsComponent implements OnInit{
               }
             });
 
-            this.groupTasks();
-
           }
 
           groupTasks(){
+            this.groupTasksByCompleted();
+            this.groupTasksByPerformer();
+          }
+
+          groupTasksByCompleted(){
             this.tasksService
                 .getBoardTasksGroupedByCompleted(this.boardId)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(taskGroups => {
                   this.taskGroupsByCompleted = taskGroups;
                 });
-           this.tasksService
-                .getBoardTasksGroupedByPerformer(this.boardId)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(taskGroups => {
-                  this.taskGroupsByPerformer = taskGroups;
-                });
+          }
+
+          groupTasksByPerformer(){
+            this.tasksService
+            .getBoardTasksGroupedByPerformer(this.boardId)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(taskGroups => {
+              this.taskGroupsByPerformer = taskGroups;
+            });
           }
 
           sortTasksByDate(){
@@ -203,6 +208,8 @@ export class BoardDetailsComponent implements OnInit{
           .pipe(takeUntil(this.destroy$))
           .subscribe(()=>{
             this.tasks = this.tasks.filter(x => x.id !== task.id);
+
+            this.groupTasks();
            
           })  
        }
@@ -270,13 +277,23 @@ export class BoardDetailsComponent implements OnInit{
       }
 
       toggleGroupByCompleted() {
+        if( this.showTasksGroupedByCompleted == false)
+        {
+          this.groupTasksByCompleted();
+          this.showTasksGroupedByPerformer = false;
+        }
         this.showTasksGroupedByCompleted = !this.showTasksGroupedByCompleted
-        this.showTasksGroupedByPerformer = false;
+        
       }
 
       toggleGroupByPerformer() {
+        if( this.showTasksGroupedByPerformer == false)
+        {
+          this.groupTasksByPerformer();
+          this.showTasksGroupedByCompleted = false;
+        }
         this.showTasksGroupedByPerformer = !this.showTasksGroupedByPerformer
-        this.showTasksGroupedByCompleted = false;
+        
       }
 
       // get getGroupedTasksStyle(){

@@ -175,7 +175,7 @@
             <!-- [ngStyle]="getTasksColumnStyle"  -->
             <div   *ngFor="let group of taskGroupsByPerformer"  class="task-group">
                     <div>
-                        <h6  class="group-heading">{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}
+                        <h6  class="group-heading">{{group.groupKey == null? 'Performer not selected' : group.groupKey?.firstName + " " + group.groupKey?.lastName  }}
                             <button id="toggle-members" (click)="toggleDataGroupedByPerformer(group.groupKey)"><i [ngClass]="tasksGroupedByPerformerVisibility[group.groupKey?.id || 'no_performer']?  'fa fa-minus-square': 'fa fa-plus-square'" aria-hidden="true"></i></button>
                         </h6>
                     </div>
