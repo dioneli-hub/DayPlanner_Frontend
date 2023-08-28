@@ -221,47 +221,49 @@ export class BoardDetailsComponent implements OnInit{
       get getTasksColumnStyle(){
         if(this.isMembersListVisible == false && !this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted){
           return {
-            // 'width' : '600px',
             'display' : 'grid',
-            'justify-items': 'stretch',
             'grid-template-columns': 'repeat(2, 1fr)',
+            'gap': '0 10px',
           }
-        };
-        // else if(this.isMembersListVisible == true && !showTasksGroupedByPerformer && !showTasksGroupedByCompleted)
+        }
+        else if(this.isMembersListVisible == true && !this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted)
          return {
-          // 'width' : '400px',
           'display': 'grid',
           'justify-items': 'stretch',
           'grid-template-columns': '1fr'
       }
+      else if(this.isMembersListVisible == false && this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted)
+      return {
+        'display' : 'grid',
+        'grid-template-columns': 'repeat(2, 1fr)',
+        'gap': '0 10px',
+      }
+      return { }
       }
 
-      get getTasksWidth(){
-        if(this.isMembersListVisible == false){
-          return {
-            'width' : '600px',
-            // 'display' : 'grid',
-            // 'grid-template-columns': 'repeat(2, 1fr)',
-          }
-        };
-        return {
-          'width' : '413px',
-          // 'display': 'grid',
-          // 'grid-template-columns': '1fr'
-      }
-      }
 
-      log(item){
-        console.log(item)
-      }
       get getTasksStyle(){
-        if(this.isMembersListVisible == false){
+        if(this.isMembersListVisible == false && !this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted){
           return {
             'grid-column-start': 'col-start',
             'grid-column-end': 'col-end',
             'grid-template-columns': 'repeat(2, 1fr)',
           }
-        };
+        } 
+        else if(this.isMembersListVisible == false && this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted)
+        return {
+          'grid-column-start': 'col-start',
+          'grid-column-end': 'col-end',
+          'grid-template-columns': 'repeat(1, 1fr)',
+        }
+        else if(this.isMembersListVisible == false && !this.showTasksGroupedByPerformer && this.showTasksGroupedByCompleted)
+        return {
+         'grid-column-start': 'col-start',
+          'grid-column-end': 'col-end',
+          'grid-template-columns': 'repeat(2, 1fr)',
+          'gap': ' 0 10px'
+        }
+
         return {
           'grid-column-start': 'col-mid',
           'grid-column-end': 'col-end',
