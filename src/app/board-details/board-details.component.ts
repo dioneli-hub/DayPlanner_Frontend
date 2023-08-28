@@ -39,9 +39,15 @@ export class BoardDetailsComponent implements OnInit{
   showTasksGroupedByCompleted: boolean = false;
   showTasksGroupedByPerformer: boolean = false;
   tasksGroupedByPerformerVisibility: { [groupKeyId: string] :boolean } = {}; 
+  tasksGroupedByCompletedVisibility: { [groupKey: string] :boolean } = {}; 
 
+  toggleDataGroupedByCompleted(groupKey){
+    if(groupKey != null){
+    this.tasksGroupedByCompletedVisibility[groupKey] = !this.tasksGroupedByCompletedVisibility[groupKey];
+  }
+  }
 
-  toggleGroupData(groupKey) {
+  toggleDataGroupedByPerformer(groupKey) {
    
     if(groupKey == null){
       // console.log('MY NULL')
