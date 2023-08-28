@@ -59,7 +59,6 @@ export class BoardDetailsComponent implements OnInit{
   }
 
 
-
   get groupByPerformerBtnClass(){
     return this.showTasksGroupedByPerformer == true? 'active' : ""
   }
@@ -126,24 +125,23 @@ export class BoardDetailsComponent implements OnInit{
               }
             });
 
+            this.groupTasks();
 
+          }
+
+          groupTasks(){
             this.tasksService
                 .getBoardTasksGroupedByCompleted(this.boardId)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(taskGroups => {
-                  console.log('by completed')
-                  console.log(taskGroups)
                   this.taskGroupsByCompleted = taskGroups;
                 });
            this.tasksService
                 .getBoardTasksGroupedByPerformer(this.boardId)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(taskGroups => {
-                  console.log('by performer')
-                  console.log(taskGroups)
                   this.taskGroupsByPerformer = taskGroups;
                 });
-
           }
 
           sortTasksByDate(){

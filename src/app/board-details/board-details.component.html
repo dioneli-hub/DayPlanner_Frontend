@@ -28,7 +28,7 @@
             </div>
 
             <div class="group-by-input ms-2">
-                <p>Group by: </p>
+                <p><button class="regroup-btn" ngbTooltip="Regroup" (click)="groupTasks()"><i class="fa fa-refresh" aria-hidden="true"></i></button>  Group by: </p>
             <div class="input-group mt-3">
                
                 <button [ngClass]="groupByPerformerBtnClass" class="group-by-btn ms-2" (click)="toggleGroupByPerformer()">
@@ -38,6 +38,8 @@
                     Status
                 </button>
             </div>
+
+           
         </div>
             
 

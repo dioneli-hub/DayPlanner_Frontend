@@ -172,6 +172,17 @@
     margin-left: 30px;
 }
 
+.regroup-btn{
+    margin-right: -15px;
+    color: lightgray;
+}
+
+.regroup-btn:hover, .regroup-btn:active{
+    margin-right: -15px;
+    color: var(--primary-color);
+}
+
+
   .task-groups {
     grid-column-start: col-mid;
     grid-column-end: col-end;
