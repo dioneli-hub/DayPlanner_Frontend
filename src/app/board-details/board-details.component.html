@@ -152,7 +152,9 @@
         <div class="tasks task-groups by-completed" [ngStyle]="getTasksStyle" *ngIf="showTasksGroupedByCompleted">
             <div  [ngStyle]="getTasksColumnStyle" *ngFor="let group of taskGroupsByCompleted" class="task-group tasks-container">
                 <div>
-                    <h6>{{group.groupKey == true? 'Done' : 'ToDo'}} <button id="toggle-members" (click)="toggleDataGroupedByCompleted(group.groupKey)"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button></h6>
+                    <h6>{{group.groupKey == true? 'Done' : 'ToDo'}} 
+                        <button id="toggle-members" (click)="toggleDataGroupedByCompleted(group.groupKey)"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button>
+                    </h6>
                 </div>
                 <div *ngIf="tasksGroupedByCompletedVisibility[group.groupKey]">
                     <app-task *ngFor="let task of group.tasks"
@@ -166,19 +168,19 @@
             </div>
         </div> 
 
-
-        <div class="tasks task-groups task-groups-container by-performer tasks-container" [ngStyle]="getTasksStyle" *ngIf="showTasksGroupedByPerformer">   
+        <!-- task-groups-container tasks-container -->
+        <div class="tasks task-groups  by-performer " [ngStyle]="getTasksStyle" *ngIf="showTasksGroupedByPerformer">   
                 <div   [ngStyle]="getTasksColumnStyle" *ngFor="let group of taskGroupsByPerformer"  class="task-group">
                     <div>
                         <h6>{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}
                             <button id="toggle-members" (click)="toggleDataGroupedByPerformer(group.groupKey)"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button>
                         </h6>
                     </div>
-        
-                    <div class="grouped-tasks" *ngIf="tasksGroupedByPerformerVisibility[group.groupKey?.id || 'no_performer']">
+                    <!-- class="grouped-tasks" -->
+                    <div  *ngIf="tasksGroupedByPerformerVisibility[group.groupKey?.id || 'no_performer']">
                     <app-task *ngFor="let task of group.tasks"
                                 [ngStyle]="getGroupedTaskStyle"
-                                class="task"
+                                class="grouped-task"
                                 [task]="task"
                                 (deleteTask)="onDeleteTask($event)">
                     </app-task>
