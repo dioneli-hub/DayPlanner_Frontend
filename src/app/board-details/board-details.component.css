@@ -45,15 +45,6 @@
     grid-column-end: col-mid;
 }
 
-.group-button{
-    grid-column-start: col-start;
-    grid-column-end: col-mid;
-    grid-row-start: row-start;
-    grid-row-end: row-mid;
-
-    justify-self: end;
-}
-
 .board-members-content{
     width: 400px;
     overflow-y: hidden;
@@ -112,6 +103,37 @@
 
     /* display: flex;
     flex-wrap: wrap; */
+}
+
+.group-by-input {
+
+    grid-column-start: col-start;
+    grid-column-end: col-mid;
+    grid-row-start: row-start;
+    grid-row-end: row-mid;
+
+    justify-self: end;
+
+    font-size: small;
+    color: var(--primary-color)
+}
+
+.group-by-input p {
+    white-space: nowrap;
+}
+
+.group-by-input {
+    display: flex;
+    align-items: baseline;
+}
+
+.group-by-input >.input-group {
+    height: 25px;
+}
+
+.group-by-input > .input-group .group-by-btn {
+    padding-right: 7px;
+    padding-left: 7px;
 }
 
 .tasks-container {

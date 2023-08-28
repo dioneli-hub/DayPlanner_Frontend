@@ -79,7 +79,28 @@ button {
   border: var(--add-new-border);
   border-radius: 20px;
   color: var(--add-new-text-color);
-  border: var(--add-new-border);
+}
+
+.group-by-btn {
+  border-radius: 3px  3px  3px 3px ;
+  color: black;
+  font-size: small;
+}
+
+.group-by-btn:hover {
+
+  background-color: #f2f2f2;
+  border-radius: 3px  3px  3px 3px ;
+  color: black;
+  font-size: small;
+}
+
+
+.group-by-btn:active, .group-by-btn.active{
+  background-color: #f2f2f2;
+  border-radius: 3px  3px  3px 3px ;
+  color: var(--primary-color);
+  font-size: small;
 }
 
 .add-new-btn:disabled{

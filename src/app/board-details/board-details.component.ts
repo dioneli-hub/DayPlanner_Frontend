@@ -52,6 +52,13 @@ export class BoardDetailsComponent implements OnInit{
     this.tasksGroupedByPerformerVisibility[groupKey.id] = !this.tasksGroupedByPerformerVisibility[groupKey.id];}
   }
 
+  get groupByPerformerBtnClass(){
+    return this.showTasksGroupedByPerformer == true? 'active' : ""
+  }
+
+  get groupByCompletedBtnClass(){
+    return this.showTasksGroupedByCompleted == true? 'active' : ""
+  }
 
 
   delete(board: BoardModel) {

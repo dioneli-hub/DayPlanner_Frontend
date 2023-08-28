@@ -27,12 +27,14 @@
                 <h6 class="pt-2 pb-1">Board Members <button id="toggle-members" (click)="toggleMembers()"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button></h6>
             </div>
 
-            <div class="group-button">
-            <div class="input-group ">
-                <button class="add-new-btn" (click)="toggleGroupByPerformer()">
+            <div class="group-by-input ms-3">
+                <p>Group by: </p>
+            <div class="input-group mt-3">
+               
+                <button [ngClass]="groupByPerformerBtnClass" class="group-by-btn ms-2" (click)="toggleGroupByPerformer()">
                     Performer
                 </button>
-                <button class="add-new-btn" (click)="toggleGroupByCompleted()">
+                <button [ngClass]="groupByCompletedBtnClass"class="group-by-btn" (click)="toggleGroupByCompleted()">
                     Status
                 </button>
             </div>
