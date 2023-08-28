@@ -152,8 +152,8 @@
         <div class="tasks task-groups by-completed" [ngStyle]="getTasksStyle" *ngIf="showTasksGroupedByCompleted">
             <div  [ngStyle]="getTasksColumnStyle" *ngFor="let group of taskGroupsByCompleted" class="task-group tasks-container">
                 <div>
-                    <h6>{{group.groupKey == true? 'Done' : 'ToDo'}} 
-                        <button id="toggle-members" (click)="toggleDataGroupedByCompleted(group.groupKey)"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button>
+                    <h6 class="group-heading">{{group.groupKey == true? 'Done' : 'ToDo'}} 
+                        <button id="toggle-members" (click)="toggleDataGroupedByCompleted(group.groupKey)"><i [ngClass]="tasksGroupedByCompletedVisibility[group.groupKey]?  'fa fa-minus-square': 'fa fa-plus-square'" aria-hidden="true"></i></button>
                     </h6>
                 </div>
                 <div *ngIf="tasksGroupedByCompletedVisibility[group.groupKey]">
@@ -172,8 +172,8 @@
         <div class="tasks task-groups  by-performer " [ngStyle]="getTasksStyle" *ngIf="showTasksGroupedByPerformer">   
                 <div   [ngStyle]="getTasksColumnStyle" *ngFor="let group of taskGroupsByPerformer"  class="task-group">
                     <div>
-                        <h6>{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}
-                            <button id="toggle-members" (click)="toggleDataGroupedByPerformer(group.groupKey)"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button>
+                        <h6  class="group-heading">{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}
+                            <button id="toggle-members" (click)="toggleDataGroupedByPerformer(group.groupKey)"><i [ngClass]="tasksGroupedByPerformerVisibility[group.groupKey?.id || 'no_performer']?  'fa fa-minus-square': 'fa fa-plus-square'" aria-hidden="true"></i></button>
                         </h6>
                     </div>
                     <!-- class="grouped-tasks" -->

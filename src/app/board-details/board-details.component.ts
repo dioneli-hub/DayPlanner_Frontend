@@ -58,6 +58,8 @@ export class BoardDetailsComponent implements OnInit{
     this.tasksGroupedByPerformerVisibility[groupKey.id] = !this.tasksGroupedByPerformerVisibility[groupKey.id];}
   }
 
+
+
   get groupByPerformerBtnClass(){
     return this.showTasksGroupedByPerformer == true? 'active' : ""
   }
