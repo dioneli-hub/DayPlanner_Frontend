@@ -31,16 +31,21 @@
                 <p><button class="regroup-btn" ngbTooltip="Regroup" (click)="groupTasks()"><i class="fa fa-refresh" aria-hidden="true"></i></button>  Group by: </p>
             <div class="input-group mt-3">
                
-                <button [ngClass]="groupByPerformerBtnClass" class="group-by-btn ms-2" (click)="toggleGroupByPerformer()">
+                <button [ngClass]="groupByPerformerBtnClass"  class="group-by-btn ms-2" (click)="toggleGroupByPerformer()">
                     Performer
                 </button>
-                <button [ngClass]="groupByCompletedBtnClass"class="group-by-btn" (click)="toggleGroupByCompleted()">
+                <button [ngClass]="groupByCompletedBtnClass"  class="group-by-btn" (click)="toggleGroupByCompleted()">
                     Status
                 </button>
             </div>
 
-           
+            
         </div>
+
+        <div class="my-tasks  mt-3">
+            <p><button [ngClass]="showMyTasksBtnClass" class="group-by-btn" ngbTooltip="Show only my tasks" (click)="toggleMyTasks()">My tasks <i class="fa fa-user-circle-o" aria-hidden="true"></i></button></p>
+        </div>
+        
             
 
             <div class="add-new-task-btn-container p-2">
@@ -131,8 +136,8 @@
             
         </div>
 
-        <div class="tasks"  [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer">
-            <!-- [ngStyle]="getTasksColumnStyle" -->
+<!-- 
+        <div class="tasks"  [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer &&!showMyTasks">
             <div  class="tasks-container" [ngStyle]="getTasksColumnStyle">
                 <app-task 
                 
@@ -147,6 +152,24 @@
             </div>
 
         </div>
+
+        <div class="tasks"  [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer && showMyTasks">
+            <div  class="tasks-container" [ngStyle]="getTasksColumnStyle">
+                <app-task 
+                
+                *ngFor="let task of myTasks" 
+                [task]="task"
+                (deleteTask)="onDeleteTask($event)"
+                ></app-task>
+            </div>
+
+            <div *ngIf="noMyTasks" class="no-items">
+                There are no tasks with you as a performer at this board.
+            </div>
+
+        </div> -->
+
+
 
 
 

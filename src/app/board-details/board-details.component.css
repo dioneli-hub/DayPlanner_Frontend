@@ -64,7 +64,6 @@
 .page-content{
     height: inherit;
     display: grid;
-    /* justify-items: stretch; */
     grid-template-columns: [col-start]  1fr [col-mid] 1fr [col-end]; 
     grid-template-rows: [row-start] 1fr [row-mid] 23fr [row-end];
 
@@ -118,6 +117,22 @@
     color: var(--primary-color)
 }
 
+.my-tasks {
+
+    grid-column-start: col-mid;
+    grid-column-end: col-end;
+    grid-row-start: row-start;
+    grid-row-end: row-mid;
+
+    justify-self: start;
+    align-self: baseline;
+
+    font-size: small;
+    color: var(--primary-color);
+
+    margin-left: 50px;
+}
+
 .group-by-input p {
     white-space: nowrap;
 }
@@ -137,11 +152,11 @@
 }
 
 .tasks-container {
-    transition: grid-template-columns 0s linear 0.3s, opacity 0.3s ease;
+    
 }
 
 .tasks {
-    /* flex: 1;  */
+
 }
 
 .task {
@@ -171,6 +186,7 @@
 .group-heading {
     margin-left: 30px;
 }
+
 
 .regroup-btn{
     margin-right: -15px;

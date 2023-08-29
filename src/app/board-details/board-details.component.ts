@@ -21,11 +21,12 @@ export class BoardDetailsComponent implements OnInit{
   @Output() leaveBoard = new EventEmitter<BoardModel>();
 
 
-  // currentUser: UserModel | null = null;
+  currentUserId: number = null;
   currentBoard: BoardModel | null = null;
   currentBoardName: string = '';
   boardMembers: Array<UserModel> = [];
   tasks: Array<TaskModel> = [];
+  myTasks:  Array<TaskModel> = [];
   boardId: number | null = null;
   email: string = '';
   isCreator: boolean = null;
@@ -38,6 +39,7 @@ export class BoardDetailsComponent implements OnInit{
   taskGroupsByPerformer: Array<TaskGroup> = []
   showTasksGroupedByCompleted: boolean = false;
   showTasksGroupedByPerformer: boolean = false;
+  showMyTasks: boolean = false;
   tasksGroupedByPerformerVisibility: { [groupKeyId: string] :boolean } = {}; 
   tasksGroupedByCompletedVisibility: { [groupKey: string] :boolean } = {}; 
 
@@ -57,6 +59,9 @@ export class BoardDetailsComponent implements OnInit{
     this.tasksGroupedByPerformerVisibility[groupKey.id] = !this.tasksGroupedByPerformerVisibility[groupKey.id];}
   }
 
+  get showMyTasksBtnClass(){
+    return this.showMyTasks == true? 'active' : ""
+  }
 
   get groupByPerformerBtnClass(){
     return this.showTasksGroupedByPerformer == true? 'active' : ""
@@ -102,7 +107,7 @@ export class BoardDetailsComponent implements OnInit{
                 .subscribe(user => {
                   this.isCreator = currentBoard.creatorId == user.id? 
                      true :  false;
-
+                  this.currentUserId = user.id;
                   }
 
                 );
@@ -132,8 +137,9 @@ export class BoardDetailsComponent implements OnInit{
           }
 
           groupTasksByCompleted(){
+            let ifGroupMyTasks = this.showMyTasks;
             this.tasksService
-                .getBoardTasksGroupedByCompleted(this.boardId)
+                .getBoardTasksGroupedByCompleted(this.boardId, ifGroupMyTasks)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(taskGroups => {
                   this.taskGroupsByCompleted = taskGroups;
@@ -211,6 +217,11 @@ export class BoardDetailsComponent implements OnInit{
 
             this.groupTasks();
            
+            // if(this.showMyTasks == true){
+            //   this.myTasks = this.myTasks.filter(task => task.id === task.id);
+            // } else {
+            //   console.log('no need to filter')
+            // }
           })  
        }
 
@@ -221,6 +232,9 @@ export class BoardDetailsComponent implements OnInit{
 
       get noBoardTasks() : boolean{
         return this.tasks.length > 0? false: true;
+      }
+      get noMyTasks(): boolean{
+        return this.myTasks.length > 0? false: true;
       }
 
       get getTasksColumnStyle(){
@@ -246,6 +260,18 @@ export class BoardDetailsComponent implements OnInit{
       return { }
       }
 
+      toggleMyTasks(){
+        
+        // this.showTasksGroupedByCompleted = false;
+        this.showMyTasks = ! this.showMyTasks;
+
+        this.groupTasksByCompleted();
+        if(this.showMyTasks == true){
+          // this.myTasks = this.tasks.filter(task => task.performerId === this.currentUserId);
+          this.showTasksGroupedByPerformer = false;
+        }
+        
+      }
 
       get getTasksStyle(){
         if(this.isMembersListVisible == false && !this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted){
@@ -291,6 +317,7 @@ export class BoardDetailsComponent implements OnInit{
         {
           this.groupTasksByPerformer();
           this.showTasksGroupedByCompleted = false;
+          this.showMyTasks = false;
         }
         this.showTasksGroupedByPerformer = !this.showTasksGroupedByPerformer
         

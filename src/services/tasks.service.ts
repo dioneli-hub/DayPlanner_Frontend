@@ -15,8 +15,8 @@ import { environment } from "../environments/environment";
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks`);
     }
 
-    getBoardTasksGroupedByCompleted(boardId: number) {
-      return this.httpClient.get<Array<any>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/grouped-by-completed`);
+    getBoardTasksGroupedByCompleted(boardId: number, ifMyTasks: boolean) {
+      return this.httpClient.get<Array<any>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/grouped-by-completed/if-my-${ifMyTasks}`);
     }
 
     getBoardTasksGroupedByPerformer(boardId: number) {

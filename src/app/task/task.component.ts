@@ -105,7 +105,9 @@ export class TaskComponent implements OnInit, OnDestroy{
 //                     true : false;
 
 // }
-
+get ifTaskCompleted(){
+  return this.task.isCompleted == true? true: false;
+}
 
 get taskPerformerInfo(){
   return this.performerId == null? 
