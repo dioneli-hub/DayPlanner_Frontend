@@ -215,14 +215,33 @@ export class BoardDetailsComponent implements OnInit{
           .subscribe(()=>{
             this.tasks = this.tasks.filter(x => x.id !== task.id);
 
-            this.groupTasks();
-           
-            // if(this.showMyTasks == true){
-            //   this.myTasks = this.myTasks.filter(task => task.id === task.id);
-            // } else {
-            //   console.log('no need to filter')
-            // }
-          })  
+            if(  this.showTasksGroupedByCompleted == true){
+              this.taskGroupsByCompleted.map(group =>{
+                if(group.groupKey == task.isCompleted){
+                  group.tasks = group.tasks.filter(t => t.id != task.id);
+
+                  if(group.tasks.length < 1){
+                    this.taskGroupsByCompleted = this.taskGroupsByCompleted.filter(group => group.tasks.length > 0)
+                  }
+                }
+              })
+            }
+              
+            if(  this.showTasksGroupedByPerformer == true){
+              this.taskGroupsByPerformer.map(group =>{
+                if((group.groupKey == null && task.performerId == 0)|| group.groupKey?.id == task.performerId ){
+                  group.tasks = group.tasks.filter(t => t.id != task.id);
+
+                  if(group.tasks.length < 1){
+                    this.taskGroupsByPerformer = this.taskGroupsByPerformer.filter(group => group.tasks.length > 0)
+                  }
+                }
+              })
+            }
+
+              // this.groupTasks();
+            })
+          
        }
 
        onCreateTask(task: TaskModel){
