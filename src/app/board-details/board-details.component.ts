@@ -43,40 +43,7 @@ export class BoardDetailsComponent implements OnInit{
   tasksGroupedByPerformerVisibility: { [groupKeyId: string] :boolean } = {}; 
   tasksGroupedByCompletedVisibility: { [groupKey: string] :boolean } = {}; 
 
-  toggleDataGroupedByCompleted(groupKey){
-    if(groupKey != null){
-    this.tasksGroupedByCompletedVisibility[groupKey] = !this.tasksGroupedByCompletedVisibility[groupKey];
-  }
-  }
 
-  
-  toggleDataGroupedByPerformer(groupKey) {
-   
-    if(groupKey == null){
-      this.tasksGroupedByPerformerVisibility['no_performer'] = !this.tasksGroupedByPerformerVisibility['no_performer'];
-    }
-    else { 
-    this.tasksGroupedByPerformerVisibility[groupKey.id] = !this.tasksGroupedByPerformerVisibility[groupKey.id];}
-  }
-
-  get showMyTasksBtnClass(){
-    return this.showMyTasks == true? 'active' : ""
-  }
-
-  get groupByPerformerBtnClass(){
-    return this.showTasksGroupedByPerformer == true? 'active' : ""
-  }
-
-  get groupByCompletedBtnClass(){
-    return this.showTasksGroupedByCompleted == true? 'active' : ""
-  }
-
-
-  delete(board: BoardModel) {
-    this.boardsService.deleteBoard(board.id).subscribe(()=>{
-      this.router.navigate(['/']).then();
-    })
-  }
 
   constructor(private usersService: UsersService,
               private tasksService: TasksService,
@@ -129,6 +96,41 @@ export class BoardDetailsComponent implements OnInit{
               }
             });
 
+          }
+
+          toggleDataGroupedByCompleted(groupKey){
+            if(groupKey != null){
+            this.tasksGroupedByCompletedVisibility[groupKey] = !this.tasksGroupedByCompletedVisibility[groupKey];
+          }
+          }
+        
+          
+          toggleDataGroupedByPerformer(groupKey) {
+           
+            if(groupKey == null){
+              this.tasksGroupedByPerformerVisibility['no_performer'] = !this.tasksGroupedByPerformerVisibility['no_performer'];
+            }
+            else { 
+            this.tasksGroupedByPerformerVisibility[groupKey.id] = !this.tasksGroupedByPerformerVisibility[groupKey.id];}
+          }
+        
+          get showMyTasksBtnClass(){
+            return this.showMyTasks == true? 'active' : ""
+          }
+        
+          get groupByPerformerBtnClass(){
+            return this.showTasksGroupedByPerformer == true? 'active' : ""
+          }
+        
+          get groupByCompletedBtnClass(){
+            return this.showTasksGroupedByCompleted == true? 'active' : ""
+          }
+        
+        
+          delete(board: BoardModel) {
+            this.boardsService.deleteBoard(board.id).subscribe(()=>{
+              this.router.navigate(['/']).then();
+            })
           }
 
           groupTasks(){
@@ -298,6 +300,45 @@ export class BoardDetailsComponent implements OnInit{
 
         }
         
+      }
+
+      onAddTaskRecurrence(data){
+        this.tasksService
+              .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+              .subscribe(childTasks => {
+                this.tasks = [...this.tasks, ...childTasks];
+                this.sortTasksByDate();
+              })
+      }
+
+      onAddTaskRecurrenceForGroupedByCompleted(data){
+        this.tasksService
+              .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+              .subscribe(childTasks => {
+                let toDoGroupExists = false;
+                this.taskGroupsByCompleted.map(group =>{
+                  if(group.groupKey == false){
+                    toDoGroupExists = true;
+                    group.tasks = [...group.tasks, ...childTasks]
+                          .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());;
+                        } 
+              })
+                if(toDoGroupExists == false){
+                  this.taskGroupsByCompleted.push({
+                    groupKey: false,
+                    tasks: childTasks
+                  })
+                }
+            })
+      }
+
+      onAddTaskRecurrenceForGroupedByPerformer(data){
+        this.tasksService
+              .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+              .subscribe(childTasks => {
+                this.tasks = [...this.tasks, ...childTasks];
+                this.sortTasksByDate();
+              })
       }
 
       get getTasksStyle(){

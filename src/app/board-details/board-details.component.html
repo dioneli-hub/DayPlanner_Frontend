@@ -140,7 +140,7 @@
         <div class="tasks"  [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer ">
             <div  class="tasks-container" [ngStyle]="getTasksColumnStyle">
                 <app-task 
-                
+                (addTaskRecurrence)="onAddTaskRecurrence($event)"
                 *ngFor="let task of tasks" 
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"
@@ -184,7 +184,7 @@
                 </div>
                 <div *ngIf="tasksGroupedByCompletedVisibility[group.groupKey]">
                     <app-task *ngFor="let task of group.tasks"
-                            
+                            (addTaskRecurrence)="onAddTaskRecurrenceForGroupedByCompleted($event)"
                             class="grouped-task"
                             [task]="task"
                             (deleteTask)="onDeleteTask($event)">
@@ -205,6 +205,7 @@
                     <div [ngStyle]="getTasksColumnStyle" *ngIf="tasksGroupedByPerformerVisibility[group.groupKey?.id || 'no_performer']">
                     <app-task *ngFor="let task of group.tasks"
                                 [ngStyle]="getGroupedTaskStyle"
+                                (addTaskRecurrence)="onAddTaskRecurrenceForGroupedByPerformer($event)"
                                 class="grouped-task"
                                 [task]="task"
                                 (deleteTask)="onDeleteTask($event)">
