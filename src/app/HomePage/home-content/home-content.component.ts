@@ -126,7 +126,7 @@ export class HomeContentComponent implements OnInit{
 
   onAddTaskRecurrence(data){
     this.tasksService
-          .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+          .addRecurrence(data.task.id, data.recurringType, data.occurencesNumber)
           .subscribe(childTasks => {
             this.tasks = [...this.tasks, ...childTasks];
             this.sortTasksByDate();

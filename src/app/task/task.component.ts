@@ -79,7 +79,7 @@ export class TaskComponent implements OnInit, OnDestroy{
     submitAddRecurrenceForm(value: any){
 
       this.addTaskRecurrence.emit({
-        taskId: this.task.id, 
+        task: this.task, 
         recurringType: value.recurringType, 
         occurencesNumber: value.occurencesNumber
       });

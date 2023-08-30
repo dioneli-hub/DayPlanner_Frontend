@@ -304,7 +304,7 @@ export class BoardDetailsComponent implements OnInit{
 
       onAddTaskRecurrence(data){
         this.tasksService
-              .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+              .addRecurrence(data.task.id, data.recurringType, data.occurencesNumber)
               .subscribe(childTasks => {
                 this.tasks = [...this.tasks, ...childTasks];
                 this.sortTasksByDate();
@@ -313,14 +313,14 @@ export class BoardDetailsComponent implements OnInit{
 
       onAddTaskRecurrenceForGroupedByCompleted(data){
         this.tasksService
-              .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+              .addRecurrence(data.task.id, data.recurringType, data.occurencesNumber)
               .subscribe(childTasks => {
                 let toDoGroupExists = false;
                 this.taskGroupsByCompleted.map(group =>{
                   if(group.groupKey == false){
                     toDoGroupExists = true;
                     group.tasks = [...group.tasks, ...childTasks]
-                          .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());;
+                          .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
                         } 
               })
                 if(toDoGroupExists == false){
@@ -334,12 +334,14 @@ export class BoardDetailsComponent implements OnInit{
 
       onAddTaskRecurrenceForGroupedByPerformer(data){
         this.tasksService
-              .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+              .addRecurrence(data.task.id, data.recurringType, data.occurencesNumber)
               .subscribe(childTasks => {
-                this.tasks = [...this.tasks, ...childTasks];
-                this.sortTasksByDate();
-              })
-      }
+
+                this.taskGroupsByPerformer.map(group =>{
+                  if((group.groupKey == null && data.task.performerId == 0)|| group.groupKey?.id == data.task.performerId ){
+                    group.tasks =  [...group.tasks, ...childTasks]
+                                      .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+      }})})}
 
       get getTasksStyle(){
         if(this.isMembersListVisible == false && !this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted){
