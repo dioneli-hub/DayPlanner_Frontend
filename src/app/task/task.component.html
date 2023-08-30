@@ -2,7 +2,7 @@
         [ngStyle]="{'background-color': taskBgColor}">
     <div class="card-body task-card">
       <div class="task-board">
-         {{task.board.name}} {{taskStatus}}
+       {{task.board.name}} {{taskStatus}} 
       </div>
         <div class="task-content">
 
@@ -61,6 +61,8 @@
           
         </ng-template>
 
+        <i *ngIf="isChild" ngbTooltip="Child task" class="child-task-icon fa fa-child me-3" aria-hidden="true"></i>
+
           <div *ngIf="taskCreatorId == currentUserId" class="task-delete-button">
             <button 
                     type="button" 
@@ -97,8 +99,8 @@
 
         </ng-template>
 
-        
-        <ng-template #recurrencePopoverContent >
+     <ng-template [ngIf]="taskCreatorId == currentUserId">
+        <ng-template #recurrencePopoverContent class="recurrence-popover-container" >
 
           <form #recurrenceAddPopover="ngForm" class="recurrence-popover-form" (ngSubmit)="submit(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
 
@@ -113,7 +115,7 @@
                 <input type="radio" class="recurring-type" name="recurringType" [value]="recurringType" [(ngModel)]="selectedRecurringType" required>
                 {{ recurringType }}
               </label>
-              <span class="checkmark"></span>
+              <!-- <span class="checkmark"></span> -->
             </div>
 
             <div class="recur-number-container form-group">
@@ -135,10 +137,21 @@
 
             <button type="submit" class="confirm-btn" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Recur</button>
             </form>
+       
+            <div class="mt-3">
 
+              <label class="custom-checkbox" >
+                <input name="setPerformerCheckbox" (ngModelChange)="updateChangeRecurredChildren()" type="checkbox"  [(ngModel)]="isRepeatRecurrenceActions"/>
+                <span class="checkmark"></span>
+                <small>Delete/reschedule child tasks along with the parent task</small> 
+              </label>
+            
            
+          </div>
+
         </ng-template>
         
+        <!-- <div [ngIf]="taskCreatorId == currentUserId"> -->
         <button type="button" 
         class="btn btn-sm" 
         [ngbPopover]="recurrencePopoverContent"
@@ -148,10 +161,15 @@
         popoverTitle="Recurrence"
         [autoClose]="'outside'"
         
+        
         >
         <!-- placement="top-left" -->
   <i class="fa fa-repeat"  aria-hidden="true" ngbTooltip="Recurrence settings"  placement="right"></i>
 </button>
+</ng-template>
+
+<!-- </div> -->
+ 
           
       </div>
     </div>

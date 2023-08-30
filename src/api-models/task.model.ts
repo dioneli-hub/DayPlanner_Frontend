@@ -13,6 +13,7 @@ import { UserModel } from "./user.model";
      performer: UserModel;
      isCompleted: boolean;
      isOverdue: boolean;
+     changeRecurredChildren: boolean;
      isRecurring: boolean;
      parentTaskId: number;// = new Date(this.dueDate) < new Date(new Date().toDateString()) && this.isCompleted == false? true : false
     }

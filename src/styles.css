@@ -304,6 +304,68 @@ a.primary-link:hover{
   color: var(--primary-color-hover);
 }
 
+
+/* Style for the custom checkbox */
+.custom-checkbox {
+  position: relative;
+  display: inline-block;
+  padding-left: 28px; 
+  margin-bottom: 12px; 
+  cursor: pointer;
+  font-size: 16px; 
+}
+
+/* Hiding default checkbox */
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Styling the custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px; 
+  width: 20px; 
+  background-color: #eee; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+}
+
+/* checked state */
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: var(--primary-color); /* Change color when checked */
+}
+
+/* checkmark  */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Position and style the checkmark */
+.custom-checkbox .checkmark:after {
+  left: 6px; 
+  top: 2px;
+  width: 5px; 
+  height: 10px; 
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+label.custom-checkbox {
+ color: gray;
+}
+
 /*theming*/
 
 /* .cold-blue-theme { */

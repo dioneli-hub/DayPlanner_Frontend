@@ -58,6 +58,14 @@ import { environment } from "../environments/environment";
         );
     }
 
+
+    updateChangeRecurredChildren(taskId: number) : Observable<boolean> {
+      return this.httpClient.post<boolean>(
+        `${environment.apiUrl}TaskItem/${taskId}/update-change-recurred-children`, 
+        {},
+      );
+    }
+
     UpdateTaskPerformer(taskId: number, newPerformerId:number)  {
       return this.httpClient.patch(
         `${environment.apiUrl}TaskItem/${taskId}/update-performer/${newPerformerId}`, 
@@ -74,11 +82,11 @@ import { environment } from "../environments/environment";
         );
     }
 
-    addRecurrence(taskId: number, recurringType: number, occurencesNumber: number)  {
+    addRecurrence(taskId: number, recurringType: string, occurencesNumber: number)  {
       return this.httpClient.post(
         `${environment.apiUrl}TaskItem/add-recurrence`, 
         {"taskId": taskId,
-        "recurringType": 1, //real value
+        "recurringType": recurringType, 
         "occurencesNumber": occurencesNumber},
         // {responseType: 'text'}
         );

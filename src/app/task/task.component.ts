@@ -24,22 +24,29 @@ export class TaskComponent implements OnInit, OnDestroy{
   newTaskDueDate = null;
   minDate = undefined;
   homeComponent: HomeContentComponent
-
+  isChild: boolean;
 
   recurrencePattern
   recurringTypes = ['Daily', 'Weekly', 'Monthly']
   selectedRecurringType
   popoverVisible = false;
+  isRepeatRecurrenceActions: boolean = false;
 
   occurencesNumber: number = null;
   occurencesNumberInput = new FormControl(null, [Validators.required, Validators.min(0), Validators.max(20)]);
   
+  updateChangeRecurredChildren (){
+    this.tasksService 
+        .updateChangeRecurredChildren(this.task.id)
+        .subscribe((updatedChangeRecurredChildren)=>{
+          this.task.changeRecurredChildren = updatedChangeRecurredChildren;
+          this.isRepeatRecurrenceActions = updatedChangeRecurredChildren;
+        }) 
+  }
   submit(value: any){
     this.tasksService
         .addRecurrence(this.task.id, value.recurringType, value.occurencesNumber)
-        .subscribe(()=> 
-          {console.log('value');
-          console.log(value);})
+        .subscribe()
     
   }
 
@@ -70,6 +77,7 @@ export class TaskComponent implements OnInit, OnDestroy{
 
 
   ngOnInit(): void {
+
     this.boardId = this.task.boardId;
     if (this.boardId) {
       this.usersService
@@ -78,6 +86,10 @@ export class TaskComponent implements OnInit, OnDestroy{
         .subscribe(boardMembers => {
           this.boardMembers = boardMembers;
         });}
+
+        this.isRepeatRecurrenceActions = this.task.changeRecurredChildren;
+
+        this.isChild = this.task.parentTaskId != 0? true :false;
 
   if(this.task.performerId != null && this.task.performer != null){
     this.performerId = this.task.performerId;

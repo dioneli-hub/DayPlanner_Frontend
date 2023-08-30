@@ -114,6 +114,16 @@ i.fa-repeat{
     align-self: end; 
 }
 
+.child-task-icon{
+    grid-column-start: divide-two;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+    justify-self: end;
+    align-self: end; 
+    color:gray;
+}
+
 /*styling select*/
 
 .performer-box{
@@ -222,15 +232,10 @@ i.fa-repeat{
       }
 
     .recurrence-popover-form> button.confirm-btn {
-        margin-top:15px;
+        margin-top:10px;
         margin-left:30%;
     }
 
     input[type='radio'] {
         accent-color: var(--primary-color);
-    }
-    .recurrence-popover-form {
-        /* display: flex;
-        justify-content: center;
-        align-items: center; */
     }
