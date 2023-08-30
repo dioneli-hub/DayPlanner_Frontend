@@ -2,7 +2,7 @@
         [ngStyle]="{'background-color': taskBgColor}">
     <div class="card-body task-card">
       <div class="task-board">
-       {{task.board.name}} {{taskStatus}} 
+       {{task.board?.name}} {{taskStatus}} 
       </div>
         <div class="task-content">
 
@@ -102,7 +102,7 @@
      <ng-template [ngIf]="taskCreatorId == currentUserId">
         <ng-template #recurrencePopoverContent class="recurrence-popover-container" >
 
-          <form #recurrenceAddPopover="ngForm" class="recurrence-popover-form" (ngSubmit)="submit(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
+          <form #recurrenceAddPopover="ngForm" class="recurrence-popover-form" (ngSubmit)="submitAddRecurrenceForm(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
 
           <!-- <input 
             name="recurrence" 

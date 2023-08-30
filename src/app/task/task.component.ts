@@ -35,26 +35,13 @@ export class TaskComponent implements OnInit, OnDestroy{
   occurencesNumber: number = null;
   occurencesNumberInput = new FormControl(null, [Validators.required, Validators.min(0), Validators.max(20)]);
   
-  updateChangeRecurredChildren (){
-    this.tasksService 
-        .updateChangeRecurredChildren(this.task.id)
-        .subscribe((updatedChangeRecurredChildren)=>{
-          this.task.changeRecurredChildren = updatedChangeRecurredChildren;
-          this.isRepeatRecurrenceActions = updatedChangeRecurredChildren;
-        }) 
-  }
-  submit(value: any){
-    this.tasksService
-        .addRecurrence(this.task.id, value.recurringType, value.occurencesNumber)
-        .subscribe()
-    
-  }
 
 
   @Input() 
   task: TaskModel | null = null;
 
   @Output() deleteTask = new EventEmitter<TaskModel>();
+  @Output() addTaskRecurrence = new EventEmitter<any>();
   @Output() completeTask = new EventEmitter<TaskModel>();
   @Output() dueDateUpdated = new EventEmitter<TaskModel>();
 
@@ -73,6 +60,31 @@ export class TaskComponent implements OnInit, OnDestroy{
     };
 
     }
+
+    updateChangeRecurredChildren (){
+      this.tasksService 
+          .updateChangeRecurredChildren(this.task.id)
+          .subscribe((updatedChangeRecurredChildren)=>{
+            this.task.changeRecurredChildren = updatedChangeRecurredChildren;
+            this.isRepeatRecurrenceActions = updatedChangeRecurredChildren;
+          }) 
+    }
+    // submitAddRecurrenceForm(value: any){
+    //   this.tasksService
+    //       .addRecurrence(this.task.id, value.recurringType, value.occurencesNumber)
+    //       .subscribe(childTasks => {
+            
+    //       })
+    // }
+    submitAddRecurrenceForm(value: any){
+
+      this.addTaskRecurrence.emit({
+        taskId: this.task.id, 
+        recurringType: value.recurringType, 
+        occurencesNumber: value.occurencesNumber
+      });
+    }
+  
    
 
 

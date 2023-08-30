@@ -54,6 +54,7 @@
             <div class="card" *ngFor="let task of tasks">
                 <app-task 
                   *ngIf="isToday(task.dueDate)"
+                  (addTaskRecurrence)="onAddTaskRecurrence($event)"
                   (deleteTask)="onDeleteTask($event)"
                   [task]="task"></app-task>
             </div>
@@ -101,6 +102,7 @@
             <div class="card" *ngFor="let task of tasks">
               <app-task 
                 *ngIf="task.isCompleted == false && task.isOverdue != true"
+                (addTaskRecurrence)="onAddTaskRecurrence($event)"
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
          
@@ -113,6 +115,7 @@
             <div class="card" *ngFor="let task of tasks">
               <app-task 
                 *ngIf="task.isCompleted == true"
+                (addTaskRecurrence)="onAddTaskRecurrence($event)"
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
             </div>
@@ -125,6 +128,7 @@
             <div class="card" *ngFor="let task of tasks">
             <app-task 
                 *ngIf="task.isOverdue == true"
+                (addTaskRecurrence)="onAddTaskRecurrence($event)"
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
               </div>

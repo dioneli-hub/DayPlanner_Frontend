@@ -117,6 +117,23 @@ export class HomeContentComponent implements OnInit{
       this.todaysTasks.push(task);
     }
   }
+
+  // onAddTaskRecurrence(childTasks: Array<TaskModel>){
+  //   console.log(childTasks)
+  //   this.tasks = this.tasks.concat(childTasks)
+  //   console.log(this.tasks)
+  // }
+
+  onAddTaskRecurrence(data){
+    this.tasksService
+          .addRecurrence(data.taskId, data.recurringType, data.occurencesNumber)
+          .subscribe(childTasks => {
+            this.tasks = [...this.tasks, ...childTasks];
+            this.sortTasksByDate();
+          })
+  }
+
+
   isToday (date: Date) {  
     const now = new Date()
     const d = new Date(date) 

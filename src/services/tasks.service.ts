@@ -82,8 +82,8 @@ import { environment } from "../environments/environment";
         );
     }
 
-    addRecurrence(taskId: number, recurringType: string, occurencesNumber: number)  {
-      return this.httpClient.post(
+    addRecurrence(taskId: number, recurringType: string, occurencesNumber: number) : Observable<Array<TaskModel>>  {
+      return this.httpClient.post<Array<TaskModel>>(
         `${environment.apiUrl}TaskItem/add-recurrence`, 
         {"taskId": taskId,
         "recurringType": recurringType, 
