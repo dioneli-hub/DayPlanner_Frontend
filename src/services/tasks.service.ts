@@ -11,8 +11,8 @@ import { environment } from "../environments/environment";
     constructor(private httpClient: HttpClient) {
     }
 
-    getBoardTasks(boardId: number): Observable<Array<TaskModel>> {
-      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks`);
+    getBoardTasks(boardId: number, ifMyTasks:boolean): Observable<Array<TaskModel>> {
+      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/if-my-${ifMyTasks}`);
     }
 
     getBoardTasksGroupedByCompleted(boardId: number, ifMyTasks: boolean) {

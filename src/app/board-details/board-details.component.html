@@ -136,8 +136,8 @@
             
         </div>
 
-
-        <div class="tasks"  [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer &&!showMyTasks">
+        <!-- &&!showMyTasks -->
+        <div class="tasks"  [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer ">
             <div  class="tasks-container" [ngStyle]="getTasksColumnStyle">
                 <app-task 
                 

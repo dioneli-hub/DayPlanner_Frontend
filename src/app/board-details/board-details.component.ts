@@ -120,7 +120,7 @@ export class BoardDetailsComponent implements OnInit{
                 this.boardMembers = boardMembers;
               });
               this.tasksService
-                .getBoardTasks(this.boardId)
+                .getBoardTasks(this.boardId, this.showMyTasks)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(tasks => {
                   this.tasks = tasks;
@@ -285,9 +285,17 @@ export class BoardDetailsComponent implements OnInit{
         this.showMyTasks = ! this.showMyTasks;
 
         this.groupTasksByCompleted();
+        this.tasksService
+                .getBoardTasks(this.boardId, this.showMyTasks)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(tasks => {
+                  this.tasks = tasks;
+                  this.sortTasksByDate();
+                });
         if(this.showMyTasks == true){
           // this.myTasks = this.tasks.filter(task => task.performerId === this.currentUserId);
           this.showTasksGroupedByPerformer = false;
+
         }
         
       }
