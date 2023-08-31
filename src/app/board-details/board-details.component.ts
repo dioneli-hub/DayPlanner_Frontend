@@ -240,8 +240,6 @@ export class BoardDetailsComponent implements OnInit{
                 }
               })
             }
-
-              // this.groupTasks();
             })
           
        }
@@ -282,8 +280,6 @@ export class BoardDetailsComponent implements OnInit{
       }
 
       toggleMyTasks(){
-        
-        // this.showTasksGroupedByCompleted = false;
         this.showMyTasks = ! this.showMyTasks;
 
         this.groupTasksByCompleted();
@@ -295,11 +291,8 @@ export class BoardDetailsComponent implements OnInit{
                   this.sortTasksByDate();
                 });
         if(this.showMyTasks == true){
-          // this.myTasks = this.tasks.filter(task => task.performerId === this.currentUserId);
           this.showTasksGroupedByPerformer = false;
-
         }
-        
       }
 
       onAddTaskRecurrence(data){
@@ -393,34 +386,7 @@ export class BoardDetailsComponent implements OnInit{
         
       }
 
-      // get getGroupedTasksStyle(){
-      //   if(this.isMembersListVisible == false){
-      //     return {
-      //       'grid-column-start': 'col-start',
-      //       'grid-column-end': 'col-end'
-      //     }
-      //   };
-      //   return {
-      //     'grid-column-start': 'col-mid',
-      //     'grid-column-end': 'col-end'
-      // }
-      // }
-
-      get getGroupedTaskStyle(){
-        if(this.isMembersListVisible == false){
-          return {
-
-            // 'flex' : '0 0 400px'
-          }
-        };
-        return {
-          // 'flex' : '0 0 400px'
-      }
-      }
-
-
-
-
+  
       get toggleMembersIcon(){
         return this.isMembersListVisible == false? "fa fa-plus-square" : "fa fa-minus-square";
       }
@@ -429,11 +395,6 @@ export class BoardDetailsComponent implements OnInit{
         this.isMembersListVisible = !this.isMembersListVisible;
       }
 
-      // onCompleteTask(task: TaskModel){
-      //   this.tasks.push(task);
-      // }
-
-     
 
 ngOnDestroy() {
   this.destroy$.next();

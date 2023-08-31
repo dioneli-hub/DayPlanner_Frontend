@@ -4,7 +4,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { NotificationModel } from 'src/api-models/notification.model';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { NotificationsService } from 'src/services/notifications.service';
-import { UsersService } from 'src/services/users.service';
 
 @Component({
   selector: 'app-notifications-info',
@@ -16,9 +15,7 @@ export class NotificationsInfoComponent {
  
   notifications: Array<NotificationModel> = [];
 
-  constructor(private usersService: UsersService,
-              // private tasksService: TasksService,
-              // private boardsService: BoardsService,
+  constructor(
               private authService: AuthenticationService,
               private router: Router,
               private notificationsService: NotificationsService) {

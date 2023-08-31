@@ -15,7 +15,7 @@ import { UserModel } from "./user.model";
      isOverdue: boolean;
      changeRecurredChildren: boolean;
      isRecurring: boolean;
-     parentTaskId: number;// = new Date(this.dueDate) < new Date(new Date().toDateString()) && this.isCompleted == false? true : false
+     parentTaskId: number;
     }
 
     export interface AddTaskToBoardModel {

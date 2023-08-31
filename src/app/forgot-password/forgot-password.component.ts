@@ -18,8 +18,7 @@ export class ForgotPasswordComponent implements OnInit{
   showProcessLoadingMessage:boolean = false;
 
 
-  constructor(//private authService: AuthenticationService,
-              private usersService: UsersService,
+  constructor(private usersService: UsersService,
               private router: Router) { }
 
   ngOnInit(): void {

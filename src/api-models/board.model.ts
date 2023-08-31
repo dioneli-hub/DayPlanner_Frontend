@@ -4,7 +4,6 @@ export interface BoardModel {
     id: number
     name: string
     createdAt: Date
-    //tasks: Array<TaskModel>
     creatorId: number
 }
 

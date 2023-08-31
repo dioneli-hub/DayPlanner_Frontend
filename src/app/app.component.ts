@@ -9,7 +9,7 @@ import { ThemingService } from 'src/services/theming.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'TimeManagementWeb';
+  title = 'DayPlanner';
 
   constructor(private themingService: ThemingService,
 ) {}

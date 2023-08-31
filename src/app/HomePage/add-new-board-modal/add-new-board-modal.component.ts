@@ -1,10 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { BoardModel } from 'src/api-models/board.model';
-import { environment } from 'src/environments/environment';
-import { UserProvider } from 'src/providers/user.provider';
 import { BoardsService } from 'src/services/boards.service';
 
 @Component({
@@ -15,7 +12,6 @@ import { BoardsService } from 'src/services/boards.service';
 export class AddNewBoardModalComponent{
 
   private destroy$ = new Subject<void>();
-
 
   board_name: string = '';
 

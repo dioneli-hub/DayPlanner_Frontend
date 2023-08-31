@@ -5,10 +5,6 @@
     justify-items: start; 
     align-items: start;
     height: 105px;
-    /* max-width: 600px; */
-    /* min-width: 300px; */
-    /* height: 60px; */
-    /* border-radius: 5px; */
     border-radius: 15px;
     border-color: var(--notification-border-color);
     border-style: inset;
@@ -22,8 +18,6 @@
     grid-row-end: row-middle-two;
 
     margin-left: 30px;
-    /* justify-self: start;  */
-    /* align-self: center; */
 }
 
 .close-icon{
@@ -41,9 +35,6 @@
     color:var(--primary-color-hover);
 }
 
-/* .close-icon:focus{
-    
-} */
 
 .time {
     grid-column-start: divide;
@@ -51,7 +42,6 @@
     grid-row-start: row-middle-two;
     grid-row-end: row-end;
     justify-self: end;
-    /* align-self: start; */
 
     color: grey;
     font-size: smaller;

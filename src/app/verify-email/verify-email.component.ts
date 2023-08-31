@@ -16,7 +16,6 @@ export class VerifyEmailComponent implements OnInit {
     ngOnInit() {
       this.route.queryParams.subscribe(params => {
         this.verificationToken = decodeURIComponent(params['token']);
-        // Call your API to verify the email using the token
         this.usersService
             .verify(this.verificationToken)
             .subscribe();

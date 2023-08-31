@@ -47,9 +47,7 @@ export class TaskComponent implements OnInit, OnDestroy{
 
   constructor(
     private tasksService: TasksService,
-    private viewContainerRef: ViewContainerRef,
     private usersService: UsersService,
-    private notificationsService: NotificationsService
     ) {
 
     const current = new Date();
@@ -69,13 +67,7 @@ export class TaskComponent implements OnInit, OnDestroy{
             this.isRepeatRecurrenceActions = updatedChangeRecurredChildren;
           }) 
     }
-    // submitAddRecurrenceForm(value: any){
-    //   this.tasksService
-    //       .addRecurrence(this.task.id, value.recurringType, value.occurencesNumber)
-    //       .subscribe(childTasks => {
-            
-    //       })
-    // }
+
     submitAddRecurrenceForm(value: any){
 
       this.addTaskRecurrence.emit({
@@ -119,16 +111,6 @@ export class TaskComponent implements OnInit, OnDestroy{
     }
 }
 
-
-// calculateOverdue(){
-//   let taskDueDate = new Date(this.task.dueDate);
-//   let now = new Date(new Date().toDateString());
-
-//   console.log(taskDueDate < now)
-//   this.task.isOverdue = (taskDueDate < now) && this.task.isCompleted == false?
-//                     true : false;
-
-// }
 get ifTaskCompleted(){
   return this.task.isCompleted == true? true: false;
 }
@@ -182,16 +164,6 @@ get taskDueDate(){
             })
   }
  
-  
-  // dateFormat (date) {
-  //   if(typeof(date) == 'string'){
-  //     this.taskDate = date.replace('T', ' ').substring(0, 10);
-  //   } else {
-  //     this.taskDate = date.toISOString().replace('T', ' ').substring(0, 10);
-  //   }
-  //   };
-
-
   delete(taskToDelete: TaskModel) {
     this.deleteTask.emit(taskToDelete);
   }

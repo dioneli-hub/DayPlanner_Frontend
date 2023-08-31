@@ -22,7 +22,6 @@
 
 
 
-        <!-- <div class="subheading"> -->
             <div class="board-members-heading">
                 <h6 class="pt-2 pb-1">Board Members <button id="toggle-members" (click)="toggleMembers()"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button></h6>
             </div>
@@ -54,14 +53,9 @@
                 (taskFromBoardCreate)="onCreateTask($event)"
                 >
                 </app-add-new-task-from-board-modal>
-            <!-- <button type="button" class="mt-1 mb-1 add-new-task-btn add-new-btn btn btn-secondary">Add new+</button> -->
             </div>
-        <!-- </div> -->
 
         <div class="logical-content" >
-
-       
-         
 
         <div class="board-members" *ngIf="isMembersListVisible == true">
             
@@ -153,29 +147,8 @@
 
         </div>
 
-        <!-- <div class="tasks"  [ngStyle]="getTasksStyle" *ngIf="!showTasksGroupedByCompleted && !showTasksGroupedByPerformer && showMyTasks">
-            <div  class="tasks-container" [ngStyle]="getTasksColumnStyle">
-                <app-task 
-                
-                *ngFor="let task of myTasks" 
-                [task]="task"
-                (deleteTask)="onDeleteTask($event)"
-                ></app-task>
-            </div>
-
-            <div *ngIf="noMyTasks" class="no-items">
-                There are no tasks with you as a performer at this board.
-            </div>
-
-        </div> -->
-
-
-
-
-
  
         <div class="tasks task-groups by-completed" [ngStyle]="getTasksStyle" *ngIf="showTasksGroupedByCompleted">
-            <!-- [ngStyle]="getTasksColumnStyle" -->
             <div   *ngFor="let group of taskGroupsByCompleted" class="task-group tasks-container">
                 <div>
                     <h6 class="group-heading">{{group.groupKey == true? 'Done' : 'ToDo'}} 
@@ -195,7 +168,6 @@
         </div> 
 
         <div class="tasks task-groups  by-performer " [ngStyle]="getTasksStyle" *ngIf="showTasksGroupedByPerformer">   
-            <!-- [ngStyle]="getTasksColumnStyle"  -->
             <div   *ngFor="let group of taskGroupsByPerformer"  class="task-group">
                     <div>
                         <h6  class="group-heading">{{group.groupKey == null? 'Performer not selected' : group.groupKey?.firstName + " " + group.groupKey?.lastName  }}
@@ -204,7 +176,6 @@
                     </div>
                     <div [ngStyle]="getTasksColumnStyle" *ngIf="tasksGroupedByPerformerVisibility[group.groupKey?.id || 'no_performer']">
                     <app-task *ngFor="let task of group.tasks"
-                                [ngStyle]="getGroupedTaskStyle"
                                 (addTaskRecurrence)="onAddTaskRecurrenceForGroupedByPerformer($event)"
                                 class="grouped-task"
                                 [task]="task"
@@ -213,29 +184,6 @@
                 </div>
                 </div>
         </div>
-
-
-<!--         
-        <div class="task-groups-container" [ngStyle]="getTasksStyle">   
-        <div  class="task-groups by-performer" *ngIf="showTasksGroupedByPerformer">
-            <div   *ngFor="let group of taskGroupsByPerformer"  class="task-group">
-                <div>
-                    <h6>{{group.groupKey != null? group.groupKey.firstName + " " + group.groupKey.lastName : 'Performer not selected'}}
-                        <button id="toggle-members" (click)="toggleGroupData(group.groupKey)"><i [ngClass]="toggleMembersIcon" aria-hidden="true"></i></button>
-                    </h6>
-                </div>
-    
-                <div class="grouped-tasks" *ngIf="tasksGroupedByPerformerVisibility[group.groupKey?.id || 'no_performer']">
-                <app-task *ngFor="let task of group.tasks"
-                            [ngStyle]="getGroupedTaskStyle"
-                            class="task"
-                            [task]="task"
-                            (deleteTask)="onDeleteTask($event)">
-                </app-task>
-            </div>
-            </div>
-        </div>
-    </div> -->
     </div>
     </div>
 </div>

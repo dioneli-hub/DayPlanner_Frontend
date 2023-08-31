@@ -17,24 +17,6 @@
     right: 10px;
 }
 
-/* .leave-button:hover {
-    color: var(--leave-icon-color);
-}
-
-.leave-button:focus {
-    border:none;
-}
-
-
-.delete-button:focus{
-    border:none;
-}
-
-
-.delete-button:hover {
-    color: var(--delete-icon-color);
-} */
-
 
 .card-link {
     color: black;
@@ -49,15 +31,6 @@
 .card-link:hover{
     opacity: 1;
 }
-/* 
-.board-content{
-    transition: tranform 0.4s ease-in-out;
-} */
-
-/* .board-content:hover{
-    
-    transform: translateY(-2px);
-} */
 
 /*restyling modal*/
 .modal-btn {

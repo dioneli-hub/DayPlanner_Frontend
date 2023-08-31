@@ -31,7 +31,6 @@ export class MemberComponent implements OnInit, OnChanges {
       .subscribe((user)=>{
         this.currentUserId = user?.id;
       })
-    // this.boardId = this.board?.id
     
   }
 

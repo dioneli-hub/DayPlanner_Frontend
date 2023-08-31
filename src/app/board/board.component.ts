@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BoardModel } from 'src/api-models/board.model';
 import { UserModel } from 'src/api-models/user.model';
-import { environment } from 'src/environments/environment';
-import { BoardsService } from 'src/services/boards.service';
 import { UsersService } from 'src/services/users.service';
 
 @Component({

@@ -1,6 +1,3 @@
-
-
-
 .card {
     border: none;
 }
@@ -20,8 +17,6 @@
 }
 
 
-
-
 /*scrollbars*/
 
 .scrollbar-area-card{
@@ -33,7 +28,7 @@
     background: none;
   }
 
-  /* Handle */
+  /* scrollbar handle */
    ::-webkit-scrollbar-thumb { 
     box-shadow: inset 0 0 5px #7B7777;
     background: white; 

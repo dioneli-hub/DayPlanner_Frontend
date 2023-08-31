@@ -27,17 +27,13 @@ export class AddNewTaskFromBoardModalComponent {
   taskFromBoardCreate = new EventEmitter<TaskModel>();
 
   @Input() boardId: number;
-  //@Input() boardMembers: UserModel[];
-
-  //currentBoardId: number = null;
 
   taskText = null;
   taskDueDate = null;
   minDate=undefined;
 
   constructor(private router: Router, 
-    private boardsService: BoardsService,  
-    private config: NgbDatepickerConfig) { 
+    private boardsService: BoardsService) { 
 
       
       //datepicker
@@ -55,7 +51,7 @@ export class AddNewTaskFromBoardModalComponent {
   });
   }
   ngOnInit(): void {
-    //this.currentBoardId = this.boardId;
+
   }
  }
 
