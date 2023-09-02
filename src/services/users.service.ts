@@ -78,8 +78,15 @@ export class UsersService {
     return this.httpClient.get<Array<UserModel>>(`${environment.apiUrl}BoardMember/boards/${boardId}/get-members`);
   }
 
-  inviteBoardMember(boardId: number, email: string): Observable<ServiceResponse<UserModel>>  {
-    return this.httpClient.post<ServiceResponse<UserModel>>(`${environment.apiUrl}BoardMember/boards/${boardId}/add-board-member-by-email/${email}`, {});
+  inviteBoardMember(boardId: number, email: string) {
+    return this.httpClient.post(`${environment.apiUrl}BoardMember/boards/${boardId}/add-board-member-by-email/${email}`, {});
+  }
+
+  acceptBoardInvitation(invitationToken: string) : Observable<ServiceResponse<BoardMemberModel>>  {
+    return this.httpClient
+      .patch<ServiceResponse<BoardMemberModel>>(`${environment.apiUrl}BoardMember/accept-invitation`,
+      { "token": invitationToken } ,
+      )
   }
  
 
