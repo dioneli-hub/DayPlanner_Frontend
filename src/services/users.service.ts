@@ -78,7 +78,7 @@ export class UsersService {
     return this.httpClient.get<Array<UserModel>>(`${environment.apiUrl}BoardMember/boards/${boardId}/get-members`);
   }
 
-  addBoardMember(boardId: number, email: string): Observable<ServiceResponse<UserModel>>  {
+  inviteBoardMember(boardId: number, email: string): Observable<ServiceResponse<UserModel>>  {
     return this.httpClient.post<ServiceResponse<UserModel>>(`${environment.apiUrl}BoardMember/boards/${boardId}/add-board-member-by-email/${email}`, {});
   }
  

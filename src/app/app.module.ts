@@ -27,6 +27,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ThemingService } from 'src/services/theming.service';
 import { ThemeChangerComponent } from './theme-changer/theme-changer.component';
+import { JoinBoardComponent } from './join-board/join-board.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -53,6 +54,7 @@ const appRoutes: Routes =[
     { path: "forgot-password", component: ForgotPasswordComponent, },
     { path: "reset-password", component: ResetPasswordComponent, },   
     { path: "verify", component: VerifyEmailComponent, },
+    { path: "join-board", component: JoinBoardComponent },
     { path: "**", component: NotFoundComponent, }
 ];
 @NgModule({
@@ -74,8 +76,7 @@ const appRoutes: Routes =[
         VerifyEmailComponent,
         LoadingComponent,
         ThemeChangerComponent,
-        // AddNewTaskFromBoardModalComponent
-        
+        JoinBoardComponent,
     ],
     providers: [
         AUTHENTICATION_INTERCEPTOR,

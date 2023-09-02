@@ -32,8 +32,9 @@ export class BoardDetailsComponent implements OnInit{
   isCreator: boolean = null;
   searchOptions: Array<string> = []
   searchedEmail: string = ''
-  showModalErrorToast: boolean = false;
-  modalErrorToastText: string = '';
+  showInviteMemberModalMessage : boolean = false;
+  inviteMemberModalMessageText: string = '';
+  showLoadingInviteMemberModal: boolean = false;
   isMembersListVisible: boolean = true;
   taskGroupsByCompleted: Array<TaskGroup> = []
   taskGroupsByPerformer: Array<TaskGroup> = []
@@ -172,17 +173,23 @@ export class BoardDetailsComponent implements OnInit{
 
           addBoardMember(value) {
 
+            this.showLoadingInviteMemberModal = true;
             this.usersService
-           .addBoardMember(this.boardId, value.email)
+           .inviteBoardMember(this.boardId, value.email)
            .pipe(takeUntil(this.destroy$))
            .subscribe((memberResponse: ServiceResponse<UserModel>) => {
+            this.showLoadingInviteMemberModal = false;
             if (memberResponse.isSuccess == true){
-              this.showModalErrorToast = false;
-              this.boardMembers.push(memberResponse.data);
+              this.showInviteMemberModalMessage  = true;
+              this.inviteMemberModalMessageText = memberResponse.message;
+              setTimeout(()=> this.showInviteMemberModalMessage = false, 7000);
+              
+              // this.showModalErrorToast = false;
+              // this.boardMembers.push(memberResponse.data);
             } else {
-              this.showModalErrorToast = true;
-              this.modalErrorToastText = memberResponse.message;
-              setTimeout(()=> this.showModalErrorToast = false, 7000);
+              this.showInviteMemberModalMessage  = true;
+              this.inviteMemberModalMessageText = memberResponse.message;
+              setTimeout(()=> this.showInviteMemberModalMessage  = false, 7000);
             }
             
           })
@@ -190,7 +197,7 @@ export class BoardDetailsComponent implements OnInit{
        
 
        removeModalErrorToast(){
-        this.showModalErrorToast = false;
+        this.showInviteMemberModalMessage  = false;
        }
 
        onDeleteMember(member: UserModel){
