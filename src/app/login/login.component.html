@@ -1,3 +1,6 @@
+<app-loading *ngIf="showLoading; else loginAndRegister"></app-loading>
+
+<ng-template #loginAndRegister>
 <div class="row">
   <div class="col-12" *ngIf="errorMessage">
       <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
@@ -62,4 +65,5 @@
       </button>
     </div>
   </div>
+</ng-template>
   

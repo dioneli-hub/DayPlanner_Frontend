@@ -13,7 +13,7 @@
 
 .process-status-message p{
   font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: bold;
   margin-left: 7px;
 }

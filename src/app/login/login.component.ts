@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
+  showLoading: boolean = false;
   email: string = '';
   password: string = '';
 
@@ -49,22 +50,26 @@ export class LoginComponent implements OnInit {
                   this.authService
                     .auth(email, password)
                     .subscribe
-                      ({
-                          next:(res: any) => {
+                      ((res: any) => {
                             if(res)
                             if(res.isSuccess == true){
                               this.router.navigate(['/']).then();
                             } else {
+                              
                               this.errorMessage = res.message
                             }
                         },
-                          error: error => console.log(error)
-                      });
+                        
+                          error => {
+                            console.log(error)
+                          }
+                      );
                 }
               
             
               createAccount() 
               {
+                this.showLoading = true;
                 this.successMessage = '';
                 this.errorMessage = '';
                 this.error = '';
@@ -72,9 +77,9 @@ export class LoginComponent implements OnInit {
                 this.usersService
                   .create(this.first_name, this.last_name, this.new_email, this.new_password)
                     .subscribe
-                    ({
-                        next:(res: any) => {
+                    ((res: any) => {
                           //console.log(res)
+                          this.showLoading = false;
                           if(res.isSuccess == true){
                             //this.authenticate(this.new_email, this.new_password);
                             this.errorMessage = '';
@@ -84,8 +89,10 @@ export class LoginComponent implements OnInit {
                             this.errorMessage = res.message
                           }
                       },
-                        error: error => console.log(error)
-                    });
+                         error => {
+                          console.log(error)
+                          this.showLoading = false;}
+                    );
                       
               }
               // {

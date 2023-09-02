@@ -12,9 +12,7 @@ export class JoinBoardComponent {
 
   invitationToken: string | undefined;
   decline:string | undefined;
-
   showInvitationMessage: boolean =false;
-  showDeclineMessage: boolean =false;
   showLoading: boolean =false;
   responseMessage:string | null = null;
   status:string | null = null;
@@ -30,21 +28,28 @@ export class JoinBoardComponent {
               private authService: AuthenticationService,) {}
 
     get redirectToBoard(){
-      return this.isAuthenticatedAsTargetUser == true && this.isAcceptanceResponseSuccessful == true && this.showDeclineMessage == false?
+      return (this.isAuthenticatedAsTargetUser == true && this.isAcceptanceResponseSuccessful == true && this.decline == 'false')
+      && this.showLoading == false?
         true: false
     }
 
     get redirectHome(){
-      return this.isAuthenticatedAsAnotherUser == true 
+      return (this.isAuthenticatedAsAnotherUser == true 
       || (this.isAuthenticatedAsTargetUser == true && this.isAcceptanceResponseSuccessful == false) 
-      || this.isAuthenticated == true && this.isAuthenticatedAsTargetUser == false?
+      || this.isAuthenticated == true && this.isAuthenticatedAsTargetUser == false)
+      && this.showLoading == false ?
         true: false
     }
 
     get redirectToLogin(){
-      return this.isAuthenticatedAsAnotherUser == false 
-            && this.isAuthenticatedAsTargetUser == false
-            && this.isAuthenticated == false ?
+      return (this.isAuthenticatedAsAnotherUser == false &&
+            this.isAuthenticatedAsTargetUser == false
+            && this.isAuthenticated == false 
+            && this.showLoading == false)
+            ||
+            (this.isAuthenticated == false 
+              && this.showLoading == false)
+            ?
         true: false
     }
 
@@ -62,7 +67,7 @@ export class JoinBoardComponent {
         // this.router.navigate(['/login']).then();
       // }
 
-      if(this.invitationToken && this.decline != 'true'){
+      if(this.invitationToken && this.decline == 'false'){
         
         this.showLoading = true;
 
@@ -85,18 +90,28 @@ export class JoinBoardComponent {
           }
           this.showLoading = false;
           this.showInvitationMessage = true;
-          
         });
  
-      } else if (this.decline == 'true'){
-        this.showDeclineMessage = true;
-        
-        // this.usersService
-        // .declineBoardInvitation(this.invitationToken)
-        // .subscribe(res=> {
-          // this.showLoading = false;
-      // }
-        // });
+      } else if (this.invitationToken &&  this.decline == 'true'){
+        this.usersService
+        .declineBoardInvitation(this.invitationToken)
+        .subscribe(res=> {
+
+          
+
+          if(res.isSuccess == true){
+            this.status = "Invitation Declined!"
+            this.responseMessage = "Board owner will be notified"
+          } else {
+            this.isAcceptanceResponseSuccessful == false;
+            this.status = "Error..."
+            this.responseMessage = res.message;
+          }
+
+          this.showLoading = false;
+          this.showInvitationMessage = true;
+      });
+
       }
     });
   }

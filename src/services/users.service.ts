@@ -88,6 +88,13 @@ export class UsersService {
       { "token": invitationToken } ,
       )
   }
+
+  declineBoardInvitation(invitationToken: string) : Observable<ServiceResponse<BoardMemberModel>>  {
+    return this.httpClient
+      .patch<ServiceResponse<BoardMemberModel>>(`${environment.apiUrl}BoardMember/decline-invitation`,
+      { "token": invitationToken } ,
+      )
+  }
  
 
   deleteBoardMember(boardId:number, memberId: number) {
