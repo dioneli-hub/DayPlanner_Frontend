@@ -127,6 +127,20 @@ export class HomeContentComponent implements OnInit{
           })
   }
 
+  onDueDateUpdated(parentTaskId ){
+    this.tasksService
+        .getRecurredChildTasks(parentTaskId)
+        .subscribe((childTasks)=>
+        {
+          if(childTasks.length > 0){
+         
+            this.tasks = 
+                [ ...this.tasks.filter(x => x.parentTaskId !== parentTaskId), ...childTasks];
+            this.sortTasksByDate();
+          }
+        })
+  }
+
 
   isToday (date: Date) {  
     const now = new Date()

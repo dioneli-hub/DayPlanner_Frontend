@@ -15,6 +15,11 @@ import { environment } from "../environments/environment";
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/if-my-${ifMyTasks}`);
     }
 
+    getRecurredChildTasks(parentTaskId : number) : Observable<Array<TaskModel>> {
+      console.log('getRecurredChildTasks service')
+      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/recurrence/${parentTaskId}/child-tasks`);
+    }
+
     getBoardTasksGroupedByCompleted(boardId: number, ifMyTasks: boolean) {
       return this.httpClient.get<Array<any>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/grouped-by-completed/if-my-${ifMyTasks}`);
     }

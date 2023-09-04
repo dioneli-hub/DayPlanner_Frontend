@@ -42,8 +42,8 @@ export class TaskComponent implements OnInit, OnDestroy{
 
   @Output() deleteTask = new EventEmitter<TaskModel>();
   @Output() addTaskRecurrence = new EventEmitter<any>();
-  @Output() completeTask = new EventEmitter<TaskModel>();
-  @Output() dueDateUpdated = new EventEmitter<TaskModel>();
+  // @Output() completeTask = new EventEmitter<TaskModel>();
+  @Output() dueDateUpdated = new EventEmitter<any>();
 
   constructor(
     private tasksService: TasksService,
@@ -151,7 +151,13 @@ get taskDueDate(){
     this.tasksService.updateTask(this.task.id, this.task)
   .subscribe((task: TaskModel)=>{
     this.task.dueDate = task.dueDate;
+
+    if(this.task.changeRecurredChildren == true){
+      this.dueDateUpdated.emit(task.id);
+    }
+    
     this.updateTaskOverdue();
+    
   })
 }
 

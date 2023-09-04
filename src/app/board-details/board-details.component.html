@@ -141,6 +141,7 @@
                 *ngFor="let task of tasks" 
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"
+                (dueDateUpdated)="onDueDateUpdated($event)"
                 ></app-task>
             </div>
 
@@ -163,7 +164,8 @@
                             (addTaskRecurrence)="onAddTaskRecurrenceForGroupedByCompleted($event)"
                             class="grouped-task"
                             [task]="task"
-                            (deleteTask)="onDeleteTask($event)">
+                            (deleteTask)="onDeleteTask($event)"
+                            (dueDateUpdated)="onDueDateUpdatedForGroupedByCompleted($event)">
                 </app-task>
                 </div>
                 
@@ -182,7 +184,8 @@
                                 (addTaskRecurrence)="onAddTaskRecurrenceForGroupedByPerformer($event)"
                                 class="grouped-task"
                                 [task]="task"
-                                (deleteTask)="onDeleteTask($event)">
+                                (deleteTask)="onDeleteTask($event)"
+                                (dueDateUpdated)="onDueDateUpdatedForGroupedByPerformer($event)">
                     </app-task>
                 </div>
                 </div>

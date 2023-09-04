@@ -87,13 +87,7 @@ export class BoardDetailsComponent implements OnInit{
               .subscribe(boardMembers => {
                 this.boardMembers = boardMembers;
               });
-              this.tasksService
-                .getBoardTasks(this.boardId, this.showMyTasks)
-                .pipe(takeUntil(this.destroy$))
-                .subscribe(tasks => {
-                  this.tasks = tasks;
-                  this.sortTasksByDate();
-                });
+              this.loadTasks();
               }
             });
 
@@ -156,6 +150,58 @@ export class BoardDetailsComponent implements OnInit{
             .subscribe(taskGroups => {
               this.taskGroupsByPerformer = taskGroups;
             });
+          }
+
+          onDueDateUpdated(parentTaskId ){
+            this.tasksService
+                .getRecurredChildTasks(parentTaskId)
+                .subscribe((childTasks)=>
+                {
+                  if(childTasks.length > 0){
+                    console.log(childTasks)
+                    if (this.showMyTasks == false){
+                      this.tasks = 
+                        [ ...this.tasks.filter(x => x.parentTaskId !== parentTaskId), ...childTasks];
+                    }
+                    else {
+                      this.tasks = 
+                        [ ...this.tasks.filter(x => x.parentTaskId !== parentTaskId), ... childTasks.filter(x => x.performerId === this.currentUserId)];
+                    }
+                    this.sortTasksByDate();
+                  }
+                })
+          }
+
+          onDueDateUpdatedForGroupedByCompleted(parentTaskId){
+            this.tasksService
+            .getRecurredChildTasks(parentTaskId)
+            .subscribe((childTasks)=>
+            {
+              if(childTasks.length > 0){
+
+                this.taskGroupsByCompleted.map(group =>{
+                    group.tasks = [...group.tasks.filter(x => x.parentTaskId !== parentTaskId), ...childTasks.filter(x=> x.isCompleted == group.groupKey)]
+                          .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+              })
+              }
+            })
+          }
+
+          onDueDateUpdatedForGroupedByPerformer(parentTaskId){
+            this.tasksService
+            .getRecurredChildTasks(parentTaskId)
+            .subscribe((childTasks)=>
+            {
+              this.taskGroupsByPerformer.map(group =>{
+                if(group.groupKey == null){
+                  group.tasks = [...group.tasks.filter(x => x.parentTaskId !== parentTaskId), ...childTasks.filter(x=> x.performerId == 0)]
+                                .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+                } else {
+                  group.tasks = [...group.tasks.filter(x => x.parentTaskId !== parentTaskId), ...childTasks.filter(x=> x.performerId == group.groupKey?.id)]
+                            .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+                }
+              })
+            })
           }
 
           sortTasksByDate(){
@@ -290,6 +336,13 @@ export class BoardDetailsComponent implements OnInit{
         this.showMyTasks = ! this.showMyTasks;
 
         this.groupTasksByCompleted();
+        this.loadTasks();
+        if(this.showMyTasks == true){
+          this.showTasksGroupedByPerformer = false;
+        }
+      }
+
+      loadTasks(){
         this.tasksService
                 .getBoardTasks(this.boardId, this.showMyTasks)
                 .pipe(takeUntil(this.destroy$))
@@ -297,9 +350,6 @@ export class BoardDetailsComponent implements OnInit{
                   this.tasks = tasks;
                   this.sortTasksByDate();
                 });
-        if(this.showMyTasks == true){
-          this.showTasksGroupedByPerformer = false;
-        }
       }
 
       onAddTaskRecurrence(data){
@@ -388,6 +438,9 @@ export class BoardDetailsComponent implements OnInit{
           this.groupTasksByPerformer();
           this.showTasksGroupedByCompleted = false;
           this.showMyTasks = false;
+          
+        } else {
+          this.loadTasks();
         }
         this.showTasksGroupedByPerformer = !this.showTasksGroupedByPerformer
         

@@ -16,7 +16,8 @@
                     *ngFor="let board of boards"
                     [board]="board"
                     (leaveBoard)="onLeaveBoard($event)"
-                    (deleteBoard)="onDeleteBoard($event)"></app-board> 
+                    (deleteBoard)="onDeleteBoard($event)"
+                    ></app-board> 
                 
                 </li>
               </ul>
@@ -51,8 +52,10 @@
             <div class="card" *ngFor="let task of tasks">
                 <app-task 
                   *ngIf="isToday(task.dueDate)"
+                  (dueDateUpdated)="onDueDateUpdated($event)"
                   (addTaskRecurrence)="onAddTaskRecurrence($event)"
                   (deleteTask)="onDeleteTask($event)"
+                  
                   [task]="task"></app-task>
             </div>
 
@@ -98,6 +101,7 @@
             <div class="card" *ngFor="let task of tasks">
               <app-task 
                 *ngIf="task.isCompleted == false && task.isOverdue != true"
+                (dueDateUpdated)="onDueDateUpdated($event)"
                 (addTaskRecurrence)="onAddTaskRecurrence($event)"
                 [task]="task"
                 (deleteTask)="onDeleteTask($event)"></app-task>
@@ -113,7 +117,9 @@
                 *ngIf="task.isCompleted == true"
                 (addTaskRecurrence)="onAddTaskRecurrence($event)"
                 [task]="task"
-                (deleteTask)="onDeleteTask($event)"></app-task>
+                (deleteTask)="onDeleteTask($event)"
+                (dueDateUpdated)="onDueDateUpdated($event)"
+                ></app-task>
             </div>
 
             <div *ngIf="noDoneTasks" class="card no-items">
@@ -126,7 +132,8 @@
                 *ngIf="task.isOverdue == true"
                 (addTaskRecurrence)="onAddTaskRecurrence($event)"
                 [task]="task"
-                (deleteTask)="onDeleteTask($event)"></app-task>
+                (deleteTask)="onDeleteTask($event)"
+                (dueDateUpdated)="onDueDateUpdated($event)"></app-task>
               </div>
 
               <div *ngIf="noOverdueTasks" class="card no-items">
