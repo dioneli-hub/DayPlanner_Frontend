@@ -79,8 +79,13 @@ export class HomeContentComponent implements OnInit{
     .deleteTask(task.id)
     .pipe(takeUntil(this.destroy$))
     .subscribe(()=>{
-      this.tasks = this.tasks.filter(x => x.id !== task.id);
-      this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
+      if(task.changeRecurredChildren == true){
+        this.tasks = this.tasks.filter(x => x.id !== task.id && x.parentTaskId !== task.id);
+        this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id && x.parentTaskId !== task.id);
+      }else {
+        this.tasks = this.tasks.filter(x => x.id !== task.id);
+        this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
+      }
     })  
  }
 

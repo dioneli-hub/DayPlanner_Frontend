@@ -54,6 +54,8 @@ export class BoardDetailsComponent implements OnInit{
               private route: ActivatedRoute) {
   }
 
+ 
+
   ngOnInit() {
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']).then();
@@ -217,7 +219,7 @@ export class BoardDetailsComponent implements OnInit{
             }
           }
 
-          addBoardMember(value) {
+          inviteBoardMember(value) {
 
             this.showLoadingInviteMemberModal = true;
             this.usersService
@@ -268,24 +270,35 @@ export class BoardDetailsComponent implements OnInit{
           .deleteTask(task.id)
           .pipe(takeUntil(this.destroy$))
           .subscribe(()=>{
-            this.tasks = this.tasks.filter(x => x.id !== task.id);
+            if(task.changeRecurredChildren == true){
+              this.tasks = this.tasks.filter(x => x.id !== task.id && x.parentTaskId !== task.id);
+            }else {
+              this.tasks = this.tasks.filter(x => x.id !== task.id);
+            }
 
-            if(  this.showTasksGroupedByCompleted == true){
+            if(this.showTasksGroupedByCompleted == true){
               this.taskGroupsByCompleted.map(group =>{
-                if(group.groupKey == task.isCompleted){
-                  group.tasks = group.tasks.filter(t => t.id != task.id);
+                  if(task.changeRecurredChildren == true){
+                    group.tasks = group.tasks.filter(t => t.id != task.id && t.parentTaskId !== task.id);
+                  } else {
+                    group.tasks = group.tasks.filter(t => t.id != task.id);
+                  }
 
                   if(group.tasks.length < 1){
                     this.taskGroupsByCompleted = this.taskGroupsByCompleted.filter(group => group.tasks.length > 0)
                   }
-                }
               })
             }
               
             if(  this.showTasksGroupedByPerformer == true){
               this.taskGroupsByPerformer.map(group =>{
                 if((group.groupKey == null && task.performerId == 0)|| group.groupKey?.id == task.performerId ){
-                  group.tasks = group.tasks.filter(t => t.id != task.id);
+                  
+                  if(task.changeRecurredChildren == true){
+                    group.tasks = group.tasks.filter(t => t.id != task.id && t.parentTaskId !== task.id);
+                  } else{
+                    group.tasks = group.tasks.filter(t => t.id != task.id);
+                  }
 
                   if(group.tasks.length < 1){
                     this.taskGroupsByPerformer = this.taskGroupsByPerformer.filter(group => group.tasks.length > 0)
@@ -298,9 +311,47 @@ export class BoardDetailsComponent implements OnInit{
        }
 
        onCreateTask(task: TaskModel){
-        this.tasks.push(task);
-        this.sortTasksByDate();
+        if (!this.showTasksGroupedByCompleted && !this.showTasksGroupedByPerformer ){
+          if(!this.showMyTasks){
+            this.tasks.push(task);
+            this.sortTasksByDate();
+          } else {
+            if(task.performerId === this.currentUserId) {
+              this.tasks.push(task);
+              this.sortTasksByDate();
+            }
+          }
+        }
+        else if(this.showTasksGroupedByCompleted){
+          let toDoGroup = this.taskGroupsByCompleted.find(group => group.groupKey === false);
+          if (toDoGroup) {
+            toDoGroup.tasks.push(task);
+            toDoGroup.tasks.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+            } else {
+              this.taskGroupsByCompleted.push({
+                groupKey: false,
+                tasks: [task]
+              })
+            }
+        } else if (this.showTasksGroupedByPerformer){
+
+          let targetGroup = this.taskGroupsByPerformer.find(group => group.groupKey == null);
+          if (targetGroup) {
+            targetGroup.tasks.push(task);
+            targetGroup.tasks.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+          } else {
+            this.taskGroupsByPerformer.push({
+              groupKey: null,
+              tasks: [task]
+            })
+          }
+        } else if (this.showMyTasks) {
+
+        }
+        
       }
+
+      
 
       get noBoardTasks() : boolean{
         return this.tasks.length > 0? false: true;
