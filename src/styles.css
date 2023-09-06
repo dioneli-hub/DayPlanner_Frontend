@@ -68,6 +68,11 @@
     position: fixed;
     bottom: 40px;
     left: 50px;
+    
+}
+
+.back-link > a {
+  color: var(--primary-color)
 }
 /*reset button styles*/
 button {

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   showLoading: boolean = false;
+  showVerificationIconLoading: boolean = false;
   email: string = '';
   password: string = '';
 
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
 
            
               authenticate(email: string, password: string) {
+                  this.showLoading = true;
                   this.error = '';
                   this.errorMessage = '';
                   this.successMessage = '';
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
                     .auth(email, password)
                     .subscribe
                       ((res: any) => {
+                            this.showLoading = false;
                             if(res)
                             if(res.isSuccess == true){
                               this.router.navigate(['/']).then();
@@ -62,6 +65,7 @@ export class LoginComponent implements OnInit {
                         
                           error => {
                             console.log(error)
+                            this.showLoading = false;
                           }
                       );
                 }
@@ -94,6 +98,37 @@ export class LoginComponent implements OnInit {
                           this.showLoading = false;}
                     );
                       
+              }
+
+              sendVerificationEmail(){
+                this.successMessage = '';
+                this.errorMessage = '';
+                this.error = '';
+                this.showVerificationIconLoading = true;
+
+                this.usersService
+                      .sendVerificationEmail(this.email)
+                      .subscribe((res: any) => {
+
+                        this.showVerificationIconLoading = false;
+                        if(res.isSuccess == true){
+                          this.errorMessage = '';
+                          this.successMessage = res.message;
+                        } else {
+                          
+                          this.errorMessage = res.message
+                        }
+                    },
+                       error => {
+                        console.log(error)
+                        this.errorMessage = "Some error has occured..."
+                        setTimeout(()=>{
+                          this.errorMessage = '';
+                        }, 5000)
+                        
+                        this.showVerificationIconLoading = false;}
+                  );
+                    
               }
               // {
               //   this.errorMessage = '';

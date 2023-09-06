@@ -1,0 +1,28 @@
+.input-container {
+    position: relative;
+}
+
+.input-with-icon {
+    padding-right: 60px; 
+}
+
+.send-verification-message-icon {
+    position: absolute;
+    right: 0px; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: lightgray;
+}
+
+.send-verification-message-icon:hover {
+    color: var(--primary-color); 
+}
+
+ .send-verification-message-icon:active {
+    color: var(--primary-color-hover); 
+}
+
+.send-verification-message-icon:disabled {
+    color: lightgray;
+    pointer-events: none;
+}

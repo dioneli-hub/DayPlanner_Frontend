@@ -82,6 +82,12 @@ export class UsersService {
     return this.httpClient.post(`${environment.apiUrl}BoardMember/boards/${boardId}/add-board-member-by-email/${email}`, {});
   }
 
+  sendVerificationEmail(userEmail: string) : Observable<ServiceResponse<UserModel>>{
+    return this.httpClient.post<ServiceResponse<UserModel>>(`${environment.apiUrl}User/trigger-verification`, {
+      "email" : userEmail
+    });
+  }
+
   acceptBoardInvitation(invitationToken: string) : Observable<ServiceResponse<BoardMemberModel>>  {
     return this.httpClient
       .patch<ServiceResponse<BoardMemberModel>>(`${environment.apiUrl}BoardMember/accept-invitation`,

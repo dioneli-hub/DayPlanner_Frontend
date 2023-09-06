@@ -13,9 +13,20 @@
       <h3>Log In to account</h3>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" 
+        <div class="input-container">
+          <input type="email" class="form-control input-with-icon" id="email" 
                [(ngModel)]="email"
                placeholder="name@domain.com" required>
+
+               <button (click)="sendVerificationEmail()" [disabled]="!email" class="send-verification-message-icon">
+
+                <i *ngIf="!showVerificationIconLoading"  class="fa fa-envelope-open-o" ngbTooltip="Send verification email" aria-hidden="true"></i>
+                <div *ngIf="showVerificationIconLoading" class="spinner-border spinner-border-sm text-secondary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button>
+              
+        </div>
       </div>
       <div class="mb-2">
         <label for="password" class="form-label">Password</label>
