@@ -11,6 +11,7 @@
   margin: 20px;
 }
 
+
 .process-status-message p{
   font-family: 'Montserrat', sans-serif;
   /* text-transform: uppercase; */
@@ -18,7 +19,6 @@
   margin-left: 7px;
 }
 
-/* You can add global styles to this file, and also import other style files */
 
 ::-webkit-scrollbar { /* width */
   width: 12px;
@@ -372,72 +372,6 @@ label.custom-checkbox {
 }
 
 /*theming*/
-
-/* .cold-blue-theme { */
-  /* :root{
-  --primary-color: #4682B4;
-  --primary-color-hover: #386890;
-
-  --st-members-bg: white;
-  --st-members-shadow: #B4B9C0;
-  --background-color: white;
-
-
-  --add-new-color: #D5D5D5;
-  --add-new-text-color: #000000;
-  --add-new-color-hover: #AEC8E8;
-  --add-new-text-color-hover: #FFFFF0;
-  --add-new-color-active: #B0C4DE;
-  --add-new-text-color-active: #FFFFF0;
-
-  --add-new-border: thin solid #C0C0C0;
-  --add-new-border-hover:thin solid #4682B4;
-  --add-new-border-active:thin solid #778899;
-
-
-  --confirm-color: #C6DFFD;
-  --confirm-text-color: #001F3F;
-  --confirm-color-hover: #87CEFA;
-  --confirm-text-color-hover: #FFFFF0;
-  --confirm-color-active: #B0E0E6;
-  --confirm-text-color-active: #FFFFF0;
-  --confirm-color-disabled: #D3D3D3;
-  --confirm-text-color-disabled: #696969;
-
-  --confirm-border:thin solid #B0C4DE;
-  --confirm-border-hover:thin solid #6495ED;
-  --confirm-border-active:thin solid #778899;
-  --confirm-border-disabled:thin solid #DCDCDC;
-
-
-  --cancel-color: #FFE4E1;
-  --cancel-text-color: #A30000;
-  --cancel-color-hover: #F08080;
-  --cancel-text-color-hover: #FFFFF0;
-  --cancel-color-active: #BC8F8F;
-  --cancel-text-color-active: #FFFFF0;
-
-  --cancel-border:thin solid #F08080;
-  --cancel-border-hover:thin solid #CD5C5C;
-  --cancel-border-active:thin solid #B22222;
-
-
-  --navbar-and-scrollbar-track-color: #E1E8F0;
-  --navbar-logo-color: #333333;
-  --navbar-logo-subtitle-color: #333333;
-
-  --scrollbar-thumb-color: #D3D3D3;
-  --scrollbar-thumb-box-shadow-color: #A49F9F;
-
-  --home-heading-bg-color: #B4B9C0;
-  --home-heading-border-top-color:#333333;
-  --home-heading-text-color: white;
-
-  --sidebar-navlink: grey;
-  --sidebar-navlink-active: #333333;
-
-  --modal-input-border: thin solid lightgray;
-}  */
 
 :root{
   --logout-danger-color: #dc3545;

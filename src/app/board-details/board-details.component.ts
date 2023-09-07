@@ -26,7 +26,6 @@ export class BoardDetailsComponent implements OnInit{
   currentBoardName: string = '';
   boardMembers: Array<UserModel> = [];
   tasks: Array<TaskModel> = [];
-  myTasks:  Array<TaskModel> = [];
   boardId: number | null = null;
   email: string = '';
   isCreator: boolean = null;
@@ -43,6 +42,7 @@ export class BoardDetailsComponent implements OnInit{
   showMyTasks: boolean = false;
   tasksGroupedByPerformerVisibility: { [groupKeyId: string] :boolean } = {}; 
   tasksGroupedByCompletedVisibility: { [groupKey: string] :boolean } = {}; 
+
 
 
 
@@ -344,21 +344,8 @@ export class BoardDetailsComponent implements OnInit{
               groupKey: null,
               tasks: [task]
             })
-          }
-        } else if (this.showMyTasks) {
-
-        }
-        
-      }
-
-      
-
-      get noBoardTasks() : boolean{
-        return this.tasks.length > 0? false: true;
-      }
-      get noMyTasks(): boolean{
-        return this.myTasks.length > 0? false: true;
-      }
+          }}}
+     
 
       get getTasksColumnStyle(){
         if(this.isMembersListVisible == false && !this.showTasksGroupedByPerformer && !this.showTasksGroupedByCompleted){
