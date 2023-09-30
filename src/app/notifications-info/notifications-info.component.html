@@ -1,3 +1,5 @@
+
+<div *ngIf="notificationsLoaded">
 <ng-template [ngIf]="notifications.length != 0" [ngIfElse]="noNotifications">
     <div class="heading">
         <div class="heading-text">
@@ -36,4 +38,5 @@
       </div>
     
 </ng-template>
+</div>
 

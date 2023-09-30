@@ -14,6 +14,7 @@ export class NotificationsInfoComponent {
   private destroy$ = new Subject<void>();
  
   notifications: Array<NotificationModel> = [];
+  notificationsLoaded: boolean = false;
 
   constructor(
               private authService: AuthenticationService,
@@ -29,6 +30,7 @@ export class NotificationsInfoComponent {
     this.notificationsService.getUserNotifications()
       .subscribe((notifications)=>{
         this.notifications = notifications;
+        this.notificationsLoaded = true;
       })
 }
 
