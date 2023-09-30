@@ -28,6 +28,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { ThemingService } from 'src/services/theming.service';
 import { ThemeChangerComponent } from './theme-changer/theme-changer.component';
 import { JoinBoardComponent } from './join-board/join-board.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const AUTHENTICATION_INTERCEPTOR = {
     provide: HTTP_INTERCEPTORS,
@@ -55,6 +56,7 @@ const appRoutes: Routes =[
     { path: "reset-password", component: ResetPasswordComponent, },   
     { path: "verify", component: VerifyEmailComponent, },
     { path: "join-board", component: JoinBoardComponent },
+    { path: "access-denied", component: AccessDeniedComponent, },
     { path: "**", component: NotFoundComponent, }
 ];
 @NgModule({
@@ -77,6 +79,7 @@ const appRoutes: Routes =[
         LoadingComponent,
         ThemeChangerComponent,
         JoinBoardComponent,
+        AccessDeniedComponent,
     ],
     providers: [
         AUTHENTICATION_INTERCEPTOR,

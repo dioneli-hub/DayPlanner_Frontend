@@ -21,7 +21,7 @@ export class HomeContentComponent implements OnInit{
   currentUser: UserModel | null = null;
   userId: number | null = null;
   tasks: Array<TaskModel> = [];
-  todaysTasks: Array<TaskModel> = [];
+  // todaysTasks: Array<TaskModel> = [];
   boards: Array<BoardModel> = [];
 
 
@@ -66,7 +66,7 @@ export class HomeContentComponent implements OnInit{
         .subscribe(() => {
         this.boards = this.boards.filter(x => x.id !== board.id);
         this.tasks = this.tasks.filter(x => x.boardId !== board.id);
-        this.todaysTasks = this.todaysTasks.filter(x => x.boardId !== board.id);
+        // this.todaysTasks = this.todaysTasks.filter(x => x.boardId !== board.id);
       });
       }
 
@@ -81,10 +81,10 @@ export class HomeContentComponent implements OnInit{
     .subscribe(()=>{
       if(task.changeRecurredChildren == true){
         this.tasks = this.tasks.filter(x => x.id !== task.id && x.parentTaskId !== task.id);
-        this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id && x.parentTaskId !== task.id);
+        // this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id && x.parentTaskId !== task.id);
       }else {
         this.tasks = this.tasks.filter(x => x.id !== task.id);
-        this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
+        // this.todaysTasks = this.todaysTasks.filter(x => x.id !== task.id);
       }
     })  
  }
@@ -102,12 +102,12 @@ export class HomeContentComponent implements OnInit{
                     .subscribe(tasks => {
                       this.tasks = tasks;
                     });
-                    this.tasksService
-                    .getTodaysUserBoardsTasks(this.userId)
-                    .pipe(takeUntil(this.destroy$))
-                    .subscribe(tasks => {
-                      this.todaysTasks = tasks;
-                    });
+                    // this.tasksService
+                    // .getTodaysUserBoardsTasks(this.userId)
+                    // .pipe(takeUntil(this.destroy$))
+                    // .subscribe(tasks => {
+                    //   this.todaysTasks = tasks;
+                    // });
     })  
  }
   
@@ -118,9 +118,9 @@ export class HomeContentComponent implements OnInit{
   onCreateTask(task: TaskModel){
     this.tasks.push(task);
     this.sortTasksByDate()
-    if(this.isToday(task.dueDate)){
-      this.todaysTasks.push(task);
-    }
+    // if(this.isToday(task.dueDate)){
+    //   this.todaysTasks.push(task);
+    // }
   }
 
   onAddTaskRecurrence(data){

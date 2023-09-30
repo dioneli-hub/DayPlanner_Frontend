@@ -20,7 +20,7 @@ export class BoardDetailsComponent implements OnInit{
   private destroy$ = new Subject<void>();
   @Output() leaveBoard = new EventEmitter<BoardModel>();
 
-
+  isUserAllowedToBoard:boolean = false;
   currentUserId: number = null;
   currentBoard: BoardModel | null = null;
   currentBoardName: string = '';
@@ -61,6 +61,7 @@ export class BoardDetailsComponent implements OnInit{
       this.router.navigate(['/login']).then();
     }
 
+    
 
     this.route 
         .params
@@ -69,18 +70,27 @@ export class BoardDetailsComponent implements OnInit{
           this.boardId = params['id'];
           this.boardsService.getBoardById(this.boardId)
             .subscribe(currentBoard => {
-              this.currentBoard = currentBoard;
-              this.currentBoardName = currentBoard.name;
-
               this.usersService
                 .current()
                 .subscribe(user => {
+                  this.boardsService
+                    .isUserAllowedToBoard(user.id, this.boardId)
+                    .subscribe((isUserAllowed => {
+                      if(!isUserAllowed){
+                        this.router.navigate(['/access-denied']).then();
+                      } else {
+                        this.isUserAllowedToBoard = true;
+                      }
+                    }))
                   this.isCreator = currentBoard.creatorId == user.id? 
                      true :  false;
                   this.currentUserId = user.id;
-                  }
+                  });
 
-                );
+              this.currentBoard = currentBoard;
+              this.currentBoardName = currentBoard.name;
+
+              
             });
           if (this.boardId) {
             this.usersService
@@ -322,7 +332,7 @@ export class BoardDetailsComponent implements OnInit{
             }
           }
         }
-        else if(this.showTasksGroupedByCompleted){
+        else if(this.showTasksGroupedByCompleted && !this.showMyTasks){
           let toDoGroup = this.taskGroupsByCompleted.find(group => group.groupKey === false);
           if (toDoGroup) {
             toDoGroup.tasks.push(task);

@@ -19,6 +19,11 @@ import { Subject } from "rxjs";
       });
     }
 
+    isUserAllowedToBoard(userId: number, boardId: number): Observable<boolean> {
+      return this.httpClient.get<boolean>(`${environment.apiUrl}Board/${boardId}/user/${userId}/is-allowed-to-board`);
+    }
+
+
     deleteBoard (boardId: number): Observable<void>{
       return this.httpClient.delete<void>(`${environment.apiUrl}Board/${boardId}`)}
 

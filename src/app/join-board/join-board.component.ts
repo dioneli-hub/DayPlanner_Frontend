@@ -58,11 +58,13 @@ export class JoinBoardComponent {
       this.invitationToken = decodeURIComponent(params['token']) ;
       this.decline = decodeURIComponent(params['decline']) ;
 
-      this.isAuthenticated = this.authService.isAuthenticated()
-      this.usersService.current()
-            .subscribe((user)=>{
-              this.currentUserId = user.id;
-              })
+      if (this.isAuthenticated = this.authService.isAuthenticated()){
+        this.usersService.current()
+        .subscribe((user)=>{
+          this.currentUserId = user.id;
+          })
+      }
+
       // if (!this.authService.isAuthenticated()) {
         // this.router.navigate(['/login']).then();
       // }
@@ -74,6 +76,8 @@ export class JoinBoardComponent {
         this.usersService
         .acceptBoardInvitation(this.invitationToken)
         .subscribe(res => {
+
+          // console.log(res)
           this.responseMessage = res.message;
 
           this.isAuthenticatedAsTargetUser = this.currentUserId == res?.data?.memberId;

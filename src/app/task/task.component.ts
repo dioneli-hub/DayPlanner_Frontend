@@ -128,7 +128,7 @@ get taskStatus(){
 
 get taskBgColor(){
   return this.task.isCompleted? '#ecffd4' 
-       : this.task.isOverdue? '#f7c3c3' : '#fbfcb8'
+       : this.task.isOverdue? '#fadbdb' : '#fbfcb8'
 }
 
 get taskDueDate(){

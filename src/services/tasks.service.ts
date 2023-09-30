@@ -16,7 +16,6 @@ import { environment } from "../environments/environment";
     }
 
     getRecurredChildTasks(parentTaskId : number) : Observable<Array<TaskModel>> {
-      console.log('getRecurredChildTasks service')
       return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/recurrence/${parentTaskId}/child-tasks`);
     }
 
@@ -26,11 +25,6 @@ import { environment } from "../environments/environment";
 
     getBoardTasksGroupedByPerformer(boardId: number) {
       return this.httpClient.get<Array<any>>(`${environment.apiUrl}TaskItem/${boardId}/get-board-tasks/grouped-by-performer`);
-    }
-
-
-    getTodaysUserBoardsTasks(userId: number): Observable<Array<TaskModel>> {
-      return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/user-boards-todays-tasks`);
     }
 
     getUserBoardsTasks(boardId: number): Observable<Array<TaskModel>> {
@@ -53,7 +47,6 @@ import { environment } from "../environments/environment";
       {...task},
       );
     }
-        
 
     markAsToDo(taskId: number)  {
       return this.httpClient.post(
@@ -62,7 +55,6 @@ import { environment } from "../environments/environment";
         {responseType: 'text'}
         );
     }
-
 
     updateChangeRecurredChildren(taskId: number) : Observable<boolean> {
       return this.httpClient.post<boolean>(
@@ -75,7 +67,6 @@ import { environment } from "../environments/environment";
       return this.httpClient.patch(
         `${environment.apiUrl}TaskItem/${taskId}/update-performer/${newPerformerId}`, 
         {},
-        // {responseType: 'text'}
         );
     }
 
@@ -83,7 +74,6 @@ import { environment } from "../environments/environment";
       return this.httpClient.patch(
         `${environment.apiUrl}TaskItem/${taskId}/update-overdue`, 
         {},
-        // {responseType: 'text'}
         );
     }
 
@@ -93,25 +83,6 @@ import { environment } from "../environments/environment";
         {"taskId": taskId,
         "recurringType": recurringType, 
         "occurencesNumber": occurencesNumber},
-        // {responseType: 'text'}
         );
     }
-
-    
-}
-
-
-
-
-
-    // getTasks(): Observable<Array<TaskModel>> {
-    //   return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}taskItem`);
-    // }
-
-    // getUsersTasks(userId: number): Observable<Array<TaskModel>> {
-    //   return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-tasks`);
-    // }
-
-    // getTodaysUsersTasks(userId: number): Observable<Array<TaskModel>> {
-    //   return this.httpClient.get<Array<TaskModel>>(`${environment.apiUrl}TaskItem/${userId}/users-todays-tasks`);
-    // }
+  }

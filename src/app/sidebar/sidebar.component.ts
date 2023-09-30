@@ -28,4 +28,14 @@ export class SidebarComponent {
       return this.themingService.getActiveColorTheme() == Themes.DEFAULT?  
           "assets/DayPlannerLogoDark.svg" : "assets/DayPlannerLogoLight.svg";
     }
+
+    get sidebarCloseBtnClass(){
+      return this.themingService.getActiveColorTheme() == Themes.COLDBLUE? 
+        "" : "btn-close-white";
+    }
+
+    get navbarTogglerIconClass(){
+       return this.themingService.getActiveColorTheme() == Themes.COLDBLUE? 
+       "" :  "navbar-dark";
+    }
 }
