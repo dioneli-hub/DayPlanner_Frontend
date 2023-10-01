@@ -1,3 +1,64 @@
+@media (max-width: 768px) {
+    
+    .notification-card {
+    display: grid;
+    grid-template-columns: [first] 4fr [divide] 1fr[end];
+    grid-template-rows: [row-start ]1fr [row-middle-one] 2fr[row-middle-two] 1fr [row-end];
+    justify-items: start; 
+    align-items: start;
+    height: 105px;
+    border-radius: 15px;
+    border-color: var(--notification-border-color);
+    border-style: inset;
+    border-width: 3px;
+}
+
+.notification-text{
+    grid-column-start: first;
+    grid-column-end: divide;
+    /* grid-row-start: row-middle-one;
+    grid-row-end: row-middle-two; */
+    grid-row-start: row-start;
+    grid-row-end: row-middle-two;
+
+    margin-top: 12px;
+    margin-left: 30px;
+}
+
+.close-icon{
+    font-size: x-large;
+    grid-column-start: divide;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+    justify-self: end;
+    padding-right: 7px;
+    margin-top: 7px;
+    color:var(--primary-color);
+}
+
+.close-icon:hover{
+    color:var(--primary-color-hover);
+}
+
+
+.time {
+    grid-column-start: divide;
+    grid-column-end: end;
+    grid-row-start: row-middle-two;
+    grid-row-end: row-end;
+    justify-self: end;
+
+    color: grey;
+    font-size: smaller;
+
+    padding-right: 7px;
+    margin-bottom: 7px;
+}
+}
+
+@media (min-width: 768px) {
+
 .notification-card {
     display: grid;
     grid-template-columns: [first] 4fr [divide] 1fr[end];
@@ -50,3 +111,4 @@
     margin-bottom: 7px;
 }
 
+}
