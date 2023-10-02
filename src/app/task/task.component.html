@@ -42,10 +42,12 @@
         <form #updatePerformerForm="ngForm"  class="task-performer">
           <select aria-placeholder="task.performer" 
                   (change)="updatePerformer();" 
-                  class=" form-control performer-box text-muted" id="performer{{boardId}}{{task.id}}" name="performer{{boardId}}{{task.id}}" 
+                  class=" form-control performer-box text-muted" 
+                  id="performer{{boardId}}{{task.id}}" 
+                  name="performer{{boardId}}{{task.id}}" 
                   [(ngModel)]="performerId" required>
-            <option  [ngValue]="null" selected hidden>Select performer</option>
-            <option  *ngFor="let performer of boardMembers" 
+            <option class="select-option" [ngValue]="null" selected hidden>Select performer</option>
+            <option  class="option desktop" *ngFor="let performer of boardMembers" 
                       [ngValue]="performer.id">
                       
                       {{performer.firstName}} {{performer.lastName}}</option>

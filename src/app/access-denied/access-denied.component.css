@@ -1,0 +1,11 @@
+.access-denied-container{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+}
+
+.access-denied-message-container{
+    margin-top: 90px;
+}

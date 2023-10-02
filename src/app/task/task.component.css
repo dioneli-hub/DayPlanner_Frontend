@@ -1,3 +1,250 @@
+
+
+@media (max-width: 768px) {
+    
+
+.radio-label{
+    margin-right: 10px;
+}
+
+i.fa-repeat{
+    margin-left: 2px;;
+}
+.card{
+    border: none;
+    border-radius: 12px;
+    box-shadow: -2px 0 1px 0 #a49f9f; /* shadow to the left */
+}
+
+.task-text {
+    display:inline-block;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* width: 70%; */
+    /* width: 100px; */
+    /* 100%; */
+    /* width: 250px; */
+    vertical-align: middle;
+}
+
+.btn.disabled{
+    border: none;
+}
+
+.btn-completion-status:focus {
+    border:none;
+}
+.btn-completion-status :hover {
+    color: green;
+}
+
+
+
+/*grid styling*/
+.task-card{
+    height: 150px;
+    display: grid;
+    grid-template-columns: [first] 5fr [divide-one] 5fr [divide-two] 1fr[end];
+    grid-template-rows: [row-start ]1fr [row-middle-one] 2fr[row-middle-two] 1fr [row-end];
+    justify-items: start; 
+    align-items: start;
+}
+
+
+.task-board {
+    grid-column-start: first;
+    grid-column-end: divide-one;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+    justify-self: start;
+
+    color: grey;
+    /* font-size: smaller; */
+}
+
+.task-content {
+    grid-column-start: first;
+    grid-column-end: divide-two;
+    grid-row-start: row-middle-one;
+    grid-row-end: row-middle-two;
+
+    /* align-self: first baseline; */
+}
+
+.task-due{
+    grid-column-start: first;
+    grid-column-end: divide-one;
+    grid-row-start: row-middle-two;
+    grid-row-end: row-end;
+    justify-self: start;
+
+    color: grey;
+    /* font-size: smaller; */
+}
+
+
+.performer-marker{
+    display: none;
+    /* grid-column-start: divide-one;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+
+    justify-self: flex-end;
+    margin-right: 10px;
+
+    color: grey;
+    font-size: smaller; */
+}
+
+
+.task-performer{
+    /* grid-column-start: divide-one;
+    grid-column-end: end;
+    grid-row-start: row-middle-one;
+    grid-row-end: row-middle-two; */
+    grid-column-start: divide-two;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-two;
+
+    justify-self: start;
+    align-self: center; 
+}
+
+.task-performer > select
+{
+    margin-top: -15px;
+    height: 50px;
+    width: 50px;
+    text-align-last: center;
+    border-radius: 50%;
+} 
+
+.task-delete-button {
+    grid-column-start: divide-two;
+    grid-column-end: end;
+    grid-row-start: row-middle-one;
+    grid-row-end: row-end;
+    justify-self: center;
+    align-self: end; 
+
+    
+}
+
+.task-delete-button > button {
+    font-size: large;
+}
+
+.child-task-icon{
+    display: none;
+    /* grid-column-start: divide-two;
+    grid-column-end: end;
+    grid-row-start: row-start;
+    grid-row-end: row-middle-one;
+    justify-self: end;
+    align-self: end; 
+    color:gray; */
+}
+
+/*styling select*/
+
+.performer-box{
+    width: 200px; 
+    border-radius:0;
+    overflow: hidden; 
+    padding-right: 5px; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    margin-bottom: 25px;
+    padding-right: 6px;
+
+    
+}
+
+.option{
+    font-size: large;
+    margin-right: 20px;
+}
+.inactive-performer-info{
+    /* font-size: smaller; */
+    margin-left: 10px;
+    color: grey;
+}
+
+/*due date change area*/
+.task-due > button {
+    font-size: large;
+    border: none;
+    padding: 0;
+    padding-bottom: 4px;
+    /* margin-left: 10px; */
+    color:gray;
+}
+
+.task-due > button:hover {
+    border: none;
+    color: black;
+}
+
+.task-due > button:focus {
+    border: none;
+    color: black;
+}
+
+.task-due > input {
+    border: none;
+    background-color: inherit;
+    width: 0px;
+}
+
+.task-due > input:focus {
+    border: none;
+}
+
+.task-due > input:active {
+    border: none;
+}
+    .recur-number-container > label {
+        display: block;
+        margin-bottom: 2px;
+        margin-top: 10px;
+      }
+      
+    .recur-number-container > label > input[type="number"] {
+        width: 55px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 15px;
+      }
+      
+      /* Style for when the input is in focus */
+    .recur-number-container >  label>input[type="number"]:focus {
+        outline: none;
+        border-color:lightgray;
+        box-shadow: 0 0 5px lightgray;
+      }
+
+    .recurrence-popover-form> button.confirm-btn {
+        margin-top:10px;
+        margin-left:30%;
+    }
+
+    input[type='radio'] {
+        accent-color: var(--primary-color);
+    }
+}
+
+
+@media (min-width: 768px) {
+    
+    
 .error-message {
     color: red;
     font-size: 14px;
@@ -212,3 +459,4 @@ i.fa-repeat{
     input[type='radio'] {
         accent-color: var(--primary-color);
     }
+}
