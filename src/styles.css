@@ -1,3 +1,63 @@
+@media (max-width: 768px) {
+  .show-for-mobile{
+    display: block;
+
+}
+
+.show-for-desktop {
+  display: none;
+}
+
+.back-link {
+  font-size: xx-large;
+}
+
+.task-info-btn{
+  background-color: var(--add-new-color);
+  /* border: var(--add-new-border); */
+  border-radius: 5px;
+  color: var(--add-new-text-color);
+}
+
+
+.task-info-btn:disabled{
+  background-color: var(--add-new-color-disabled );
+  color: var(--add-new-text-color-disabled);
+  /* border: var(--add-new-border-disabled) ; */
+  cursor: default;
+  pointer-events: none;
+}
+
+.task-info-btn:hover{
+  background-color: var(--add-new-color-hover);
+  color: var(--add-new-text-color-hover);
+  /* border: var(--add-new-border-hover); */
+}
+
+.task-info:active{
+  background-color: var(--add-new-color-active);
+  color: var(--add-new-text-color-active);
+  /* border: var(--add-new-border-active); */
+}
+
+}
+
+
+@media (min-width: 768px) {
+  
+.show-for-mobile{
+display: none;
+}
+
+.show-for-desktop {
+display: block;
+}
+
+}
+
+
+
+
 .no-items {
   /* width: 200px; */
   /* height: 100px; */

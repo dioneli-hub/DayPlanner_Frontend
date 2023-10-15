@@ -202,6 +202,9 @@ get taskDueDate(){
         })  
   }
 
+  toggleStatus(task: TaskModel){
+    this.task.isCompleted == true? this.markAsToDo(task) : this.complete(task);
+  }
 
   ngOnDestroy() {
     this.destroy$.next();

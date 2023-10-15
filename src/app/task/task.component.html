@@ -1,4 +1,4 @@
-  <div class="card mb-2"
+  <div class="card mb-2 show-for-desktop"
         [ngStyle]="{'background-color': taskBgColor}">
     <div class="card-body task-card">
       <div class="task-board">
@@ -186,3 +186,286 @@
         </div>
       </div>
     </div> -->
+
+
+
+    <div class="card mb-2 show-for-mobile"
+    [ngStyle]="{'background-color': taskBgColor}">
+<div class="card-body task-card">
+  <div class="task-board">
+   in {{task.board?.name}} 
+  </div>
+
+ 
+    
+
+  <div *ngIf="taskCreatorId == currentUserId" class="task-management-btns">
+
+    <ng-template #recurrencePopoverContent class="recurrence-popover-container" >
+
+      <form #recurrenceAddPopover="ngForm" class="recurrence-popover-form" (ngSubmit)="submitAddRecurrenceForm(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
+
+         <div class="recurring-type-container form-group">
+          <label *ngFor="let recurringType of recurringTypes" class="radio-label">
+            <input type="radio" class="recurring-type" name="recurringType" [value]="recurringType" [(ngModel)]="selectedRecurringType" required>
+            {{ recurringType }}
+          </label>
+        </div>
+
+        <div class="recur-number-container form-group">
+          <label for="occurencesNumber">Repeat times (max: 20)
+          <input
+            type="number"
+            id="occurencesNumber"
+            name="occurencesNumber"
+            [(ngModel)]="occurencesNumber"
+            min="1"
+            max="20"
+            required
+          >
+        </label>
+          <div class="error-message" *ngIf="occurencesNumberInput.invalid && occurencesNumberInput.dirty">
+            Please enter a valid number between 1 and 20.
+          </div>
+        </div>
+
+        <button type="submit" class="confirm-btn" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Recur</button>
+        </form>
+   
+        <div class="mt-3">
+
+          <label class="custom-checkbox" >
+            <input name="setPerformerCheckbox" (ngModelChange)="updateChangeRecurredChildren()" type="checkbox"  [(ngModel)]="isRepeatRecurrenceActions"/>
+            <span class="checkmark"></span>
+            <small>Delete/reschedule child tasks along with the parent task</small> 
+          </label>
+        
+       
+      </div>
+
+    </ng-template>
+
+    <button type="button" 
+    class="btn delete-button recurrence-button" 
+    [ngbPopover]="recurrencePopoverContent"
+    triggers="manual"
+    #p="ngbPopover"
+    (click)="p.open()"
+    popoverTitle="Recurrence"
+    [autoClose]="'outside'"
+    >
+<i class="fa fa-repeat"  aria-hidden="true" ngbTooltip="Recurrence settings"  placement="right"></i>
+</button>
+
+
+    <button 
+            type="button" 
+            class="btn delete-button" 
+            (click)="delete(task)"
+            ngbTooltip="Delete task" placement="left">
+
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </button>
+
+
+
+  </div>
+
+  <div class="task-content">
+    <div class="task-text-label  task-content-label">Task</div>
+    <div class="task-text">{{task.text}}</div>
+
+    <div class="task-status-label task-content-label">
+      Status
+      </div>
+
+      <ng-template [ngIf]="currentUserId == taskCreatorId 
+                          || currentUserId == performerId"
+                   [ngIfElse]="notAllowedToPerform">
+
+      <button 
+          class="task-status-change-btn task-info-btn" 
+          (click)="toggleStatus(task)"
+         >
+      {{taskStatus}} 
+    </button>
+        
+      </ng-template>
+      <ng-template #notAllowedToPerform >
+        <button 
+        class="task-status-change-btn task-info-btn disabled" 
+        (click)="toggleStatus(task)"
+       >
+          <i class="fa fa-lock " aria-hidden="true" ></i>
+          {{taskStatus}} 
+        </button>
+        
+      </ng-template>
+  
+
+
+     <div class="task-performer-label task-content-label">
+      Performer
+    </div>
+
+    <form #updatePerformerForm="ngForm"  class="task-performer-info"
+        >
+      <select aria-placeholder="task.performer" 
+              (change)="updatePerformer();" 
+              class=" form-control performer-box text-muted" 
+              id="performer{{boardId}}{{task.id}}" 
+              name="performer{{boardId}}{{task.id}}" 
+              [(ngModel)]="performerId" required
+              [disabled]="taskCreatorId != currentUserId">
+        <option class="select-option" [ngValue]="null" selected hidden>Select performer</option>
+        <option  class="option desktop" *ngFor="let performer of boardMembers" 
+                  [ngValue]="performer.id">
+                  
+                  {{performer.firstName}} {{performer.lastName}}</option>
+      </select>
+      </form>
+
+
+      <div class="task-due-label task-content-label">
+        Due
+        </div>
+
+        <div class="task-due-info">
+            
+            <ng-template [ngIf]="taskCreatorId == currentUserId"
+                          [ngIfElse]="taskDueDefault">
+              <input 
+                      name="taskDueDate" 
+                      [minDate]="minDate"
+                      [(ngModel)]="newTaskDueDate"
+                      ngbDatepicker 
+                      #changeDueDate="ngbDatepicker"
+                      (dateSelect)="updateTaskDueDate()"
+                      [hidden]="true"
+                       />
+    
+                  <button type="button" 
+                          class="task-info-btn"
+                          (click)="changeDueDate.toggle()"
+                          >
+                          {{taskDueDate}}
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </button>
+            </ng-template>
+
+            <ng-template #taskDueDefault>
+              {{taskDueDate}}
+            </ng-template>
+        </div>
+  
+
+
+</div>
+<!-- 
+<div class="task-due">
+  Due {{taskDueDate}} 
+</div> -->
+  
+
+   
+
+    <!-- <i *ngIf="isChild" ngbTooltip="Child task" class="child-task-icon fa fa-child me-3" aria-hidden="true"></i> -->
+
+      <!-- <div *ngIf="taskCreatorId == currentUserId" class="task-delete-button">
+        <button 
+                type="button" 
+                class="btn delete-button" 
+                (click)="delete(task)"
+                ngbTooltip="Delete task" placement="left">
+
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+
+      </div> -->
+  <!-- <div class="task-due">
+    Due {{taskDueDate}}
+    <ng-template [ngIf]="taskCreatorId == currentUserId">
+      <input 
+              name="taskDueDate" 
+              [minDate]="minDate"
+              [(ngModel)]="newTaskDueDate"
+              ngbDatepicker 
+              #changeDueDate="ngbDatepicker"
+              (dateSelect)="updateTaskDueDate()"
+               />
+
+          <button type="button" 
+                  class="btn btn-sm" 
+                  (click)="changeDueDate.toggle()"
+                  ngbTooltip="Reschedule task" placement="right"
+                  >
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+          </button>
+
+
+
+    </ng-template>
+
+ <ng-template [ngIf]="taskCreatorId == currentUserId">
+    <ng-template #recurrencePopoverContent class="recurrence-popover-container" >
+
+      <form #recurrenceAddPopover="ngForm" class="recurrence-popover-form" (ngSubmit)="submitAddRecurrenceForm(recurrenceAddPopover.value); recurrenceAddPopover.resetForm(); ">
+
+         <div class="recurring-type-container form-group">
+          <label *ngFor="let recurringType of recurringTypes" class="radio-label">
+            <input type="radio" class="recurring-type" name="recurringType" [value]="recurringType" [(ngModel)]="selectedRecurringType" required>
+            {{ recurringType }}
+          </label>
+        </div>
+
+        <div class="recur-number-container form-group">
+          <label for="occurencesNumber">Repeat times (max: 20)
+          <input
+            type="number"
+            id="occurencesNumber"
+            name="occurencesNumber"
+            [(ngModel)]="occurencesNumber"
+            min="1"
+            max="20"
+            required
+          >
+        </label>
+          <div class="error-message" *ngIf="occurencesNumberInput.invalid && occurencesNumberInput.dirty">
+            Please enter a valid number between 1 and 20.
+          </div>
+        </div>
+
+        <button type="submit" class="confirm-btn" [disabled]="recurrenceAddPopover.invalid" (click)="p.close()">Recur</button>
+        </form>
+   
+        <div class="mt-3">
+
+          <label class="custom-checkbox" >
+            <input name="setPerformerCheckbox" (ngModelChange)="updateChangeRecurredChildren()" type="checkbox"  [(ngModel)]="isRepeatRecurrenceActions"/>
+            <span class="checkmark"></span>
+            <small>Delete/reschedule child tasks along with the parent task</small> 
+          </label>
+        
+       
+      </div>
+
+    </ng-template>
+    
+    <button type="button" 
+    class="btn btn-sm" 
+    [ngbPopover]="recurrencePopoverContent"
+    triggers="manual"
+    #p="ngbPopover"
+    (click)="p.open()"
+    popoverTitle="Recurrence"
+    [autoClose]="'outside'"
+    
+    
+    >
+<i class="fa fa-repeat"  aria-hidden="true" ngbTooltip="Recurrence settings"  placement="right"></i>
+</button>
+</ng-template>
+
+  </div> -->
+</div>
+</div>
